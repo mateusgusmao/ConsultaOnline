@@ -6,12 +6,14 @@
       <div class="panel-body">
         <form ngForm #form>
           <div class="form-group">
-            <label for="username">Login:</label>
-            <input type="text" class="form-control" id="username" name="username" ngModel #username required>
+              <span class="ui-float-label">
+                <label for="float-input">Username</label>
+                <input type="text" class="form-control" id="float-input" type="text" size="30" pInputText required> 
+              </span>
           </div>
           <div class="form-group">
               <label for="password">Senha:</label>
-              <input type="text" class="form-control" id="password" name="password" ngModel #password required>
+              <input type="password" pPassword [feedback]="false" class="form-control" id="password" name="password" ngModel #password required>
             </div>
             <button type="submit" class="btn btn-primary">Entrar</button>
         </form>

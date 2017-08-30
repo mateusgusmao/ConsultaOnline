@@ -7,6 +7,8 @@ import { FormularioCadastroComponent } from './formulario-cadastro/formulario-ca
 import {AccordionModule} from 'primeng/primeng';
 import {MenuItem} from 'primeng/primeng';
 import {ButtonModule} from 'primeng/primeng';
+import {PasswordModule} from 'primeng/primeng';
+import {InputTextModule} from 'primeng/primeng';
 
 
 
@@ -22,8 +24,9 @@ import {ButtonModule} from 'primeng/primeng';
   imports: [
     BrowserModule,
     AccordionModule,
-    ButtonModule
-    
+    ButtonModule,
+    PasswordModule,
+    InputTextModule
     
     
   ],
