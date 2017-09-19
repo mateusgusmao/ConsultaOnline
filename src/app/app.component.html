@@ -3,8 +3,11 @@
     <h1>Consulta Online</h1>
     </header>
   </div>
-<app-formulario></app-formulario>
-<app-formulario-cadastro></app-formulario-cadastro>
+  <div>
+  <p-panelMenu [model]="items" [style]="{'width':'300px'}"></p-panelMenu>
+  </div>  
+  <router-outlet></router-outlet>
+
 
 
 
