@@ -9,6 +9,9 @@ import {MenuItem} from 'primeng/primeng';
 import {ButtonModule} from 'primeng/primeng';
 import {PasswordModule} from 'primeng/primeng';
 import {InputTextModule} from 'primeng/primeng';
+import { HomepageComponent } from './homepage/homepage.component';
+import {InputMaskModule} from 'primeng/primeng';
+import { RouterModule, Routes } from '@angular/router';
 
 
 
@@ -18,6 +21,7 @@ import {InputTextModule} from 'primeng/primeng';
     AppComponent,
     FormularioComponent,
     FormularioCadastroComponent,
+    HomepageComponent,
     
     
   ],
@@ -26,7 +30,9 @@ import {InputTextModule} from 'primeng/primeng';
     AccordionModule,
     ButtonModule,
     PasswordModule,
-    InputTextModule
+    InputTextModule,
+    InputMaskModule,
+    RouterModule
     
     
   ],
