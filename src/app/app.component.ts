@@ -15,10 +15,10 @@ export class AppComponent {
 ngOnInit() {
   this.items = [
     {
-      label: 'File',
-      icon: 'fa-file-o',
+      label: 'Consultas',
+      icon: 'fa-calendar',
       items: [{
-        label: 'New',
+        label: 'Nova consulta',
         icon: 'fa-plus',
         items: [
           {label: 'Project'},
@@ -30,16 +30,16 @@ ngOnInit() {
       ]
     },
     {
-      label: 'Edit',
-      icon: 'fa-edit',
+      label: 'Perfil',
+      icon: 'fa-user-circle',
       items: [
         {label: 'Undo', icon: 'fa-mail-forward'},
         {label: 'Redo', icon: 'fa-mail-reply'}
       ]
     },
     {
-      label: 'Help',
-      icon: 'fa-question',
+      label: 'Redes Sociais',
+      icon: 'fa-facebook',
       items: [
         {
           label: 'Contents'
@@ -63,8 +63,8 @@ ngOnInit() {
       ]
     },
     {
-      label: 'Actions',
-      icon: 'fa-gear',
+      label: 'Contato',
+      icon: 'fa-phone',
       items: [
         {
           label: 'Edit',
