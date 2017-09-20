@@ -15,6 +15,7 @@ import {InputTextModule} from 'primeng/primeng';
 import {InputMaskModule} from 'primeng/primeng';
 import {PanelMenuModule} from 'primeng/primeng';
 import {TabMenuModule} from 'primeng/primeng';
+import {CalendarModule} from 'primeng/primeng';
 
 
 
@@ -36,11 +37,9 @@ import {TabMenuModule} from 'primeng/primeng';
     PanelMenuModule,
     BrowserAnimationsModule,
     rota,
-    TabMenuModule
+    TabMenuModule,
+    CalendarModule
 
-    
-    
-    
   ],
   providers: [],
   bootstrap: [AppComponent]
