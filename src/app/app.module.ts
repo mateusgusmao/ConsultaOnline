@@ -14,6 +14,9 @@ import {PasswordModule} from 'primeng/primeng';
 import {InputTextModule} from 'primeng/primeng';
 import {InputMaskModule} from 'primeng/primeng';
 import {PanelMenuModule} from 'primeng/primeng';
+import {TabMenuModule} from 'primeng/primeng';
+
+
 
 
 @NgModule({
@@ -32,7 +35,8 @@ import {PanelMenuModule} from 'primeng/primeng';
     PasswordModule,
     PanelMenuModule,
     BrowserAnimationsModule,
-    rota
+    rota,
+    TabMenuModule
 
     
     
