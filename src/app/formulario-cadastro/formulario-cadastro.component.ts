@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../models/user'
+import { UserService } from '../user.service';
 import {TabMenuModule, MenuItem} from 'primeng/primeng';
-import { CadastroServiceService } from '../cadastro-service.service';
+
 
 
 @Component({
@@ -9,24 +11,31 @@ import { CadastroServiceService } from '../cadastro-service.service';
   styleUrls: ['./formulario-cadastro.component.css']
 })
 export class FormularioCadastroComponent implements OnInit {
+
+users: User[] = [];
+user: User = new User();
   
 items: MenuItem[];
 activeTab: MenuItem;
 
-  constructor() {
-}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
+    this.users = this.userService.getUsers();
+
     this.items = [
-      {label: 'Home', icon: 'fa-home', items:[{label: 'Login'}]},
-      {label: 'Entrar', icon: 'fa-user-circle', routerLink: '/formulario'},
-      {label: 'Consultas', icon: 'fa-calendar'},
+      {label: 'Home', icon: 'fa-home'},
+      {label: 'Entrar', icon: 'fa-user-circle', routerLink: '/login'},
+      {label: 'Consultas', icon: 'fa-calendar', routerLink: '/consultas'},
       {label: 'Contato', icon: 'fa-phone'},
       {label: 'Redes Sociais', icon: 'fa-facebook'}
   ];
       this.activeTab = this.items[1];
 
   }
+ register(user: User){
+   this.userService.AddUser(this.user);
+ }
 
 }
 

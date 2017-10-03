@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../models/user'
+import { Consulta } from '../models/consulta';
 import {TabMenuModule, MenuItem} from 'primeng/primeng';
 
 @Component({
-  selector: 'app-formulario',
-  templateUrl: './formulario.component.html',
-  styleUrls: ['./formulario.component.css']
+  selector: 'app-consultas',
+  templateUrl: './consultas.component.html',
+  styleUrls: ['./consultas.component.css']
 })
-export class FormularioComponent implements OnInit {
-
-  users: User[] = [];
-  user: User = new User();
+export class ConsultasComponent implements OnInit {
 
   items: MenuItem[];
   activeTab: MenuItem;
@@ -18,14 +15,14 @@ export class FormularioComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  this.items = [
+        this.items = [
       {label: 'Home', icon: 'fa-home'},
       {label: 'Entrar', icon: 'fa-user-circle', routerLink: '/login'},
       {label: 'Consultas', icon: 'fa-calendar', routerLink: '/consultas'},
       {label: 'Contato', icon: 'fa-phone'},
       {label: 'Redes Sociais', icon: 'fa-facebook'}
   ];
-      this.activeTab = this.items[1];
+      this.activeTab = this.items[2];
   }
- 
+
 }

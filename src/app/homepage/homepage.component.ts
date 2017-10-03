@@ -18,8 +18,8 @@ export class HomepageComponent implements OnInit {
   ngOnInit() {
     this.items = [
         {label: 'Home', icon: 'fa-home'},
-        {label: 'Entrar', icon: 'fa-user-circle', routerLink: '/formulario'},
-        {label: 'Consultas', icon: 'fa-calendar'},
+        {label: 'Entrar', icon: 'fa-user-circle', routerLink: '/login'},
+        {label: 'Consultas', icon: 'fa-calendar', routerLink: '/consultas'},
         {label: 'Contato', icon: 'fa-phone'},
         {label: 'Redes Sociais', icon: 'fa-facebook'}
     ];

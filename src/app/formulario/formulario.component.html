@@ -4,20 +4,24 @@
           Faça seu Login      
       </div> 
       <div class="panel-body">
+      <router-outlet></router-outlet>  
         <form ngForm #form>
+<!--CAMPO DE USERNAME(LOGIN0) -->
           <div class="form-group">
               <span class="ui-float-label">
-                <label for="float-input">Username</label>
-                <input type="text" class="form-control" id="float-input" type="text" size="30" pInputText required> 
+                <label for="float-input">Username:</label>
+                <input type="text" class="form-control" id="username" type="text" size="30" pInputText required> 
               </span>
           </div>
+<!--CAMPO DE SENHA(LOGIN) -->          
           <div class="form-group">
               <label for="password">Senha:</label>
-              <input type="password" pPassword [feedback]="false" class="form-control" id="password" name="password" ngModel #password required>
+              <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <button pButton type="button" class="ui-button-primary" label="Entrar"></button>
             Não tem uma conta?
-            <button pButton type="button" class="ui-button-success" label="Cadastre-se" routerLink='/formulario-cadastro'></button>
+            <button pButton type="button" class="ui-button-success" label="Cadastre-se" routerLink='/cadastro'></button>
+
         </form>
       </div>
 </div>
