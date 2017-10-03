@@ -15,9 +15,9 @@
 <!--CAMPO DE PASSWORD(CADASTRO) -->
           <div class="form-group">
               <label for="password">Digite uma senha:</label>
-              <input #campoPassword [(ngModel)]="user.password" type="password" pPassword class="form-control" id="password" name="password" required>
+              <input [(ngModel)]="user.password" type="password" pPassword class="form-control" id="password" name="password" required>
             </div>
-            <button pButton type="button" class="ui-button-success" label="Cadastrar-se!" (click)="register()"></button>
+            <button pButton type="button" class="ui-button-success" label="Cadastrar-se!" (click)="register()" routerLink='/login'></button>
 
         </form>
       </div>

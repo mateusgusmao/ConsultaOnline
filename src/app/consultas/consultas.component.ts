@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Consulta } from '../models/consulta';
+import { ConsultasService } from '../consultas.service';
 import {TabMenuModule, MenuItem} from 'primeng/primeng';
 
 @Component({
@@ -12,9 +13,11 @@ export class ConsultasComponent implements OnInit {
   items: MenuItem[];
   activeTab: MenuItem;
 
-  constructor() { }
+  constructor(private consultaService: ConsultasService ) { }
 
   ngOnInit() {
+
+    
         this.items = [
       {label: 'Home', icon: 'fa-home'},
       {label: 'Entrar', icon: 'fa-user-circle', routerLink: '/login'},

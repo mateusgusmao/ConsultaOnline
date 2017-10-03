@@ -19,7 +19,7 @@ export class HomepageComponent implements OnInit {
     this.items = [
         {label: 'Home', icon: 'fa-home'},
         {label: 'Entrar', icon: 'fa-user-circle', routerLink: '/login'},
-        {label: 'Consultas', icon: 'fa-calendar', routerLink: '/consultas'},
+        {label: 'Consultas', icon: 'fa-calendar'},
         {label: 'Contato', icon: 'fa-phone'},
         {label: 'Redes Sociais', icon: 'fa-facebook'}
     ];

@@ -1,14 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { FormularioCadastroComponent } from './formulario-cadastro/formulario-cadastro.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import {rota} from './app.rotas';
+
 import {UserService} from './user.service';
 import {ConsultasService} from './consultas.service'
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
+
+import {DataTableModule,SharedModule} from 'primeng/primeng';
 import {AccordionModule} from 'primeng/primeng';
 import {MenuItem} from 'primeng/primeng';
 import {ButtonModule} from 'primeng/primeng';
@@ -43,7 +46,8 @@ import { ConsultasComponent } from './consultas/consultas.component';
     rota,
     TabMenuModule,
     CalendarModule,
-    FormsModule
+    FormsModule,
+    DataTableModule
 
   ],
   providers: [UserService,ConsultasService],
