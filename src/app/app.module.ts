@@ -11,6 +11,8 @@ import {rota} from './app.rotas';
 import {UserService} from './user.service';
 import {ConsultasService} from './consultas.service'
 
+
+import {DialogModule} from 'primeng/primeng';
 import {DataTableModule,SharedModule} from 'primeng/primeng';
 import {AccordionModule} from 'primeng/primeng';
 import {MenuItem} from 'primeng/primeng';
@@ -47,7 +49,9 @@ import { ConsultasComponent } from './consultas/consultas.component';
     TabMenuModule,
     CalendarModule,
     FormsModule,
-    DataTableModule
+    DataTableModule,
+    SharedModule,
+    DialogModule
 
   ],
   providers: [UserService,ConsultasService],

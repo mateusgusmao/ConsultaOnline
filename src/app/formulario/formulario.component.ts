@@ -14,9 +14,6 @@ export class FormularioComponent implements OnInit {
   users: User[] = [];
   user: User;
 
-  items: MenuItem[];
-  activeTab: MenuItem;
-
   constructor(private userService: UserService,private rota: Router) { 
     this.user = new User()
   }
@@ -24,14 +21,6 @@ export class FormularioComponent implements OnInit {
   ngOnInit() {
   this.users = this.userService.getUsers();  
 
-  this.items = [
-      {label: 'Home', icon: 'fa-home'},
-      {label: 'Entrar', icon: 'fa-user-circle', routerLink: '/login'},
-      {label: 'Consultas', icon: 'fa-calendar'},
-      {label: 'Contato', icon: 'fa-phone'},
-      {label: 'Redes Sociais', icon: 'fa-facebook'}
-  ];
-      this.activeTab = this.items[1];
   }
   entrar(user:User){
    let podeLogar:boolean = false;

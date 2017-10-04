@@ -10,22 +10,67 @@ import {TabMenuModule, MenuItem} from 'primeng/primeng';
 })
 export class ConsultasComponent implements OnInit {
 
-  items: MenuItem[];
-  activeTab: MenuItem;
+      displayDialog: boolean;
+      consulta: Consulta = new Consulta();
+      selectedConsulta: Consulta;
+      newConsulta: boolean;
+      consultas: Consulta[];
 
   constructor(private consultaService: ConsultasService ) { }
 
   ngOnInit() {
+    this.consultas= this.consultaService.getConsultas(); 
 
-    
-        this.items = [
-      {label: 'Home', icon: 'fa-home'},
-      {label: 'Entrar', icon: 'fa-user-circle', routerLink: '/login'},
-      {label: 'Consultas', icon: 'fa-calendar', routerLink: '/consultas'},
-      {label: 'Contato', icon: 'fa-phone'},
-      {label: 'Redes Sociais', icon: 'fa-facebook'}
-  ];
-      this.activeTab = this.items[2];
   }
+  showDialogToAdd() {
+    this.newConsulta = true;
+    this.consulta = new Consulta();
+    this.displayDialog = true;
+}
+
+save() {
+  let consultas = [...this.consultas];
+  if(this.newConsulta)
+      consultas.push(this.consulta);
+  else
+      consultas[this.findSelectedConsultaIndex()] = this.consulta;
+  
+  this.consultas = consultas;
+  this.consulta = null;
+  this.displayDialog = false;
 
 }
+
+delete() {
+  let index = this.findSelectedConsultaIndex();
+  this.consultas = this.consultas.filter((val,i) => i!=index);
+  this.consulta = null;
+  this.displayDialog = false;
+}
+
+onRowSelect(event) {
+  this.newConsulta = false;
+  this.consulta = this.cloneConsulta(event.data);
+  this.displayDialog = true;
+}
+
+cloneConsulta(c: Consulta): Consulta {
+  let consulta = new Consulta();
+  for(let prop in c) {
+      consulta[prop] = c[prop];
+  }
+  return consulta;
+}
+
+findSelectedConsultaIndex(): number {
+  return this.consultas.indexOf(this.selectedConsulta);
+ }
+}
+
+class PrimeConsulta implements Consulta {
+
+  constructor(public especialidade:string, public clinica:string, public planoSaude:string, public data:Date) {}
+
+  }
+  
+
