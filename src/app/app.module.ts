@@ -6,12 +6,13 @@ import { AppComponent } from './app.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { FormularioCadastroComponent } from './formulario-cadastro/formulario-cadastro.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { MarcarComponent } from './marcar/marcar.component';
 import {rota} from './app.rotas';
 
 import {UserService} from './user.service';
 import {ConsultasService} from './consultas.service'
 
-
+import {DropdownModule} from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
 import {DataTableModule,SharedModule} from 'primeng/primeng';
 import {AccordionModule} from 'primeng/primeng';
@@ -28,6 +29,7 @@ import { ConsultasComponent } from './consultas/consultas.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +37,7 @@ import { ConsultasComponent } from './consultas/consultas.component';
     FormularioCadastroComponent,
     HomepageComponent,
     ConsultasComponent,
+    MarcarComponent,
     
     
   ],

@@ -1,0 +1,44 @@
+<router-outlet></router-outlet>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          Marque sua consulta      
+      </div> 
+      <div class="panel-body">
+
+      <form ngForm #form>
+
+  <div>
+    
+      <div class="form-group">
+          <label for="especialidade">Especialidade</label>
+          <input pInputText type="text" class="form-control" id="especialidade" [(ngModel)]="consulta.especialidade" required>
+      </div>
+
+      <div class="form-group">
+          <label for="clinica">Clínica</label>
+          <input pInputText type="text" class="form-control" id="clinica" [(ngModel)]="consulta.clinica" required>
+      </div>
+
+      <div class="form-group">
+          <label for="planoSaude">Plano de Saúde</label>
+          <input pInputText type="text" class="form-control" id="planoSaude" [(ngModel)]="consulta.planoSaude" required>
+      </div>
+
+      <div class="form-group">
+          <label for="data">Data</label>
+          <p-calendar [(ngModel)]="consulta.data" dateFormat="dd.mm.yy" required></p-calendar>
+      </div>
+
+      <div>
+        <button type="button" icon="fa-close" (click)="delete()" label="Delete"></button>
+        <button type="button" icon="fa-check" (click)="save()" label="Save"></button>
+      </div>  
+      
+  </div>
+
+        </form>
+      </div>
+</div>
+
+
