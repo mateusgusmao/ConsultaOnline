@@ -1,12 +1,12 @@
-<router-outlet></router-outlet>
 <p-dataTable [value]="consultas" selectionMode="single" [(selection)]="selectedConsulta" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true">
   <p-header>Consultas</p-header>
   <p-column field="especialidade" header="Especialidade" [sortable]="true"></p-column>
   <p-column field="clinica" header="Clínica" [sortable]="true"></p-column>
   <p-column field="planoSaude" header="Plano de Saúde" [sortable]="true"></p-column>
   <p-column field="data" header="Data" [sortable]="true"></p-column>
-  <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" label="Add" routerLink='/marcar-consulta'></button></div></p-footer>
+  <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" label="Add" routerLink='/main/marcar-consulta'></button></div></p-footer>
 </p-dataTable>
+
 
 
 

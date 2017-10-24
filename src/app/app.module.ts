@@ -5,7 +5,6 @@ import {FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { FormularioCadastroComponent } from './formulario-cadastro/formulario-cadastro.component';
-import { HomepageComponent } from './homepage/homepage.component';
 import { MarcarComponent } from './marcar/marcar.component';
 import {rota} from './app.rotas';
 
@@ -25,6 +24,7 @@ import {PanelMenuModule} from 'primeng/primeng';
 import {TabMenuModule} from 'primeng/primeng';
 import {CalendarModule} from 'primeng/primeng';
 import { ConsultasComponent } from './consultas/consultas.component';
+import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
 
 
 
@@ -35,9 +35,9 @@ import { ConsultasComponent } from './consultas/consultas.component';
     AppComponent,
     FormularioComponent,
     FormularioCadastroComponent,
-    HomepageComponent,
     ConsultasComponent,
     MarcarComponent,
+    TelaPrincipalComponent,
     
     
   ],
@@ -54,7 +54,9 @@ import { ConsultasComponent } from './consultas/consultas.component';
     FormsModule,
     DataTableModule,
     SharedModule,
-    DialogModule
+    DialogModule,
+    DropdownModule
+
 
   ],
   providers: [UserService,ConsultasService],

@@ -26,7 +26,7 @@ export class FormularioComponent implements OnInit {
    let podeLogar:boolean = false;
    podeLogar = this.userService.usuarioExiste(this.user);
    if(podeLogar){
-     this.rota.navigate(["consultas"])
+     this.rota.navigate(["main"])
    }else{
      alert("Usuário não encontrado, faça seu cadastro")
    }
