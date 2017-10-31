@@ -55,7 +55,8 @@ import { TelaPrincipalComponent } from './tela-principal/tela-principal.componen
     DataTableModule,
     SharedModule,
     DialogModule,
-    DropdownModule
+    DropdownModule,
+    InputTextModule
 
 
   ],

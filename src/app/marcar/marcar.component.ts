@@ -14,8 +14,8 @@ import {SelectItem} from 'primeng/primeng';
 })
 export class MarcarComponent implements OnInit {
 
-      especialidades: SelectItem[];
-      selectedEspecialidade: string;  
+      especialidades: SelectItem[] = [];
+      selectedEspecialidade: String;  
 
       consulta: Consulta = new Consulta();
       selectedConsulta: Consulta;
@@ -24,13 +24,19 @@ export class MarcarComponent implements OnInit {
 
   constructor( private consultaService: ConsultasService ) {
 
-       this.especialidades = [];
-        this.especialidades.push({label:'Escolha especialidade', value:null});
-        this.especialidades.push({label:'Dermatologista', value:{id:1, name: 'Dermatologista'}});
+       this.especialidades = [
+        {label:'Escolha especialidade', value:null},
+        {label:'Dermatologista', value:{id:1, name: 'Dermatologista'}},
+        {label:'Cardiologista', value:{id:2, name: 'Cardiologista'}},
+        {label:'Oftamologista', value:{id:4, name: 'Oftamologista'}},
+        {label:'Pediatria', value:{id:5, name: 'Pediatria'}}
+       ];
+
+        /*this.especialidades.push({label:'Dermatologista', value:{id:1, name: 'Dermatologista'}});
         this.especialidades.push({label:'Cardiologista', value:{id:2, name: 'Cardiologista'}});
-        this.especialidades.push({label:'Neurologista', value:{id:3, name: 'Neurologista'}});
+        this.especialidades.push({label:'Cardiologista', value:{id:2, name: 'Cardiologista'}});
         this.especialidades.push({label:'Oftamologista', value:{id:4, name: 'Oftamologista'}});
-        this.especialidades.push({label:'Pediatria', value:{id:5, name: 'Pediatria'}});
+        this.especialidades.push({label:'Pediatria', value:{id:5, name: 'Pediatria'}}); */
     }
 
   ngOnInit() {
