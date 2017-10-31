@@ -13,12 +13,7 @@
           <!--[(ngModel)]="selectedEspecialidade"
           <!--input pInputText type="text" class="form-control" id="especialidade" [(ngModel)]="consulta.especialidade" required>-->
       </div>
-
-       <div class="form-group">
-          <label>Clínica</label>
-          <input name="clinica" pInputText type="text" class="form-control" id="clinica" [(ngModel)]="consulta.clinica" required>
-      </div> 
-
+      
       <div class="form-group">
           <label>Plano de Saúde</label>
           <input pInputText name="plano" type="text" class="form-control" id="planoSaude" [(ngModel)]="consulta.planoSaude" required>
@@ -28,7 +23,8 @@
           <label>Data</label>
           <p-calendar name="data" [(ngModel)]="consulta.data" dateFormat="dd.mm.yy" required></p-calendar>
        
-                     </div> 
+                     </div>
+               <button pButton type="button" (click)="addConsulta()" label="Marcar Consulta"></button>
                 </div>
           </form>
      </div>
