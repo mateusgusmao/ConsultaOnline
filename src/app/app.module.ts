@@ -25,6 +25,7 @@ import {TabMenuModule} from 'primeng/primeng';
 import {CalendarModule} from 'primeng/primeng';
 import { ConsultasComponent } from './consultas/consultas.component';
 import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
+import { EditarConsultaComponent } from './editar-consulta/editar-consulta.component';
 
 
 
@@ -38,6 +39,7 @@ import { TelaPrincipalComponent } from './tela-principal/tela-principal.componen
     ConsultasComponent,
     MarcarComponent,
     TelaPrincipalComponent,
+    EditarConsultaComponent,
     
     
   ],

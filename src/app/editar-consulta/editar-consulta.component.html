@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          Editar sua consulta      
+      </div> 
+      <div class="panel-body">
+      <form ngForm>
+      <div>
+    
+      <div class="form-group">
+          <label for="especialidade">Especialidade</label>
+          <p-dropdown name ="especialidade" [options]="especialidades" [(ngModel)]="consulta.especialidade"></p-dropdown>
+      </div>
+      
+      <div class="form-group">
+          <label for="planoSaude">Plano de Saúde</label>
+          <p-dropdown name ="planoSaude" [options]="planosSaude" [(ngModel)]="consulta.planoSaude"></p-dropdown>
+      </div>
+
+      <div class="form-group">
+          <label for="data">Data</label>
+          <p-calendar name="data" [(ngModel)]="consulta.data" dateFormat="dd.mm.yy"></p-calendar>
+                     </div>
+               <button pButton type="button" icon="fa-window-close"  label="Deletar Consulta!" routerLink='/main/consultas'></button>
+               <button pButton type="button" icon="fa-pencil-square" label="Atualizar Consulta!" routerLink='/main/consultas'></button>
+                </div>
+          </form>
+     </div>
+</div>
+

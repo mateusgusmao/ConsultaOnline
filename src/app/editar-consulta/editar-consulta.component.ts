@@ -6,13 +6,15 @@ import {TabMenuModule, MenuItem} from 'primeng/primeng';
 import {CalendarModule} from  'primeng/primeng';
 import {DropdownModule} from 'primeng/primeng';
 import {SelectItem} from 'primeng/primeng';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
-  selector: 'app-marcar',
-  templateUrl: './marcar.component.html',
-  styleUrls: ['./marcar.component.css']
+  selector: 'app-editar-consulta',
+  templateUrl: './editar-consulta.component.html',
+  styleUrls: ['./editar-consulta.component.css']
 })
-export class MarcarComponent implements OnInit {
+export class EditarConsultaComponent implements OnInit {
 
       especialidades: SelectItem[] = [];
       planosSaude: SelectItem[] = [];
@@ -24,8 +26,8 @@ export class MarcarComponent implements OnInit {
       newConsulta: boolean;
       consultas: Consulta[];
 
-  constructor( private consultaService: ConsultasService ) {
-
+  constructor(private consultaService: ConsultasService,private route: ActivatedRoute) {
+       
        this.especialidades = [
         {label:'Escolha especialidade', value:null},
         {label:'Dermatologista', value:{id:1, name: 'Dermatologista'}},
@@ -40,25 +42,14 @@ export class MarcarComponent implements OnInit {
         {label:'Particular', value:{id:2, name: 'Particular'}},
         {label:'Outro', value:{id:3, name: 'Outro'}}
        ]
-      
-    }
+
+   }
 
   ngOnInit() {
-    this.consultas= this.consultaService.getConsultas();
+    let id = this.route.snapshot.params['id'];
+    let pos:number = this.consultaService.procurarPorId(id);
+    this.consulta = this.consultaService.consultas[pos];
   }
-
-  save() {
-  let consultas = [...this.consultas];
-  if(this.newConsulta)
-      consultas.push(this.consulta);
-  else
-      consultas[this.findSelectedConsultaIndex()] = this.consulta;
-  this.consultaService.AddConsulta(this.consulta);
-  console.log(this.consulta);
-  this.consultas = consultas;
-  this.consulta = null;
-
-}
 
 delete() {
   let index = this.findSelectedConsultaIndex();
@@ -83,10 +74,16 @@ findSelectedConsultaIndex(): number {
   return this.consultas.indexOf(this.selectedConsulta);
  }
 
+deletar(id){
+  //this.consultaService.deletarConsultaId = this.consultas.id;
+}
 }
 
 class PrimeConsulta implements Consulta {
 
-  constructor(public id:number, public especialidade:string, public clinica:string, public planoSaude:string, public data:Date) {}
+  constructor(public especialidade:string, public id:number, public clinica:string, public planoSaude:string, public data:Date) {}
 
   }
+
+
+

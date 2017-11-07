@@ -2,6 +2,7 @@ import { FormularioCadastroComponent } from './formulario-cadastro/formulario-ca
 import { FormularioComponent } from './formulario/formulario.component';
 import { ConsultasComponent } from './consultas/consultas.component';
 import { MarcarComponent } from './marcar/marcar.component';
+import { EditarConsultaComponent } from './editar-consulta/editar-consulta.component';
 import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
 import {Routes,RouterModule} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
@@ -15,7 +16,8 @@ const APP_ROTAS:Routes = [
   {path: 'main', component: TelaPrincipalComponent,
    children: [
     {path: 'consultas', component: ConsultasComponent},
-    {path: 'marcar-consulta', component: MarcarComponent}
+    {path: 'marcar-consulta', component: MarcarComponent},
+    {path: 'editar-consulta/:id', component: EditarConsultaComponent}
     ]  
   }
 ]
