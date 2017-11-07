@@ -9,22 +9,20 @@
     
       <div class="form-group">
           <label for="especialidade">Especialidade</label>
-          <p-dropdown [options]="especialidades"></p-dropdown>
-          <!--[(ngModel)]="selectedEspecialidade"
-          <!--input pInputText type="text" class="form-control" id="especialidade" [(ngModel)]="consulta.especialidade" required>-->
+          <p-dropdown [options]="especialidades" required></p-dropdown>
       </div>
       
       <div class="form-group">
-          <label>Plano de Saúde</label>
-          <input pInputText name="plano" type="text" class="form-control" id="planoSaude" [(ngModel)]="consulta.planoSaude" required>
+          <label for="planoSaude">Especialidade</label>
+          <p-dropdown [options]="planosSaude" required></p-dropdown>
       </div>
 
       <div class="form-group">
-          <label>Data</label>
+          <label for="data">Data</label>
           <p-calendar name="data" [(ngModel)]="consulta.data" dateFormat="dd.mm.yy" required></p-calendar>
        
                      </div>
-               <button pButton type="button" (click)="addConsulta()" label="Marcar Consulta"></button>
+               <button pButton type="button" (click)="save()" label="Marcar Consulta!" routerLink='/main/consultas'></button>
                 </div>
           </form>
      </div>

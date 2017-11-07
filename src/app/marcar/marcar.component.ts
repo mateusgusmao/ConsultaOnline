@@ -15,7 +15,9 @@ import {SelectItem} from 'primeng/primeng';
 export class MarcarComponent implements OnInit {
 
       especialidades: SelectItem[] = [];
-      selectedEspecialidade: String;  
+      planosSaude: SelectItem[] = [];
+      selectedEspecialidade: String;
+      selectedPlanoSaude: String;  
 
       consulta: Consulta = new Consulta();
       selectedConsulta: Consulta;
@@ -28,15 +30,17 @@ export class MarcarComponent implements OnInit {
         {label:'Escolha especialidade', value:null},
         {label:'Dermatologista', value:{id:1, name: 'Dermatologista'}},
         {label:'Cardiologista', value:{id:2, name: 'Cardiologista'}},
-        {label:'Oftamologista', value:{id:4, name: 'Oftamologista'}},
-        {label:'Pediatria', value:{id:5, name: 'Pediatria'}}
-       ];
+        {label:'Oftamologista', value:{id:3, name: 'Oftamologista'}},
+        {label:'Pediatria', value:{id:4, name: 'Pediatria'}}
+       ]
 
-        /*this.especialidades.push({label:'Dermatologista', value:{id:1, name: 'Dermatologista'}});
-        this.especialidades.push({label:'Cardiologista', value:{id:2, name: 'Cardiologista'}});
-        this.especialidades.push({label:'Cardiologista', value:{id:2, name: 'Cardiologista'}});
-        this.especialidades.push({label:'Oftamologista', value:{id:4, name: 'Oftamologista'}});
-        this.especialidades.push({label:'Pediatria', value:{id:5, name: 'Pediatria'}}); */
+       this.planosSaude = [
+        {label:'Escolha Plano de Saúde', value:null},
+        {label:'SUS', value:{id:1, name: 'SUS'}},
+        {label:'Particular', value:{id:2, name: 'Particular'}},
+        {label:'Outro', value:{id:3, name: 'Outro'}}
+       ]
+      
     }
 
   ngOnInit() {
