@@ -18,14 +18,15 @@ export class ConsultasService {
   }
 
   deletarConsultaId(id){
-         let pos:number = -1;
+    this.consultas.splice(this.procurarPorId(id),1);
+         /*let pos:number = -1;
       for (let i = 0; i < this.consultas.length; i++ ){
           if(this.consultas[i].id == id){
-             pos =i;
+             pos = i;
            }
 
       }
-      this.consultas.splice(pos,1);
+      this.consultas.splice(pos,1); */
   }
 
   constructor() {
