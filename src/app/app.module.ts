@@ -11,7 +11,10 @@ import {rota} from './app.rotas';
 import {UserService} from './user.service';
 import {ConsultasService} from './consultas.service'
 
+import {Message} from 'primeng/components/common/api';
+import {GrowlModule} from 'primeng/primeng';
 import {RadioButtonModule} from 'primeng/primeng';
+import {MessagesModule} from 'primeng/primeng';
 import {DropdownModule} from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
 import {DataTableModule,SharedModule} from 'primeng/primeng';
@@ -29,6 +32,7 @@ import { TelaPrincipalComponent } from './tela-principal/tela-principal.componen
 import { EditarConsultaComponent } from './editar-consulta/editar-consulta.component';
 import { AdmLoginComponent } from './adm-login/adm-login.component';
 import { AdmCadastroComponent } from './adm-cadastro/adm-cadastro.component';
+import { GerenciarConsultasComponent } from './gerenciar-consultas/gerenciar-consultas.component';
 
 
 
@@ -45,6 +49,7 @@ import { AdmCadastroComponent } from './adm-cadastro/adm-cadastro.component';
     EditarConsultaComponent,
     AdmLoginComponent,
     AdmCadastroComponent,
+    GerenciarConsultasComponent,
     
     
   ],
@@ -64,7 +69,11 @@ import { AdmCadastroComponent } from './adm-cadastro/adm-cadastro.component';
     DialogModule,
     DropdownModule,
     InputTextModule,
-    RadioButtonModule
+    RadioButtonModule,
+    MessagesModule,
+    GrowlModule
+   
+    
 
 
   ],

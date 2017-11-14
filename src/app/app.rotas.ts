@@ -6,6 +6,7 @@ import { EditarConsultaComponent } from './editar-consulta/editar-consulta.compo
 import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
 import { AdmCadastroComponent } from './adm-cadastro/adm-cadastro.component';
 import { AdmLoginComponent } from './adm-login/adm-login.component';
+import { GerenciarConsultasComponent } from './gerenciar-consultas/gerenciar-consultas.component';
 import {Routes,RouterModule} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
 
@@ -21,7 +22,9 @@ const APP_ROTAS:Routes = [
    children: [
     {path: 'consultas', component: ConsultasComponent},
     {path: 'marcar-consulta', component: MarcarComponent},
-    {path: 'editar-consulta/:id', component: EditarConsultaComponent}
+    {path: 'editar-consulta/:id', component: EditarConsultaComponent},
+    {path: 'gerenciar-consultas', component: GerenciarConsultasComponent}
+
     ]  
   }
 ]

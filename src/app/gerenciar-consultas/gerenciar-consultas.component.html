@@ -1,0 +1,7 @@
+<p-growl [value]="msgs"></p-growl>
+<p-dataTable [value]="consultas" selectionMode="single" [(selection)]="selectedConsulta" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true">
+  <p-header>Consultas</p-header>
+  <p-column field="especialidade.name" header="Especialidade" [sortable]="true"></p-column>
+  <p-column field="planoSaude.name" header="Plano de Saúde" [sortable]="true"></p-column>
+  <p-column field="data" header="Data" [sortable]="true"></p-column> 
+</p-dataTable>

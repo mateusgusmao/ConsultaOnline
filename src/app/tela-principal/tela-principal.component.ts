@@ -19,8 +19,11 @@ export class TelaPrincipalComponent implements OnInit {
       {label: 'Perfil', icon: 'fa-user-circle'},
       {label: 'Consultas', icon: 'fa-calendar', routerLink: './consultas'},
       {label: 'Contato', icon: 'fa-phone'},
-      {label: 'Redes Sociais', icon: 'fa-facebook'}
+      {label: 'Redes Sociais', icon: 'fa-facebook'},
+      {label: 'Sair', icon: 'fa-share-square', routerLink: '..'}
+
   ];
   }
 
 }
+

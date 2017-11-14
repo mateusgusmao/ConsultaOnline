@@ -21,8 +21,8 @@
           <label for="data">Data</label>
           <p-calendar name="data" [(ngModel)]="consulta.data" dateFormat="dd.mm.yy"></p-calendar>
                      </div>
-               <button pButton type="button" icon="fa-window-close"  label="Deletar Consulta!" routerLink='/main/consultas'></button>
-               <button pButton type="button" icon="fa-pencil-square" label="Atualizar Consulta!" routerLink='/main/consultas'></button>
+               <button pButton type="button" icon="fa-window-close" (click)="deletar()"  label="Deletar Consulta!" routerLink='/main/gerenciar-consultas'></button>
+               <button pButton type="button" icon="fa-pencil-square" label="Atualizar Consulta!" routerLink='/main/gerenciar-consultas'></button>
                 </div>
           </form>
      </div>

@@ -40,7 +40,7 @@ export class AdmLoginComponent implements OnInit {
    let podeLogar:boolean = false;
    podeLogar = this.userService.ADMExiste(this.adm);
    if(podeLogar){
-     this.rota.navigate(["/main/consultas"])
+     this.rota.navigate(["/main/gerenciar-consultas"])
    }else{
      alert("Administrador não encontrado, faça seu cadastro")
    }

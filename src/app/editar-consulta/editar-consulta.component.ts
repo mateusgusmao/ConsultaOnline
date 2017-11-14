@@ -75,7 +75,7 @@ findSelectedConsultaIndex(): number {
  }
 
 deletar(id){
-  //this.consultaService.deletarConsultaId = this.consultas.id;
+  this.consultaService.deletarConsultaId(this.consulta.id);
 }
 }
 

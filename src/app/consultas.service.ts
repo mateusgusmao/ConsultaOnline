@@ -19,6 +19,8 @@ export class ConsultasService {
 
   deletarConsultaId(id){
     this.consultas.splice(this.procurarPorId(id),1);
+    console.log("Deletado");
+    console.log(this.consultas);
          /*let pos:number = -1;
       for (let i = 0; i < this.consultas.length; i++ ){
           if(this.consultas[i].id == id){
@@ -30,11 +32,11 @@ export class ConsultasService {
   }
 
   constructor() {
-   /* let consultaA:Consulta = new Consulta();
+    let consultaA:Consulta = new Consulta();
     consultaA.data = new Date("09.26.2017");
     consultaA.especialidade = "W";
     consultaA.planoSaude = "Z";
-    this.AddConsulta(consultaA);*/
+    this.AddConsulta(consultaA);
    }
 
    getConsulta(id){

@@ -33,10 +33,10 @@ export class ConsultasComponent implements OnInit {
  }
 
  onRowSelect(event) {
-  this.newConsulta = false;
+  /*this.newConsulta = false;
   this.consulta = this.cloneConsulta(event.data);
   this.rota.navigate(['/main/editar-consulta',this.selectedConsulta.id]);
-  console.log(this.selectedConsulta.id);
+  console.log(this.selectedConsulta.id);*/
 }
 
 cloneConsulta(c: Consulta): Consulta {
