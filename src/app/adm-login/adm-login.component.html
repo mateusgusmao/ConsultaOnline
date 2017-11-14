@@ -1,0 +1,35 @@
+    <div align="center">
+    <header>
+    <h1>Consulta Médica Online</h1>
+    </header>
+    </div>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          Faça seu Login - ADM      
+      </div> 
+      <div class="panel-body">
+
+      <form ngForm #form>
+        <!--CAMPO DE ESPECIALIDADE(LOGIN) -->
+      <div class="form-group">
+          <label for="especialidade">Especialidade</label>
+          <p-dropdown name ="especialidade" [options]="especialidades" [(ngModel)]="adm.especialidade" required></p-dropdown>
+      </div>
+        <!--CAMPO DE USERNAME(LOGIN) -->
+                  <div class="form-group">
+                    <label for="username">Nome de Usuário:</label>
+                    <input [(ngModel)]="adm.username" type="text" class="form-control" id="username" name="username" required>
+                  </div>
+        <!--CAMPO DE PASSWORD(LOGIN) -->
+                  <div class="form-group">
+                      <label for="password">Digite uma senha:</label>
+                      <input [(ngModel)]="adm.password" type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                <button pButton type="button" class="ui-button-primary" label="Entrar" (click)="entrar()"></button>
+            Cadastre-se como Administrador
+                <button pButton type="button" class="ui-button-success" label="Cadastre-se" routerLink='/adm-cadastro'></button>    
+
+        </form>
+      </div>
+</div>

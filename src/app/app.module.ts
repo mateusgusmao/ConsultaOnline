@@ -26,6 +26,8 @@ import {CalendarModule} from 'primeng/primeng';
 import { ConsultasComponent } from './consultas/consultas.component';
 import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
 import { EditarConsultaComponent } from './editar-consulta/editar-consulta.component';
+import { AdmLoginComponent } from './adm-login/adm-login.component';
+import { AdmCadastroComponent } from './adm-cadastro/adm-cadastro.component';
 
 
 
@@ -40,6 +42,8 @@ import { EditarConsultaComponent } from './editar-consulta/editar-consulta.compo
     MarcarComponent,
     TelaPrincipalComponent,
     EditarConsultaComponent,
+    AdmLoginComponent,
+    AdmCadastroComponent,
     
     
   ],
