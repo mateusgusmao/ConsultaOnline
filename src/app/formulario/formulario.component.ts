@@ -3,6 +3,7 @@ import { User } from '../models/user'
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import {TabMenuModule, MenuItem} from 'primeng/primeng';
+import {RadioButtonModule} from 'primeng/primeng';
 
 @Component({
   selector: 'app-formulario',
@@ -10,6 +11,9 @@ import {TabMenuModule, MenuItem} from 'primeng/primeng';
   styleUrls: ['./formulario.component.css']
 })
 export class FormularioComponent implements OnInit {
+
+  selectedValue: string = "val1";
+  
 
   users: User[] = [];
   user: User;
@@ -31,4 +35,11 @@ export class FormularioComponent implements OnInit {
      alert("Usuário não encontrado, faça seu cadastro")
    }
  }
+
+/*optionlogin(){
+  if(){
+
+  }
+}*/
+
 }

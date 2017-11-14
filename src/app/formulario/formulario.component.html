@@ -23,6 +23,10 @@
                       <label for="password">Digite uma senha:</label>
                       <input [(ngModel)]="user.password" type="password" class="form-control" id="password" name="password" required>
                     </div>
+                  <div>
+                    <p-radioButton name="groupname" value="val1" label="Cliente" [(ngModel)]="selectedValue"></p-radioButton><br/>
+                    <p-radioButton name="groupname" value="val2" label="Administrador" [(ngModel)]="selectedValue"></p-radioButton>  
+                  </div><br/>  
                 <button pButton type="button" class="ui-button-primary" label="Entrar" (click)="entrar()"></button>
             Não tem uma conta?
                 <button pButton type="button" class="ui-button-success" label="Cadastre-se" routerLink='/cadastro'></button>

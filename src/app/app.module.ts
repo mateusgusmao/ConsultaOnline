@@ -11,6 +11,7 @@ import {rota} from './app.rotas';
 import {UserService} from './user.service';
 import {ConsultasService} from './consultas.service'
 
+import {RadioButtonModule} from 'primeng/primeng';
 import {DropdownModule} from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
 import {DataTableModule,SharedModule} from 'primeng/primeng';
@@ -58,7 +59,8 @@ import { EditarConsultaComponent } from './editar-consulta/editar-consulta.compo
     SharedModule,
     DialogModule,
     DropdownModule,
-    InputTextModule
+    InputTextModule,
+    RadioButtonModule
 
 
   ],

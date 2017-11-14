@@ -15,7 +15,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./editar-consulta.component.css']
 })
 export class EditarConsultaComponent implements OnInit {
-
+      
       especialidades: SelectItem[] = [];
       planosSaude: SelectItem[] = [];
       selectedEspecialidade: String;
