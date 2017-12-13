@@ -15,7 +15,9 @@ private userCollection: AngularFirestoreCollection<User>;
      }
 
 salvar(user: User) {
-this.userCollection.add(user)
+this.userCollection.add(user).then(resultado => {
+      user.id = resultado.id;
+   });
 }
     deletar(user): Promise<void> {
     return this.userCollection.doc(user.id).delete();
@@ -57,6 +59,20 @@ this.userCollection.add(user)
     });
 
     return meuObservable;
+  }
+
+    listarPorId(userId) {
+    return new Observable(observer => {
+      let doc = this.userCollection.doc(userId);
+      doc.snapshotChanges().subscribe(result => {
+        let id = result.payload.id;
+        let data = result.payload.data()
+        let document = { id: id, ...data };
+        observer.next(document);
+        observer.complete();
+      });
+    });
+
   }
 
   /*usuarioExiste(user: User){

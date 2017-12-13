@@ -36,7 +36,9 @@ import {InputMaskModule} from 'primeng/primeng';
 import {PanelMenuModule} from 'primeng/primeng';
 import {TabMenuModule} from 'primeng/primeng';
 import {CalendarModule} from 'primeng/primeng';
-import { MenubarModule} from 'primeng/primeng';
+import {MenubarModule} from 'primeng/primeng';
+import {ContextMenuModule} from 'primeng/primeng';
+import { VisualizarUserComponent } from './visualizar-user/visualizar-user.component';
 
 
 
@@ -52,6 +54,7 @@ import { MenubarModule} from 'primeng/primeng';
     EditarConsultaComponent,
     GerenciarConsultasComponent,
     ListarUsersComponent,
+    VisualizarUserComponent,
     
     
   ],
@@ -75,6 +78,7 @@ import { MenubarModule} from 'primeng/primeng';
     InputTextModule,
     RadioButtonModule,
     MessagesModule,
+    ContextMenuModule
    
   ],
   providers: [UserService,ConsultasService],

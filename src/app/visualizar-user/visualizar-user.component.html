@@ -1,0 +1,24 @@
+<div class="ui-g">
+  <div class="ui-g-12">
+      <div class="ui-g">
+        <div class="ui-g-4">
+          Username:
+        </div>
+        <div class="ui-g-8">
+          <div *ngIf="user != null">
+            {{user.username}}
+           </div>
+        </div>
+      </div>
+      <div class="ui-g">
+        <div class="ui-g-4">
+          Senha:
+        </div>
+        <div class="ui-g-8">
+           <div *ngIf="user != null">
+              {{user.password}}
+           </div>
+        </div>
+      </div>
+  </div>
+</div>

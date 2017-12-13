@@ -22,11 +22,16 @@ export class ListarUsersComponent implements OnInit {
         this.listarTodos();
      this.items = [
             {label: 'Deletar', icon: 'fa-close', command: (event) => this.deletar(this.userSelecionado)},
+            {label: 'Visualizar', icon: 'fa-search', command: (event) => this.visualizar(this.userSelecionado)}
         ];
   }
 
-    deletar(funcionario){
-    this.userService.deletar(funcionario).then(()=>{
+    visualizar(user){
+    this.rota.navigate(['/visualizar-user',this.userSelecionado.id]);
+  }
+
+  deletar(user){
+    this.userService.deletar(user).then(()=>{
       this.listarTodos();
     });
   }

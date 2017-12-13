@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Consulta } from '../models/consulta';
 import { ConsultasService } from '../consultas.service';
 import { Router, Route } from '@angular/router';
-import {TabMenuModule, MenuItem} from 'primeng/primeng';
+import {ContextMenuModule,MenuItem, TabMenuModule} from 'primeng/primeng';
 import {SelectItem} from 'primeng/primeng';
 
 @Component({

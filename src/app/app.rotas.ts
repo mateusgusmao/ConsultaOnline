@@ -6,6 +6,7 @@ import { EditarConsultaComponent } from './editar-consulta/editar-consulta.compo
 import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
 import { GerenciarConsultasComponent } from './gerenciar-consultas/gerenciar-consultas.component';
 import { ListarUsersComponent } from './listar-users/listar-users.component';
+import { VisualizarUserComponent } from './visualizar-user/visualizar-user.component';
 import {Routes,RouterModule} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
 
@@ -20,10 +21,11 @@ const APP_ROTAS:Routes = [
     {path: 'consultas', component: ConsultasComponent},
     {path: 'marcar-consulta', component: MarcarComponent},
     {path: 'editar-consulta/:id', component: EditarConsultaComponent},
-    {path: 'gerenciar-consultas', component: GerenciarConsultasComponent}
+    {path: 'gerenciar-consultas', component: GerenciarConsultasComponent},
+    {path:'listar-users', component:ListarUsersComponent},
+    {path:'visualizar-user/:id', component:VisualizarUserComponent}
 
     ]  
-  },
-    {path:'listar-funcionario', component:ListarUsersComponent},
+  }
 ]
 export const rota: ModuleWithProviders = RouterModule.forRoot(APP_ROTAS);
