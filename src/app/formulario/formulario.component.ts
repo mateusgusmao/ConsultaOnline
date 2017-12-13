@@ -12,21 +12,36 @@ import {RadioButtonModule} from 'primeng/primeng';
 })
 export class FormularioComponent implements OnInit {
 
+  user: User;
+  userUsuario: string;
+  senhaUsuario: string;
+
   selectedValue: string = "val1";
   
-
-  users: User[] = [];
-  user: User;
-
   constructor(private userService: UserService,private rota: Router) { 
-    this.user = new User()
+    //this.user = new User()
   }
+    loginUsuario(user, senha){
+      user = this.userUsuario;
+      senha = this.senhaUsuario;
+      this.userService.loginUsuario(user, senha).subscribe(usuario => {
+        if(usuario == null){
+          alert("Usuário não cadastrado no banco.")
+        } else{
+          console.log("Usuario logado.");
+          this.userService.usuarioLogado = usuario; 
+          this.rota.navigate(['/main']); 
+
+
+        }
+      });
+    } 
 
   ngOnInit() {
-  this.users = this.userService.getUsers();  
+  //this.users = this.userService.getUsers();  
 
   }
-  entrar(user:User){
+  /*entrar(user:User){
    let podeLogar:boolean = false;
    podeLogar = this.userService.usuarioExiste(this.user);
    if(podeLogar){
@@ -34,12 +49,6 @@ export class FormularioComponent implements OnInit {
    }else{
      alert("Usuário não encontrado, faça seu cadastro")
    }
- }
-
-/*optionlogin(){
-  if(){
-
-  }
-}*/
+ } */
 
 }

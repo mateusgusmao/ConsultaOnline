@@ -1,5 +1,5 @@
-export class User{
+export interface User{
     username: string;
     password: string;
-    especialidade: string;
+    id?: string;
 }

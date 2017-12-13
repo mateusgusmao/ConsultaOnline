@@ -4,7 +4,7 @@ import { ConsultasService } from '../consultas.service';
 import { Router, Route } from '@angular/router';
 import {Message,TabMenuModule, MenuItem} from 'primeng/primeng';
 import {SelectItem} from 'primeng/primeng';
-import {GrowlModule} from 'primeng/primeng';
+
 
 @Component({
   selector: 'app-gerenciar-consultas',
@@ -14,7 +14,6 @@ import {GrowlModule} from 'primeng/primeng';
 export class GerenciarConsultasComponent implements OnInit {
 
   items: MenuItem[];
-  msgs: Message[];
 
   consulta: Consulta = new Consulta();
   newConsulta: boolean;

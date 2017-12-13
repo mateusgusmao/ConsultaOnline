@@ -6,13 +6,22 @@ import { AppComponent } from './app.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { FormularioCadastroComponent } from './formulario-cadastro/formulario-cadastro.component';
 import { MarcarComponent } from './marcar/marcar.component';
+import { ConsultasComponent } from './consultas/consultas.component';
+import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
+import { EditarConsultaComponent } from './editar-consulta/editar-consulta.component';
+import { GerenciarConsultasComponent } from './gerenciar-consultas/gerenciar-consultas.component';
+import { ListarUsersComponent } from './listar-users/listar-users.component';
+
+import { FirebaseConfig } from "../environments/firebase.config";
+import { AngularFirestoreModule } from "angularfire2/firestore";
+import { AngularFireModule } from 'angularfire2';
+
 import {rota} from './app.rotas';
 
 import {UserService} from './user.service';
 import {ConsultasService} from './consultas.service'
 
 import {Message} from 'primeng/components/common/api';
-import {GrowlModule} from 'primeng/primeng';
 import {RadioButtonModule} from 'primeng/primeng';
 import {MessagesModule} from 'primeng/primeng';
 import {DropdownModule} from 'primeng/primeng';
@@ -27,13 +36,7 @@ import {InputMaskModule} from 'primeng/primeng';
 import {PanelMenuModule} from 'primeng/primeng';
 import {TabMenuModule} from 'primeng/primeng';
 import {CalendarModule} from 'primeng/primeng';
-import { ConsultasComponent } from './consultas/consultas.component';
-import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
-import { EditarConsultaComponent } from './editar-consulta/editar-consulta.component';
-import { AdmLoginComponent } from './adm-login/adm-login.component';
-import { AdmCadastroComponent } from './adm-cadastro/adm-cadastro.component';
-import { GerenciarConsultasComponent } from './gerenciar-consultas/gerenciar-consultas.component';
-
+import { MenubarModule} from 'primeng/primeng';
 
 
 
@@ -47,13 +50,14 @@ import { GerenciarConsultasComponent } from './gerenciar-consultas/gerenciar-con
     MarcarComponent,
     TelaPrincipalComponent,
     EditarConsultaComponent,
-    AdmLoginComponent,
-    AdmCadastroComponent,
     GerenciarConsultasComponent,
+    ListarUsersComponent,
     
     
   ],
   imports: [
+    AngularFireModule.initializeApp(FirebaseConfig),
+    AngularFirestoreModule.enablePersistence(),
     BrowserModule,
     AccordionModule,
     ButtonModule,
@@ -71,11 +75,7 @@ import { GerenciarConsultasComponent } from './gerenciar-consultas/gerenciar-con
     InputTextModule,
     RadioButtonModule,
     MessagesModule,
-    GrowlModule
    
-    
-
-
   ],
   providers: [UserService,ConsultasService],
   bootstrap: [AppComponent]

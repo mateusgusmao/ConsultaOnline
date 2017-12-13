@@ -3,8 +3,6 @@ import { User } from '../models/user'
 import { UserService } from '../user.service';
 import {TabMenuModule, MenuItem} from 'primeng/primeng';
 
-
-
 @Component({
   selector: 'app-formulario-cadastro',
   templateUrl: './formulario-cadastro.component.html',
@@ -12,17 +10,23 @@ import {TabMenuModule, MenuItem} from 'primeng/primeng';
 })
 export class FormularioCadastroComponent implements OnInit {
 
-users: User[] = [];
-user: User = new User();
-  
+  userUsuario: string;
+  senhaUsuario: string;
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {}
   
- register(user: User){
-   this.userService.AddUser(this.user);
- }
+register() {
+  let novoUsuario: User = {username:this.userUsuario, password:this.senhaUsuario};
+  this.userUsuario = "";
+  this.senhaUsuario = "";
+ 
+  console.log(novoUsuario.id);
+  
+   this.userService.salvar(novoUsuario);
+  
+   }
 
 }
 

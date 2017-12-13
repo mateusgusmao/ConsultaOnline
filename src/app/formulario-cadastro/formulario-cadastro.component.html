@@ -10,18 +10,16 @@
           Cadastre-se agora      
       </div>
       <div class="panel-body">
-  
-
         <form ngForm #form>
 <!--CAMPO DE USERNAME(CADASTRO) -->
           <div class="form-group">
             <label for="username">Nome de Usuário:</label>
-            <input [(ngModel)]="user.username" type="text" class="form-control" id="username" name="username" required>
+            <input [(ngModel)]="userUsuario" type="text" class="form-control" id="username" name="username" required>
           </div>
 <!--CAMPO DE PASSWORD(CADASTRO) -->
           <div class="form-group">
               <label for="password">Digite uma senha:</label>
-              <input [(ngModel)]="user.password" type="password" pPassword class="form-control" id="password" name="password" required>
+              <input [(ngModel)]="senhaUsuario" type="password" pPassword class="form-control" id="password" name="password" required>
             </div>
             <button pButton type="button" class="ui-button-success" label="Cadastrar-se!" (click)="register()" routerLink='/login'></button>
 

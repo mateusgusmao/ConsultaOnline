@@ -16,23 +16,18 @@
         <!--CAMPO DE USERNAME(CADASTRO) -->
                   <div class="form-group">
                     <label for="username">Nome de Usuário:</label>
-                    <input [(ngModel)]="user.username" type="text" class="form-control" id="username" name="username" required>
+                    <input [(ngModel)]="userUsuario" type="text" class="form-control" id="username" name="username" required>
                   </div>
         <!--CAMPO DE PASSWORD(CADASTRO) -->
                   <div class="form-group">
                       <label for="password">Digite uma senha:</label>
-                      <input [(ngModel)]="user.password" type="password" class="form-control" id="password" name="password" required>
+                      <input [(ngModel)]="senhaUsuario" type="password" class="form-control" id="password" name="password" required>
                     </div>
-                  <!--<div>
-                    <p-radioButton name="groupname" value="val1" label="Cliente" [(ngModel)]="selectedValue"></p-radioButton><br/>
-                    <p-radioButton name="groupname" value="val2" label="Administrador" [(ngModel)]="selectedValue"></p-radioButton>  
-                  </div><br/>-->  
-                <button pButton type="button" class="ui-button-primary" label="Entrar" (click)="entrar()"></button>
+                  <div>  
+                  </div><br/> 
+                <button pButton type="button" class="ui-button-primary" label="Entrar" (click)="loginUsuario()"></button>
             Não tem uma conta?
                 <button pButton type="button" class="ui-button-success" label="Cadastre-se" routerLink='/cadastro'></button><br/>
-            <br/>Ou deseja fazer login como Administrador
-                <button pButton type="button" class="ui-button-success" label="Entrar como ADM" routerLink='/adm-login'></button>
-
         </form>
       </div>
 </div>
