@@ -6,7 +6,6 @@ import { EditarConsultaComponent } from './editar-consulta/editar-consulta.compo
 import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
 import { GerenciarConsultasComponent } from './gerenciar-consultas/gerenciar-consultas.component';
 import { ListarUsersComponent } from './listar-users/listar-users.component';
-import { VisualizarUserComponent } from './visualizar-user/visualizar-user.component';
 import {Routes,RouterModule} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
 
