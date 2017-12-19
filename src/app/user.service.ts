@@ -14,11 +14,14 @@ private userCollection: AngularFirestoreCollection<User>;
       this.userCollection = this.afs.collection<User>("user");
      }
 
-salvar(user: User) {
-this.userCollection.add(user).then(resultado => {
-      user.id = resultado.id;
-   });
-}
+  salvar(user: User) {
+    this.userCollection.add(user).then(
+      resultado => {
+        user.id = resultado.id;
+        console.log(user.id);
+      });
+
+  }
     deletar(user): Promise<void> {
     return this.userCollection.doc(user.id).delete();
   }

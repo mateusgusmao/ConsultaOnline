@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { User } from '../models/user'
 import {TabMenuModule, MenuItem} from 'primeng/primeng';
 import {SelectItem} from 'primeng/primeng';
 
@@ -11,6 +12,7 @@ import {SelectItem} from 'primeng/primeng';
 })
 export class ListarUsersComponent implements OnInit {
 
+  user: User;
   relacaoUsers:any[] = [];
   userSelecionado;
   items: MenuItem[];
@@ -21,8 +23,7 @@ export class ListarUsersComponent implements OnInit {
   ngOnInit() {
         this.listarTodos();
      this.items = [
-            {label: 'Deletar', icon: 'fa-close', command: (event) => this.deletar(this.userSelecionado)},
-            {label: 'Visualizar', icon: 'fa-search', command: (event) => this.visualizar(this.userSelecionado)}
+            {label: 'Deletar', icon: 'fa-close', command: (event) => this.deletar(this.userSelecionado)}
         ];
   }
 

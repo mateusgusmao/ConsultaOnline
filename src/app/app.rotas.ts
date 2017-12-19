@@ -22,8 +22,7 @@ const APP_ROTAS:Routes = [
     {path: 'marcar-consulta', component: MarcarComponent},
     {path: 'editar-consulta/:id', component: EditarConsultaComponent},
     {path: 'gerenciar-consultas', component: GerenciarConsultasComponent},
-    {path:'listar-users', component:ListarUsersComponent},
-    {path:'visualizar-user/:id', component:VisualizarUserComponent}
+    {path:'listar-users', component:ListarUsersComponent}
 
     ]  
   }

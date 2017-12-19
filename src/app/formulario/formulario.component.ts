@@ -25,11 +25,11 @@ export class FormularioComponent implements OnInit {
       user = this.userUsuario;
       senha = this.senhaUsuario;
       this.userService.loginUsuario(user, senha).subscribe(usuario => {
-        if(usuario == null){
+        if(user == null){
           alert("Usuário não cadastrado no banco.")
         } else{
           console.log("Usuario logado.");
-          this.userService.usuarioLogado = usuario; 
+          this.userService.usuarioLogado = user; 
           this.rota.navigate(['/main']); 
 
 

@@ -21,12 +21,21 @@ register() {
   let novoUsuario: User = {username:this.userUsuario, password:this.senhaUsuario};
   this.userUsuario = "";
   this.senhaUsuario = "";
- 
+
+  this.userService.salvar(novoUsuario);
+
   console.log(novoUsuario.id);
   
-   this.userService.salvar(novoUsuario);
-  
-   }
+}
+
+  listar(){
+    this.userService.listarTodos().subscribe(resultado=>{
+        let x = resultado;
+        let y = x;
+    });
+  }
 
 }
+
+
 
