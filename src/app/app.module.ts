@@ -9,7 +9,6 @@ import { MarcarComponent } from './marcar/marcar.component';
 import { ConsultasComponent } from './consultas/consultas.component';
 import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
 import { EditarConsultaComponent } from './editar-consulta/editar-consulta.component';
-import { GerenciarConsultasComponent } from './gerenciar-consultas/gerenciar-consultas.component';
 import { ListarUsersComponent } from './listar-users/listar-users.component';
 
 import { FirebaseConfig } from "../environments/firebase.config";
@@ -52,8 +51,7 @@ import {ContextMenuModule} from 'primeng/primeng';
     MarcarComponent,
     TelaPrincipalComponent,
     EditarConsultaComponent,
-    GerenciarConsultasComponent,
-    ListarUsersComponent,
+    ListarUsersComponent
     
     
   ],

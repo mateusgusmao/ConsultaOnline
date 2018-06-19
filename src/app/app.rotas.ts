@@ -4,7 +4,6 @@ import { ConsultasComponent } from './consultas/consultas.component';
 import { MarcarComponent } from './marcar/marcar.component';
 import { EditarConsultaComponent } from './editar-consulta/editar-consulta.component';
 import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
-import { GerenciarConsultasComponent } from './gerenciar-consultas/gerenciar-consultas.component';
 import { ListarUsersComponent } from './listar-users/listar-users.component';
 import {Routes,RouterModule} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
@@ -20,7 +19,6 @@ const APP_ROTAS:Routes = [
     {path: 'consultas', component: ConsultasComponent},
     {path: 'marcar-consulta', component: MarcarComponent},
     {path: 'editar-consulta/:id', component: EditarConsultaComponent},
-    {path: 'gerenciar-consultas', component: GerenciarConsultasComponent},
     {path:'listar-users', component:ListarUsersComponent}
 
     ]  
