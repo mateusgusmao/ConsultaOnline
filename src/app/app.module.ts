@@ -42,6 +42,7 @@ import {ContextMenuModule} from 'primeng/primeng';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,8 @@ import {ContextMenuModule} from 'primeng/primeng';
     MarcarComponent,
     TelaPrincipalComponent,
     EditarConsultaComponent,
-    ListarUsersComponent
+    ListarUsersComponent,
+
     
     
   ],
