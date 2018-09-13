@@ -16,10 +16,10 @@ export class FormularioComponent implements OnInit {
   userUsuario: string;
   senhaUsuario: string;
 
-  selectedValue: string = "val1";
+  //selectedValue: string = "val1";
   
   constructor(private userService: UserService,private rota: Router) { 
-    //this.user = new User()
+
   }
     loginUsuario(user, senha){
       user = this.userUsuario;
@@ -27,8 +27,10 @@ export class FormularioComponent implements OnInit {
       this.userService.loginUsuario(user, senha).subscribe(usuario => {
         if(user == null){
           alert("Usuário não cadastrado no banco.")
+        }else if(user == "" && senha == "") {
+          console.log("Preencha os campos de usuário e senha!");
         } else{
-          console.log("Usuario logado.");
+          console.log("Usuario logado: "+user );
           this.userService.usuarioLogado = user; 
           this.rota.navigate(['/main']); 
 
@@ -36,6 +38,14 @@ export class FormularioComponent implements OnInit {
         }
       });
     } 
+
+    signInWithGoogle() {
+      this.userService.loginGoogle()
+        .then(() => {
+          this.rota.navigate(['/main']);
+        })
+        .catch((err) => console.log(err));
+    }
 
   ngOnInit() {
   //this.users = this.userService.getUsers();  
