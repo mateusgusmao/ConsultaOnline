@@ -1,6 +1,7 @@
-<p-dataTable [value]="relacaoUsers" selectionMode="single" [contextMenu]="cm" [(selection)]="userSelecionado">
+<div align="center">
+<p-dataTable [style]="{'width':'900px'}" [value]="relacaoUsers" selectionMode="single" [contextMenu]="cm" [(selection)]="userSelecionado">
     <p-column field="username" header="Username"></p-column>
     <p-column field="password" header="Senha"></p-column>
 </p-dataTable>
-
+</div>
 <p-contextMenu #cm [model]="items"></p-contextMenu>

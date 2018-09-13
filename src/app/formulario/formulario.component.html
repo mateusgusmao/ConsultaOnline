@@ -1,26 +1,26 @@
 <router-outlet></router-outlet>
     <div align="center">
     <header>
-    <h1>Consulta Médica Online</h1>
+    <h1><b>Consulta Web</b></h1>
     </header>
     </div>
-<div class="container">
+<div class="container" style="width:800px">
     <div class="panel panel-default">
         <div class="panel-heading">
           Faça seu Login      
-      </div> 
-      <div class="panel-body">
+        </div> 
+    <div class="panel-body">
 
       <form ngForm #form>
 
         <!--CAMPO DE USERNAME(CADASTRO) -->
                   <div class="form-group">
-                    <label for="username">Nome de Usuário:</label>
+                    <label for="username">Usuário:</label>
                     <input [(ngModel)]="userUsuario" type="text" class="form-control" id="username" name="username" required>
                   </div>
         <!--CAMPO DE PASSWORD(CADASTRO) -->
                   <div class="form-group">
-                      <label for="password">Digite uma senha:</label>
+                      <label for="password">Senha:</label>
                       <input [(ngModel)]="senhaUsuario" type="password" class="form-control" id="password" name="password" required>
                     </div>
                   <div>  
@@ -28,8 +28,18 @@
                 <button pButton type="button" class="ui-button-primary" label="Entrar" (click)="loginUsuario()"></button>
             Não tem uma conta?
                 <button pButton type="button" class="ui-button-success" label="Cadastre-se" routerLink='/cadastro'></button><br/>
+                <br/><button pButton type="button" aria-hidden="true" label="Entre com sua conta Google" icon="fab fa-google" (click)="signInWithGoogle()"></button>
         </form>
       </div>
+      <!--<div>
+        Entre também usando: 
+        
+              <button type="button" class=" botao btn btn-block" (click)="signInWithGoogle()">
+                  <i class="fa fa-google" aria-hidden="true"></i>
+                  Entre com sua conta Google 
+              </button>
+
+      </div>-->
 </div>
 
 

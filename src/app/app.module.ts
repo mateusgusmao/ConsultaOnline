@@ -37,6 +37,8 @@ import {TabMenuModule} from 'primeng/primeng';
 import {CalendarModule} from 'primeng/primeng';
 import {MenubarModule} from 'primeng/primeng';
 import {ContextMenuModule} from 'primeng/primeng';
+import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
+
 
 
 
@@ -51,13 +53,15 @@ import {ContextMenuModule} from 'primeng/primeng';
     MarcarComponent,
     TelaPrincipalComponent,
     EditarConsultaComponent,
-    ListarUsersComponent
+    ListarUsersComponent,
+
     
     
   ],
   imports: [
     AngularFireModule.initializeApp(FirebaseConfig),
     AngularFirestoreModule.enablePersistence(),
+    AngularFireAuthModule,
     BrowserModule,
     AccordionModule,
     ButtonModule,
@@ -78,7 +82,7 @@ import {ContextMenuModule} from 'primeng/primeng';
     ContextMenuModule,
    
   ],
-  providers: [UserService,ConsultasService],
+  providers: [UserService, ConsultasService, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
