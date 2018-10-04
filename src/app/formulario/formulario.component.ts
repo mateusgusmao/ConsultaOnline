@@ -19,9 +19,8 @@ export class FormularioComponent implements OnInit {
   //selectedValue: string = "val1";
   
   constructor(private userService: UserService,private rota: Router) { 
-
-  }
-    loginUsuario(user, senha){
+ }
+    /*loginUsuario(user, senha){
       user = this.userUsuario;
       senha = this.senhaUsuario;
       this.userService.loginUsuario(user, senha).subscribe(usuario => {
@@ -37,7 +36,28 @@ export class FormularioComponent implements OnInit {
 
         }
       });
-    } 
+    } */
+
+    login(user, senha){
+      user = this.userUsuario;
+      senha = this.senhaUsuario;
+      
+      this.userService.loginUsuario(user, senha).subscribe(meuObservable => {
+        if(meuObservable == null){
+          alert("Usuário não cadastrado no banco.")
+        } else{
+          this.rota.navigate(['/main']);
+          console.log("Usuario  logado.");
+        }
+      });
+     }        
+    /**  if(user == this.userUsuario && senha == this.senhaUsuario){
+        this.rota.navigate(['/main'])
+       } else {
+          console.log("usuário não existe");
+        }
+      }
+     */
 
     signInWithGoogle() {
       this.userService.loginGoogle()
