@@ -7,6 +7,7 @@ import { TelaPrincipalComponent } from './tela-principal/tela-principal.componen
 import { ListarUsersComponent } from './listar-users/listar-users.component';
 import {Routes,RouterModule} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
+import { SobreComponent } from './sobre/sobre.component';
 
 
 const APP_ROTAS:Routes = [
@@ -16,6 +17,7 @@ const APP_ROTAS:Routes = [
   {path: '', component: FormularioComponent},
   {path: 'main', component: TelaPrincipalComponent,
    children: [
+    {path: 'sobre', component: SobreComponent},
     {path: 'consultas', component: ConsultasComponent},
     {path: 'marcar-consulta', component: MarcarComponent},
     {path: 'editar-consulta/:id', component: EditarConsultaComponent},
