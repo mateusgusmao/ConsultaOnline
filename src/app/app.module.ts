@@ -42,10 +42,6 @@ import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import {PanelModule} from 'primeng/primeng';
 
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +79,7 @@ import {PanelModule} from 'primeng/primeng';
     RadioButtonModule,
     MessagesModule,
     ContextMenuModule,
-    PanelModule,
+    PanelModule
 
 
   ],
