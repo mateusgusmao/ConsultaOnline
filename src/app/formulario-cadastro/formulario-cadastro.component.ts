@@ -25,7 +25,7 @@ register() {
 
   this.userService.salvar(novoUsuario);
 
-  console.log(novoUsuario.id);
+  console.log(novoUsuario);
   
 }
 

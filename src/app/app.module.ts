@@ -10,6 +10,7 @@ import { ConsultasComponent } from './consultas/consultas.component';
 import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
 import { EditarConsultaComponent } from './editar-consulta/editar-consulta.component';
 import { ListarUsersComponent } from './listar-users/listar-users.component';
+import { SobreComponent } from './sobre/sobre.component';
 
 import { FirebaseConfig } from "../environments/firebase.config";
 import { AngularFirestoreModule } from "angularfire2/firestore";
@@ -38,6 +39,7 @@ import {CalendarModule} from 'primeng/primeng';
 import {MenubarModule} from 'primeng/primeng';
 import {ContextMenuModule} from 'primeng/primeng';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
+import {PanelModule} from 'primeng/primeng';
 
 
 
@@ -54,6 +56,7 @@ import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
     TelaPrincipalComponent,
     EditarConsultaComponent,
     ListarUsersComponent,
+    SobreComponent,
 
     
     
@@ -80,7 +83,9 @@ import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
     RadioButtonModule,
     MessagesModule,
     ContextMenuModule,
-   
+    PanelModule,
+
+
   ],
   providers: [UserService, ConsultasService, AngularFireAuth],
   bootstrap: [AppComponent]

@@ -17,6 +17,7 @@ export class UserService {
 
   constructor(private afs: AngularFirestore, private firebaseAuth: AngularFireAuth, private router: Router) {
     this.userCollection = this.afs.collection<User>("user");
+    
     this.user = firebaseAuth.authState;
     this.user.subscribe(
       (user) => {
@@ -36,17 +37,13 @@ export class UserService {
         user.id = resultado.id;
         console.log(user.id);
       });
-
-  }
-  deletar(user): Promise<void> {
-    return this.userCollection.doc(user.id).delete();
   }
 
   loginUsuario(user: String, senha: String): Observable<any> {
     let meuObservable = new Observable<any>(observer => {
-      let collectionFiltrada = this.afs.collection<User>('usuario', ref =>
-        ref.where('user', '==', user)
-          .where('senha', '==', senha));
+      let collectionFiltrada = this.afs.collection<User>('user', ref =>
+        ref.where('username', '==', user)
+           .where('password', '==', senha));
       let resultados = collectionFiltrada.snapshotChanges().subscribe(result => {
         let document;
         result.map(documents => {
@@ -58,8 +55,11 @@ export class UserService {
         observer.complete();
       });
     });
-
     return meuObservable;
+  }
+
+  deletar(user): Promise<void> {
+    return this.userCollection.doc(user.id).delete();
   }
 
   listarTodos(): Observable<any[]> {

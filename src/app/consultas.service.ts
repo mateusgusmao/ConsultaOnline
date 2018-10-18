@@ -31,13 +31,13 @@ export class ConsultasService {
       this.consultas.splice(pos,1); */
   }
 
-  constructor() {
+ /* constructor() {
     let consultaA:Consulta = new Consulta();
     consultaA.data = new Date("09.26.2017");
     consultaA.especialidade = "W";
     consultaA.planoSaude = "Z";
     this.AddConsulta(consultaA);
-   }
+   }*/
 
    getConsulta(id){
      let consulta:Consulta = new Consulta();

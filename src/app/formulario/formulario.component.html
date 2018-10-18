@@ -1,7 +1,7 @@
 <router-outlet></router-outlet>
     <div align="center">
     <header>
-    <h1><b>Consulta Web</b></h1>
+    <h1><img width="450" height="130"alt="Heazy Logo" src="assets/heazy.png"></h1>
     </header>
     </div>
 <div class="container" style="width:800px">
@@ -25,10 +25,10 @@
                     </div>
                   <div>  
                   </div><br/> 
-                <button pButton type="button" class="ui-button-primary" label="Entrar" (click)="loginUsuario()"></button>
+                <button pButton type="button" class="ui-button-primary" label="Entrar" (click)="login()"></button>
             Não tem uma conta?
                 <button pButton type="button" class="ui-button-success" label="Cadastre-se" routerLink='/cadastro'></button><br/>
-                <br/><button pButton type="button" aria-hidden="true" label="Entre com sua conta Google" icon="fab fa-google" (click)="signInWithGoogle()"></button>
+                <br/><button pButton type="button" class="ui-button-primary" aria-hidden="true" label="Entre com sua conta Google" icon="fab fa-google" (click)="signInWithGoogle()"></button>
         </form>
       </div>
       <!--<div>
