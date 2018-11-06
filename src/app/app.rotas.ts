@@ -8,6 +8,8 @@ import { ListarUsersComponent } from './listar-users/listar-users.component';
 import {Routes,RouterModule} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
 import { SobreComponent } from './sobre/sobre.component';
+import { FormAdmComponent } from './form-adm/form-adm.component';
+
 
 
 const APP_ROTAS:Routes = [
@@ -15,6 +17,7 @@ const APP_ROTAS:Routes = [
   {path: 'login', component: FormularioComponent},
   {path: 'cadastro', component: FormularioCadastroComponent},  
   {path: '', component: FormularioComponent},
+  {path: 'adm-login', component:  FormAdmComponent},
   {path: 'main', component: TelaPrincipalComponent,
    children: [
     {path: 'sobre', component: SobreComponent},
