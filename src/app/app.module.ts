@@ -41,6 +41,7 @@ import {ContextMenuModule} from 'primeng/primeng';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import {PanelModule} from 'primeng/primeng';
 import { FormAdmComponent } from './form-adm/form-adm.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { FormAdmComponent } from './form-adm/form-adm.component';
     ListarUsersComponent,
     SobreComponent,
     FormAdmComponent,
+    HomeComponent,
 
     
     

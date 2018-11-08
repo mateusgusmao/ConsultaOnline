@@ -9,6 +9,7 @@ import {Routes,RouterModule} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
 import { SobreComponent } from './sobre/sobre.component';
 import { FormAdmComponent } from './form-adm/form-adm.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -20,6 +21,7 @@ const APP_ROTAS:Routes = [
   {path: 'adm-login', component:  FormAdmComponent},
   {path: 'main', component: TelaPrincipalComponent,
    children: [
+    {path: 'home', component: HomeComponent },
     {path: 'sobre', component: SobreComponent},
     {path: 'consultas', component: ConsultasComponent},
     {path: 'marcar-consulta', component: MarcarComponent},
