@@ -16,7 +16,7 @@ export class TelaPrincipalComponent implements OnInit {
 
         this.items = [
       {label: 'Home', icon: 'fa-home', routerLink: './home'},
-      {label: 'Paciente', icon: 'fa-user-circle'},
+      {label: 'Paciente', icon: 'fa-address-card', routerLink: './paciente'},
       {label: 'Consultas', icon: 'fa-calendar', routerLink: './consultas'},
       {label: 'Sobre', icon: 'fa-info', routerLink: './sobre'},
       {label: 'Lista', icon: 'fa-book', routerLink: './listar-users'},

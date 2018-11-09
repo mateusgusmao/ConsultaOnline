@@ -11,6 +11,10 @@ import { TelaPrincipalComponent } from './tela-principal/tela-principal.componen
 import { EditarConsultaComponent } from './editar-consulta/editar-consulta.component';
 import { ListarUsersComponent } from './listar-users/listar-users.component';
 import { SobreComponent } from './sobre/sobre.component';
+import { FormAdmComponent } from './form-adm/form-adm.component';
+import { HomeComponent } from './home/home.component';
+import { PacienteComponent } from './paciente/paciente.component';
+
 
 import { FirebaseConfig } from "../environments/firebase.config";
 import { AngularFirestoreModule } from "angularfire2/firestore";
@@ -40,9 +44,8 @@ import {MenubarModule} from 'primeng/primeng';
 import {ContextMenuModule} from 'primeng/primeng';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import {PanelModule} from 'primeng/primeng';
-import { FormAdmComponent } from './form-adm/form-adm.component';
-import { HomeComponent } from './home/home.component';
-
+import {ProgressSpinnerModule} from 'primeng/primeng';
+import {FieldsetModule} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,7 @@ import { HomeComponent } from './home/home.component';
     SobreComponent,
     FormAdmComponent,
     HomeComponent,
+    PacienteComponent,
 
     
     
@@ -83,7 +87,9 @@ import { HomeComponent } from './home/home.component';
     RadioButtonModule,
     MessagesModule,
     ContextMenuModule,
-    PanelModule
+    PanelModule,
+    ProgressSpinnerModule,
+    FieldsetModule
 
 
   ],
