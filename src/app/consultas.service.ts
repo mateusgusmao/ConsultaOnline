@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Consulta } from './models/consulta'
+import { Consulta } from './models/consulta';
+import { AngularFirestore, AngularFirestoreCollection } from "angularfire2/firestore";
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ConsultasService {
 
   consultas: Consulta[] = [];
   consulta: Consulta = new Consulta();
-
-  AddConsulta(consulta:Consulta){
+    
+ AddConsulta(consulta:Consulta){
     this.consulta.id++;
     this.consultas.push(consulta);
 
-  }
+  } 
 
   getConsultas(){
     return this.consultas;

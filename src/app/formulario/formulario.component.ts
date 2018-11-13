@@ -67,6 +67,10 @@ export class FormularioComponent implements OnInit {
         .catch((err) => console.log(err));
     }
 
+    irParaAdministracao(){
+      this.rota.navigate(['/adm-login']);
+    }
+
   ngOnInit() {
   //this.users = this.userService.getUsers();  
 

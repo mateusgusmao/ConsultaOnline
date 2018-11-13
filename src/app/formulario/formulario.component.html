@@ -29,6 +29,9 @@
             Não tem uma conta?
                 <button pButton type="button" class="ui-button-success" label="Cadastre-se" routerLink='/cadastro'></button><br/>
                 <br/><button pButton type="button" class="ui-button-primary" aria-hidden="true" label="Entre com sua conta Google" icon="fab fa-google" (click)="signInWithGoogle()"></button>
+                <div align="right">
+                   <button pButton type="button" class="ui-button-rounded ui-button-secondary" label="Sou um Administrador" (click)=" irParaAdministracao()"></button>
+                </div>
         </form>
       </div>
       <!--<div>

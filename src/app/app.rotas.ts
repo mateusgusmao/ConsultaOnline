@@ -5,9 +5,15 @@ import { MarcarComponent } from './marcar/marcar.component';
 import { EditarConsultaComponent } from './editar-consulta/editar-consulta.component';
 import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
 import { ListarUsersComponent } from './listar-users/listar-users.component';
+import { SobreComponent } from './sobre/sobre.component';
+import { FormAdmComponent } from './form-adm/form-adm.component';
+import { HomeComponent } from './home/home.component';
+import { PacienteComponent } from './paciente/paciente.component';
+
+
 import {Routes,RouterModule} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
-import { SobreComponent } from './sobre/sobre.component';
+
 
 
 const APP_ROTAS:Routes = [
@@ -15,8 +21,11 @@ const APP_ROTAS:Routes = [
   {path: 'login', component: FormularioComponent},
   {path: 'cadastro', component: FormularioCadastroComponent},  
   {path: '', component: FormularioComponent},
+  {path: 'adm-login', component:  FormAdmComponent},
   {path: 'main', component: TelaPrincipalComponent,
    children: [
+    {path: 'home', component: HomeComponent},
+    {path: 'paciente', component: PacienteComponent},
     {path: 'sobre', component: SobreComponent},
     {path: 'consultas', component: ConsultasComponent},
     {path: 'marcar-consulta', component: MarcarComponent},
