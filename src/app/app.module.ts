@@ -14,6 +14,8 @@ import { SobreComponent } from './sobre/sobre.component';
 import { FormAdmComponent } from './form-adm/form-adm.component';
 import { HomeComponent } from './home/home.component';
 import { PacienteComponent } from './paciente/paciente.component';
+import { MenuAdmComponent } from './menu-adm/menu-adm.component';
+
 
 
 import { FirebaseConfig } from "../environments/firebase.config";
@@ -26,13 +28,12 @@ import {UserService} from './user.service';
 import {ConsultasService} from './consultas.service'
 
 import {Message} from 'primeng/components/common/api';
-import {RadioButtonModule} from 'primeng/primeng';
+import {RadioButtonModule, MenuItemContent, BasePanelMenuItem} from 'primeng/primeng';
 import {MessagesModule} from 'primeng/primeng';
 import {DropdownModule} from 'primeng/primeng';
 import {DialogModule} from 'primeng/primeng';
 import {DataTableModule,SharedModule} from 'primeng/primeng';
 import {AccordionModule} from 'primeng/primeng';
-import {MenuItem} from 'primeng/primeng';
 import {ButtonModule} from 'primeng/primeng';
 import {PasswordModule} from 'primeng/primeng';
 import {InputTextModule} from 'primeng/primeng';
@@ -46,6 +47,8 @@ import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import {PanelModule} from 'primeng/primeng';
 import {ProgressSpinnerModule} from 'primeng/primeng';
 import {FieldsetModule} from 'primeng/primeng';
+import {MenuModule} from 'primeng/primeng';
+import {MenuItem} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,7 @@ import {FieldsetModule} from 'primeng/primeng';
     FormAdmComponent,
     HomeComponent,
     PacienteComponent,
+    MenuAdmComponent,
 
     
     
@@ -89,8 +93,9 @@ import {FieldsetModule} from 'primeng/primeng';
     ContextMenuModule,
     PanelModule,
     ProgressSpinnerModule,
-    FieldsetModule
-
+    FieldsetModule,
+    MenuModule,
+    
 
   ],
   providers: [UserService, ConsultasService, AngularFireAuth],

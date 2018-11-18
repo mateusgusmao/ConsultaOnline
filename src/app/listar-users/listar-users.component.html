@@ -1,3 +1,4 @@
+<header>
 <div align="center">
 <p-dataTable [style]="{'width':'900px'}" [value]="relacaoUsers" selectionMode="single" [contextMenu]="cm" [(selection)]="userSelecionado">
     <p-column field="username" header="Username"></p-column>
@@ -5,3 +6,4 @@
 </p-dataTable>
 </div>
 <p-contextMenu #cm [model]="items"></p-contextMenu>
+</header>

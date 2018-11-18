@@ -19,7 +19,6 @@ export class TelaPrincipalComponent implements OnInit {
       {label: 'Paciente', icon: 'fa-address-card', routerLink: './paciente'},
       {label: 'Consultas', icon: 'fa-calendar', routerLink: './consultas'},
       {label: 'Sobre', icon: 'fa-info', routerLink: './sobre'},
-      {label: 'Lista', icon: 'fa-book', routerLink: './listar-users'},
       {label: 'Sair', icon: 'fa-share-square', routerLink: '..'},
 
   ];
