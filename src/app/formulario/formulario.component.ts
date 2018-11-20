@@ -48,6 +48,7 @@ export class FormularioComponent implements OnInit {
         } else{
           this.rota.navigate(['/main/consultas']);
           console.log("Usuario  logado.");
+         // this.userService.usuarioLogado = this.userService.loginUsuario(user, senha);
         }
       });
      }        
