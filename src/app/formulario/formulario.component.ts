@@ -47,8 +47,11 @@ export class FormularioComponent implements OnInit {
           alert("Usuário não cadastrado no banco.")
         } else{
           this.rota.navigate(['/main/consultas']);
-          console.log("Usuario  logado.");
-         // this.userService.usuarioLogado = this.userService.loginUsuario(user, senha);
+
+          this.userService.loginUsuario(user, senha).subscribe(meuObservable =>
+          this.userService.usuarioLogado = meuObservable as User);
+
+          //console.log(this.userService.usuarioLogado.password)
         }
       });
      }        

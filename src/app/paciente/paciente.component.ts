@@ -10,7 +10,8 @@ import { UserService } from '../user.service';
 })
 export class PacienteComponent implements OnInit {
 
-  pacienteLogado: String;
+  nomePacienteLogado: String;
+  senhaPacienteLogado: String;
 
   constructor(private userService: UserService) { }
 
@@ -21,7 +22,8 @@ export class PacienteComponent implements OnInit {
   }
 
   dadosPaciente(){
-    this.pacienteLogado = this.userService.usuarioLogado.username;
+    this.nomePacienteLogado = this.userService.usuarioLogado.username;
+    this.senhaPacienteLogado = this.userService.usuarioLogado.password;
   }
 
 }
