@@ -9,30 +9,35 @@ import { SobreComponent } from './sobre/sobre.component';
 import { FormAdmComponent } from './form-adm/form-adm.component';
 import { HomeComponent } from './home/home.component';
 import { PacienteComponent } from './paciente/paciente.component';
+import { MenuAdmComponent } from './menu-adm/menu-adm.component';
 
 
-import {Routes,RouterModule} from '@angular/router';
-import {ModuleWithProviders} from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
 
 
-const APP_ROTAS:Routes = [
-  
-  {path: 'login', component: FormularioComponent},
-  {path: 'cadastro', component: FormularioCadastroComponent},  
-  {path: '', component: FormularioComponent},
-  {path: 'adm-login', component:  FormAdmComponent},
-  {path: 'main', component: TelaPrincipalComponent,
-   children: [
-    {path: 'home', component: HomeComponent},
-    {path: 'paciente', component: PacienteComponent},
-    {path: 'sobre', component: SobreComponent},
-    {path: 'consultas', component: ConsultasComponent},
-    {path: 'marcar-consulta', component: MarcarComponent},
-    {path: 'editar-consulta/:id', component: EditarConsultaComponent},
-    {path:'listar-users', component:ListarUsersComponent}
+const APP_ROTAS: Routes = [
 
-    ]  
+  { path: 'login', component: FormularioComponent },
+  { path: 'cadastro', component: FormularioCadastroComponent },
+  { path: '', component: FormularioComponent },
+  {
+    path: 'main', component: TelaPrincipalComponent,
+    children: [
+      { path: 'home', component: HomeComponent },
+      { path: 'paciente', component: PacienteComponent },
+      { path: 'sobre', component: SobreComponent },
+      { path: 'consultas', component: ConsultasComponent },
+      { path: 'marcar-consulta', component: MarcarComponent },
+      { path: 'editar-consulta/:id', component: EditarConsultaComponent },
+    ]
+  },
+  { path: 'adm-login', component: FormAdmComponent },
+  { path: 'adm-menu', component: MenuAdmComponent,
+    children: [
+      { path: 'listar-users', component: ListarUsersComponent }
+    ]
   }
 ]
 export const rota: ModuleWithProviders = RouterModule.forRoot(APP_ROTAS);
