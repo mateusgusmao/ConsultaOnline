@@ -28,7 +28,7 @@ export class ConsultasComponent implements OnInit {
       return this.consultaService.getConsultas();
   }
 
-    findSelectedConsultaIndex(): number {
+  findSelectedConsultaIndex(): number {
   return this.consultas.indexOf(this.selectedConsulta);
  }
 

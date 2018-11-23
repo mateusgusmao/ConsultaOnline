@@ -15,7 +15,7 @@ import { FormAdmComponent } from './form-adm/form-adm.component';
 import { HomeComponent } from './home/home.component';
 import { PacienteComponent } from './paciente/paciente.component';
 import { MenuAdmComponent } from './menu-adm/menu-adm.component';
-
+import { EspecialidadeComponent } from './especialidade/especialidade.component';
 
 
 import { FirebaseConfig } from "../environments/firebase.config";
@@ -50,6 +50,7 @@ import {FieldsetModule} from 'primeng/primeng';
 import {MenuModule} from 'primeng/primeng';
 import {MenuItem} from 'primeng/primeng';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +66,7 @@ import {MenuItem} from 'primeng/primeng';
     HomeComponent,
     PacienteComponent,
     MenuAdmComponent,
+    EspecialidadeComponent,
 
     
     
