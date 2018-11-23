@@ -17,6 +17,7 @@ import { PacienteComponent } from './paciente/paciente.component';
 import { MenuAdmComponent } from './menu-adm/menu-adm.component';
 import { EspecialidadeComponent } from './especialidade/especialidade.component';
 import { MedicoComponent } from './medico/medico.component';
+import { GerenciarComponent } from './gerenciar/gerenciar.component';
 
 
 import { FirebaseConfig } from "../environments/firebase.config";
@@ -52,6 +53,7 @@ import {MenuModule} from 'primeng/primeng';
 import {MenuItem} from 'primeng/primeng';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +71,7 @@ import {MenuItem} from 'primeng/primeng';
     MenuAdmComponent,
     EspecialidadeComponent,
     MedicoComponent,
+    GerenciarComponent,
 
     
     

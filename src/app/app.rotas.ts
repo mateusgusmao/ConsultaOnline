@@ -10,6 +10,7 @@ import { FormAdmComponent } from './form-adm/form-adm.component';
 import { HomeComponent } from './home/home.component';
 import { PacienteComponent } from './paciente/paciente.component';
 import { MenuAdmComponent } from './menu-adm/menu-adm.component';
+import { GerenciarComponent } from './gerenciar/gerenciar.component'
 
 
 import { Routes, RouterModule } from '@angular/router';
@@ -36,7 +37,8 @@ const APP_ROTAS: Routes = [
   { path: 'adm-login', component: FormAdmComponent },
   { path: 'adm-menu', component: MenuAdmComponent,
     children: [
-      { path: 'listar-users', component: ListarUsersComponent }
+      { path: 'listar-users', component: ListarUsersComponent },
+      { path: 'gerenciar', component: GerenciarComponent }
     ]
   }
 ]
