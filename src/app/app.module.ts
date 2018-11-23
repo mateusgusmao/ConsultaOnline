@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { PacienteComponent } from './paciente/paciente.component';
 import { MenuAdmComponent } from './menu-adm/menu-adm.component';
 import { EspecialidadeComponent } from './especialidade/especialidade.component';
+import { MedicoComponent } from './medico/medico.component';
 
 
 import { FirebaseConfig } from "../environments/firebase.config";
@@ -67,6 +68,7 @@ import {MenuItem} from 'primeng/primeng';
     PacienteComponent,
     MenuAdmComponent,
     EspecialidadeComponent,
+    MedicoComponent,
 
     
     

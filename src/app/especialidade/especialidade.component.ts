@@ -12,15 +12,14 @@ export class EspecialidadeComponent implements OnInit {
 
   especialidade: Especialidade;
 
-  constructor(private especialidadeService: EspecialidadeService, private userService: UserService ) { 
-    this.especialidade = { tipo: "", medicos: []}
+  constructor(private especialidadeService: EspecialidadeService, private userService: UserService) {
+    this.especialidade = { tipo: "", medicos: [] }
   }
 
   ngOnInit() {
   }
 
-   adicionarEspecialidade(){
+  adicionarEspecialidade() {
     this.especialidadeService.adicionarEspecialidadeFirebase(this.especialidade)
-   }
-   
+  }
 }
