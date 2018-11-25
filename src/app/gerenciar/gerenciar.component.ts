@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-gerenciar',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GerenciarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private rota: Router) { }
 
   ngOnInit() {
+
+
   }
+
+  /*irParaMarcarEspecialidade(){
+    this.rota.navigate(['../especialidade']);
+  }*/
 
 }

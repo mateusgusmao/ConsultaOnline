@@ -17,6 +17,7 @@ export class EspecialidadeService {
     this.especialidadeCollection.add(especialidade).then(
       resultado => {
         especialidade.id = resultado.id;
+        console.log(especialidade.id);
       });
   }
 

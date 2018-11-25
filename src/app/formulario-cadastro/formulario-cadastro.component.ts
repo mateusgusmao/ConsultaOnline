@@ -14,24 +14,25 @@ export class FormularioCadastroComponent implements OnInit {
   userUsuario: string;
   senhaUsuario: string;
 
+   //novoUsuario: User
   
   
   constructor(private userService: UserService) {
-     // this.novoUsuario = { username: "", password: "", consultas: [] }
+     //this.novoUsuario = { username: "", password: "", consultas: [] }
   }
 
   ngOnInit() {}
   
 register() {
-  
+
   let novoUsuario: User = {username:this.userUsuario, password:this.senhaUsuario, consultas:[]};
   this.userUsuario = "";
   this.senhaUsuario = "";
-
+  
   this.userService.salvar(novoUsuario);
-
   console.log(novoUsuario);
   
+
 }
 
   listar(){

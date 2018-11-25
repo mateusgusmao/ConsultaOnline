@@ -14,7 +14,7 @@ export class MedicoComponent implements OnInit {
   medico: Medico
 
   constructor(private medicoService: MedicoService) {
-    this.medico = {username: "", horario: "", especialidade: "" }
+    this.medico = {username: "", horario: ""}
    }
 
   ngOnInit() {
@@ -22,5 +22,6 @@ export class MedicoComponent implements OnInit {
 
   adicionarMedico() {
     this.medicoService.adicionarMedicoFirebase(this.medico);
+    console.log(this.medico)
   }
 }

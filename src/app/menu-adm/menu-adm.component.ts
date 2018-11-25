@@ -16,7 +16,7 @@ export class MenuAdmComponent implements OnInit {
     
     this.items = [
       {label: 'Gerenciar', icon: 'fa-cog', routerLink: './gerenciar'},
-      {label: 'Lista', icon: 'fa-book', routerLink: './listar-users'},
+      {label: 'Lista de Usuários', icon: 'fa-book', routerLink: './listar-users'},
       {label: 'Sair', icon: 'fa-share-square', routerLink: '..'},
 
   ];

@@ -16,6 +16,7 @@ export class MedicoService {
     this.medicoCollection.add(medico).then(
       resultado => {
         medico.id = resultado.id;
+        console.log(medico.id)
       });
   }
 

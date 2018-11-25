@@ -51,6 +51,8 @@ import {ProgressSpinnerModule} from 'primeng/primeng';
 import {FieldsetModule} from 'primeng/primeng';
 import {MenuModule} from 'primeng/primeng';
 import {MenuItem} from 'primeng/primeng';
+import { EspecialidadeService } from './especialidade.service';
+import { MedicoService } from './medico.service';
 
 
 
@@ -104,7 +106,7 @@ import {MenuItem} from 'primeng/primeng';
     MenuModule,
 
   ],
-  providers: [UserService, ConsultasService, AngularFireAuth],
+  providers: [UserService, ConsultasService, AngularFireAuth, EspecialidadeService, MedicoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

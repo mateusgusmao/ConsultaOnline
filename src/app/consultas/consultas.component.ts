@@ -32,7 +32,7 @@ export class ConsultasComponent implements OnInit {
   adicionarConsulta(){
     this.consultaService.adicionarConsultaFirebase(this.consulta);
     console.log(this.consulta)
-    
+
   }
 
   /*getConsultas(){

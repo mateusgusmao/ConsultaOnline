@@ -1,3 +1,22 @@
-<p>
-  especialidade works!
-</p>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Criar uma Especialidade
+    </div>
+    <div class="panel-body">
+
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12 ui-md-4">
+                <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="fa fa-file" ></i></span>
+                    <input type="text" [(ngModel)]="especialidade.tipo" id="especialidade" name="especialidade" pInputText placeholder="Nome da Especialidade">
+                    <button pButton  type="button" label="Adicionar" (click)="adicionarEspecialidade()"></button>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+  </div>
+</div>

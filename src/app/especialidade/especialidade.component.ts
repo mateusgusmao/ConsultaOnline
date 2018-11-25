@@ -21,5 +21,7 @@ export class EspecialidadeComponent implements OnInit {
 
   adicionarEspecialidade() {
     this.especialidadeService.adicionarEspecialidadeFirebase(this.especialidade)
+    console.log(this.especialidade)
+
   }
 }
