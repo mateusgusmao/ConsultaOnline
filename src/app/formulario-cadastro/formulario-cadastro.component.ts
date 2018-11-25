@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user'
 import { UserService } from '../user.service';
 import {TabMenuModule, MenuItem} from 'primeng/primeng';
+import { Consulta } from '../models/consulta'
 
 @Component({
   selector: 'app-formulario-cadastro',
@@ -13,13 +14,17 @@ export class FormularioCadastroComponent implements OnInit {
   userUsuario: string;
   senhaUsuario: string;
 
-  constructor(private userService: UserService) {}
+  
+  
+  constructor(private userService: UserService) {
+     // this.novoUsuario = { username: "", password: "", consultas: [] }
+  }
 
   ngOnInit() {}
   
 register() {
   
-  let novoUsuario: User = {username:this.userUsuario, password:this.senhaUsuario};
+  let novoUsuario: User = {username:this.userUsuario, password:this.senhaUsuario, consultas:[]};
   this.userUsuario = "";
   this.senhaUsuario = "";
 

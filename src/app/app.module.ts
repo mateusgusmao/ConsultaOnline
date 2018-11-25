@@ -102,7 +102,6 @@ import {MenuItem} from 'primeng/primeng';
     ProgressSpinnerModule,
     FieldsetModule,
     MenuModule,
-    
 
   ],
   providers: [UserService, ConsultasService, AngularFireAuth],

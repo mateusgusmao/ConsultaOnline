@@ -19,7 +19,7 @@ export class MarcarComponent implements OnInit {
       selectedEspecialidade: String;
       selectedPlanoSaude: String;  
 
-      consulta: Consulta = new Consulta();
+      //consulta: Consulta = new Consulta();
       selectedConsulta: Consulta;
       newConsulta: boolean;
       consultas: Consulta[];
@@ -44,10 +44,10 @@ export class MarcarComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.consultas= this.consultaService.getConsultas();
+    //this.consultas= this.consultaService.getConsultas();
   }
 
-  save() {
+  /*save() {
   let consultas = [...this.consultas];
   if(this.newConsulta)
       consultas.push(this.consulta);
@@ -84,9 +84,14 @@ findSelectedConsultaIndex(): number {
  }
 
 }
+ 
+
 
 class PrimeConsulta implements Consulta {
 
-  constructor(public id:number, public especialidade:string, public clinica:string, public planoSaude:string, public data:Date) {}
+ // constructor(public id:number, public especialidade:string, public clinica:string, public planoSaude:string, public data:Date) {}
 
   }
+  */
+
+}
