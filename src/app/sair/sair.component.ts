@@ -20,7 +20,5 @@ export class SairComponent implements OnInit {
     this.userService.usuarioLogado = null;
     console.log(this.userService.usuarioLogado);
     this.rota.navigate(['/']);
-      
-
   }
 }

@@ -25,7 +25,7 @@ export class FormularioCadastroComponent implements OnInit {
   
 register() {
 
-  let novoUsuario: User = {username:this.userUsuario, password:this.senhaUsuario, consultas:[]};
+  let novoUsuario: User = {username:this.userUsuario, password:this.senhaUsuario};
   this.userUsuario = "";
   this.senhaUsuario = "";
   

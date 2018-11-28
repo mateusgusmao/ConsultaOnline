@@ -7,6 +7,8 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class EspecialidadeService {
 
+  especial: Especialidade;
+
   private especialidadeCollection: AngularFirestoreCollection<Especialidade>;
    
   constructor(private afs: AngularFirestore) { 

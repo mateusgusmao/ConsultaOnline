@@ -2,8 +2,7 @@ import { Medico } from './medico';
 import { Observable } from '../../../node_modules/rxjs';
 
 export interface Especialidade{
-    medicos: Medico[];
-    tipo: String;
     
+    nome: String;
     id?: String;
 } 

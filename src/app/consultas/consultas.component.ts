@@ -5,6 +5,7 @@ import { Router, Route } from '@angular/router';
 import {ContextMenuModule,MenuItem, TabMenuModule} from 'primeng/primeng';
 import {SelectItem} from 'primeng/primeng';
 import { UserService } from '../user.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-consultas',
@@ -20,8 +21,11 @@ export class ConsultasComponent implements OnInit {
 
   consulta: Consulta;
 
+  user: User;
+
   constructor(private consultaService:ConsultasService, private userService: UserService, private rota: Router) { 
-    this.consulta = { especialidade: "", planoSaude: "", data: null, status: false, usuarioconsulta: ""}
+    this.consulta = { especialidade: "", planoSaude: "", data: null, status: false, idPaciente: "",
+     nomePaciente: ""}
 
     /*this.consultas = this.getConsultas();
       console.log(this.consultas);*/
@@ -30,12 +34,18 @@ export class ConsultasComponent implements OnInit {
   ngOnInit() {}
 
   adicionarConsulta(){
+
+    this.consulta.idPaciente = this.userService.usuarioLogado.id;
+    this.consulta.nomePaciente = this.userService.usuarioLogado.username;
+
     this.consultaService.adicionarConsultaFirebase(this.consulta);
     console.log(this.consulta)
 
-    this.userService.usuarioLogado.consultas.push(this.consulta);
-
+    //this.userService.usuarioLogado.consultas.push(this.consulta);
+     
     
+    console.log("UsuárioConsulta : " + this.consulta.nomePaciente)
+
     //console.log(this.consulta.id)
     //this.userService.usuarioLogado.username = this.consulta.usuarioconsulta;
     //console.log(this.consulta.usuarioconsulta)

@@ -7,7 +7,9 @@ export interface Consulta {
     data: Date;
     status: boolean;
 
-    usuarioconsulta: string; //id do usuarioLogado
+    idPaciente: string; //id do usuarioLogado
+    nomePaciente: string;
+
 
     id? : string;
 }
