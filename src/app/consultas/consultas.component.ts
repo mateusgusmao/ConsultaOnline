@@ -21,7 +21,7 @@ export class ConsultasComponent implements OnInit {
   consulta: Consulta;
 
   constructor(private consultaService:ConsultasService, private userService: UserService, private rota: Router) { 
-    this.consulta = { especialidade: "", planoSaude: "", data: null, status: false}
+    this.consulta = { especialidade: "", planoSaude: "", data: null, status: false, usuarioconsulta: ""}
 
     /*this.consultas = this.getConsultas();
       console.log(this.consultas);*/
@@ -33,6 +33,11 @@ export class ConsultasComponent implements OnInit {
     this.consultaService.adicionarConsultaFirebase(this.consulta);
     console.log(this.consulta)
 
+    //this.userService.usuarioLogado.consultas.push(this.consulta);
+    //console.log(this.consulta.id)
+    //this.userService.usuarioLogado.username = this.consulta.usuarioconsulta;
+    //console.log(this.consulta.usuarioconsulta)
+    //console.log(this.userService.usuarioLogado.consultas)
   }
 
   /*getConsultas(){

@@ -48,13 +48,18 @@ export class FormularioComponent implements OnInit {
         } else{
           this.rota.navigate(['/main/consultas']);
 
-          this.userService.loginUsuario(user, senha).subscribe(meuObservable =>
-          this.userService.usuarioLogado = meuObservable as User);
+          this.userService.loginUsuario(user, senha).subscribe(meuObservable => {
+            
+         // console.log(meuObservable)
           
-          //console.log(this.userService.usuarioLogado)
-        }
-      });
-     }        
+
+
+          this.userService.usuarioLogado = meuObservable as User
+         console.log(this.userService.usuarioLogado)
+        })
+      }
+     });
+    }        
     /**  if(user == this.userUsuario && senha == this.senhaUsuario){
         this.rota.navigate(['/main'])
        } else {

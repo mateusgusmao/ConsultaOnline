@@ -11,6 +11,7 @@ export class UserService {
 
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
+  
   usuarioLogado: User;
 
   private userCollection: AngularFirestoreCollection<User>;
