@@ -18,6 +18,7 @@ import { MenuAdmComponent } from './menu-adm/menu-adm.component';
 import { EspecialidadeComponent } from './especialidade/especialidade.component';
 import { MedicoComponent } from './medico/medico.component';
 import { GerenciarComponent } from './gerenciar/gerenciar.component';
+import { SairComponent } from './sair/sair.component';
 
 
 import { FirebaseConfig } from "../environments/firebase.config";
@@ -74,6 +75,7 @@ import { MedicoService } from './medico.service';
     EspecialidadeComponent,
     MedicoComponent,
     GerenciarComponent,
+    SairComponent,
 
     
     

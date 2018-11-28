@@ -18,6 +18,7 @@ import { MedicoComponent } from './medico/medico.component';
 
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
+import { SairComponent } from './sair/sair.component';
 
 
 
@@ -35,6 +36,7 @@ const APP_ROTAS: Routes = [
       { path: 'consultas', component: ConsultasComponent },
       { path: 'marcar-consulta', component: MarcarComponent },
       { path: 'editar-consulta/:id', component: EditarConsultaComponent },
+      { path: 'sair', component: SairComponent}
     ]
   },
   { path: 'adm-login', component: FormAdmComponent },

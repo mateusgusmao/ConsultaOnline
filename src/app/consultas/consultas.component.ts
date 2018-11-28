@@ -33,7 +33,9 @@ export class ConsultasComponent implements OnInit {
     this.consultaService.adicionarConsultaFirebase(this.consulta);
     console.log(this.consulta)
 
-    //this.userService.usuarioLogado.consultas.push(this.consulta);
+    this.userService.usuarioLogado.consultas.push(this.consulta);
+
+    
     //console.log(this.consulta.id)
     //this.userService.usuarioLogado.username = this.consulta.usuarioconsulta;
     //console.log(this.consulta.usuarioconsulta)
