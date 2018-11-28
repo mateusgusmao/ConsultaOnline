@@ -13,11 +13,11 @@ import { MenuAdmComponent } from './menu-adm/menu-adm.component';
 import { GerenciarComponent } from './gerenciar/gerenciar.component'
 import { EspecialidadeComponent } from './especialidade/especialidade.component';
 import { MedicoComponent } from './medico/medico.component';
-
+import { ListarEspecialidadesComponent } from './listar-especialidades/listar-especialidades.component';
 
 
 import { Routes, RouterModule } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, Component } from '@angular/core';
 import { SairComponent } from './sair/sair.component';
 
 
@@ -43,6 +43,7 @@ const APP_ROTAS: Routes = [
   { path: 'adm-menu', component: MenuAdmComponent,
     children: [
       { path: 'listar-users', component: ListarUsersComponent },
+      { path: 'listar-esp', component: ListarEspecialidadesComponent},
       { path: 'gerenciar', component: GerenciarComponent },
       { path : 'especialidade', component: EspecialidadeComponent },
       { path: 'medico', component: MedicoComponent}

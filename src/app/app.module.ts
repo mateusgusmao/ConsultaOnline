@@ -54,6 +54,7 @@ import {MenuModule} from 'primeng/primeng';
 import {MenuItem} from 'primeng/primeng';
 import { EspecialidadeService } from './especialidade.service';
 import { MedicoService } from './medico.service';
+import { ListarEspecialidadesComponent } from './listar-especialidades/listar-especialidades.component';
 
 
 
@@ -76,6 +77,7 @@ import { MedicoService } from './medico.service';
     MedicoComponent,
     GerenciarComponent,
     SairComponent,
+    ListarEspecialidadesComponent,
 
     
     
