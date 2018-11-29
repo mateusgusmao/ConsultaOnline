@@ -1,6 +1,7 @@
 <div align="center">
   <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single" [contextMenu]="cm" [(selection)]="especialidadeSelecionada">
       <p-column field="nome" header="Especialidades"></p-column>
+      
   </p-dataTable>
   </div>
   <p-contextMenu #cm [model]="items"></p-contextMenu>

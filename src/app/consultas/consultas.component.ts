@@ -6,6 +6,7 @@ import {ContextMenuModule,MenuItem, TabMenuModule} from 'primeng/primeng';
 import {SelectItem} from 'primeng/primeng';
 import { UserService } from '../user.service';
 import { User } from '../models/user';
+import {Message} from 'primeng/primeng';
 
 @Component({
   selector: 'app-consultas',

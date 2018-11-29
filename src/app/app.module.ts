@@ -19,7 +19,8 @@ import { EspecialidadeComponent } from './especialidade/especialidade.component'
 import { MedicoComponent } from './medico/medico.component';
 import { GerenciarComponent } from './gerenciar/gerenciar.component';
 import { SairComponent } from './sair/sair.component';
-
+import { ListarEspecialidadesComponent } from './listar-especialidades/listar-especialidades.component';
+import { ListarConsultasComponent } from './listar-consultas/listar-consultas.component';
 
 import { FirebaseConfig } from "../environments/firebase.config";
 import { AngularFirestoreModule } from "angularfire2/firestore";
@@ -54,7 +55,8 @@ import {MenuModule} from 'primeng/primeng';
 import {MenuItem} from 'primeng/primeng';
 import { EspecialidadeService } from './especialidade.service';
 import { MedicoService } from './medico.service';
-import { ListarEspecialidadesComponent } from './listar-especialidades/listar-especialidades.component';
+import {GrowlModule} from 'primeng/primeng';
+
 
 
 
@@ -78,6 +80,7 @@ import { ListarEspecialidadesComponent } from './listar-especialidades/listar-es
     GerenciarComponent,
     SairComponent,
     ListarEspecialidadesComponent,
+    ListarConsultasComponent,
 
     
     
@@ -108,6 +111,7 @@ import { ListarEspecialidadesComponent } from './listar-especialidades/listar-es
     ProgressSpinnerModule,
     FieldsetModule,
     MenuModule,
+    GrowlModule,
 
   ],
   providers: [UserService, ConsultasService, AngularFireAuth, EspecialidadeService, MedicoService],

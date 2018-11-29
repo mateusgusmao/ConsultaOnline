@@ -1,0 +1,11 @@
+<div align="center">
+  <p-dataTable [style]="{'width':'850px'}" [value]="relacaoConsultas" selectionMode="single" [contextMenu]="cm" [(selection)]="consultaSelecionada">
+     
+      <p-column field="nomePaciente" header="Nome dos Pacientes"></p-column>
+      <p-column field="especialidade" header="Especialidade"></p-column>
+      <p-column field="status" header="Status"></p-column>
+      <p-column header="Aprovar"><button type="button" pButton icon="fa-check" class="ui-button-danger"></button></p-column>
+      
+  </p-dataTable>
+  </div>
+  <p-contextMenu #cm [model]="items"></p-contextMenu>

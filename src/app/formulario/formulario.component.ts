@@ -4,6 +4,8 @@ import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import {TabMenuModule, MenuItem} from 'primeng/primeng';
 import {RadioButtonModule} from 'primeng/primeng';
+import {Message} from 'primeng/primeng';
+
 
 @Component({
   selector: 'app-formulario',
@@ -16,6 +18,7 @@ export class FormularioComponent implements OnInit {
   userUsuario: string;
   senhaUsuario: string;
 
+  msgs: Message[] = [];
   //selectedValue: string = "val1";
   
   constructor(private userService: UserService,private rota: Router) { 
@@ -37,6 +40,11 @@ export class FormularioComponent implements OnInit {
         }
       });
     } */
+
+    showSuccess() {
+      this.msgs = [];
+      this.msgs.push({severity:'success', summary:'Login feito com sucesso', detail:'Usuario Logado'});
+  }
 
     login(user, senha){
       user = this.userUsuario;

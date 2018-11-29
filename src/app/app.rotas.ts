@@ -19,6 +19,7 @@ import { ListarEspecialidadesComponent } from './listar-especialidades/listar-es
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders, Component } from '@angular/core';
 import { SairComponent } from './sair/sair.component';
+import { ListarConsultasComponent } from './listar-consultas/listar-consultas.component';
 
 
 
@@ -43,6 +44,7 @@ const APP_ROTAS: Routes = [
   { path: 'adm-menu', component: MenuAdmComponent,
     children: [
       { path: 'listar-users', component: ListarUsersComponent },
+      { path: 'listar-consultas', component: ListarConsultasComponent},
       { path: 'listar-esp', component: ListarEspecialidadesComponent},
       { path: 'gerenciar', component: GerenciarComponent },
       { path : 'especialidade', component: EspecialidadeComponent },
