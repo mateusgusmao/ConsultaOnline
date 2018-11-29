@@ -25,8 +25,7 @@ export class ConsultasComponent implements OnInit {
   user: User;
 
   constructor(private consultaService:ConsultasService, private userService: UserService, private rota: Router) { 
-    this.consulta = { especialidade: "", planoSaude: "", data: null, status: false, idPaciente: "",
-     nomePaciente: ""}
+    this.consulta = { especialidade: "", planoSaude: "", data: null, status: false, idPaciente: "", situacao: "", nomePaciente: ""}
 
     /*this.consultas = this.getConsultas();
       console.log(this.consultas);*/
@@ -52,6 +51,16 @@ export class ConsultasComponent implements OnInit {
     //console.log(this.consulta.usuarioconsulta)
     //console.log(this.userService.usuarioLogado.consultas)
   }
+
+ /* aprovarConsulta(consulta){
+     this.consulta = consulta;
+    if(this.consulta.status = false){
+    this.consulta.situacao = "Aprovado";
+    console.log(this.consulta.situacao)
+  }
+}*/
+
+
 
   /*getConsultas(){
       return this.consultaService.getConsultas();

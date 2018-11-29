@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {TabMenuModule, MenuItem} from 'primeng/primeng';
 import {SelectItem} from 'primeng/primeng';
 import { ConsultasService } from '../consultas.service';
+import { ConsultasComponent } from '../consultas/consultas.component';
 
 @Component({
   selector: 'app-listar-consultas',
@@ -14,6 +15,8 @@ export class ListarConsultasComponent implements OnInit {
 
   consulta: Consulta;
   relacaoConsultas:any[] = [];
+  consultas: Consulta[] =[];
+
   consultaSelecionada;
   items: MenuItem[];
 
@@ -43,4 +46,18 @@ export class ListarConsultasComponent implements OnInit {
     });
   }
 
+  buscarConsultaId(){
+    
+
+    this.consultaService.listarTodos().subscribe(consultas =>
+     this.relacaoConsultas = consultas as Consulta[]);
+    for(let i =1; i < this.relacaoConsultas.length; i++){
+      if(this.relacaoConsultas[i].id == this.consulta.id){
+        
+
+      }
+    }
+    /*this.consul.aprovarConsulta(this.consultaSelecionada);*/
+   }
+ 
 }

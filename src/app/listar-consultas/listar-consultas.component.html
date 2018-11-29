@@ -4,7 +4,12 @@
       <p-column field="nomePaciente" header="Nome dos Pacientes"></p-column>
       <p-column field="especialidade" header="Especialidade"></p-column>
       <p-column field="status" header="Status"></p-column>
-      <p-column header="Aprovar"><button type="button" pButton icon="fa-check" class="ui-button-danger"></button></p-column>
+      <p-column header="Aprovar">
+        <ng-template let-car="rowData" pTemplate="body">
+            <button type="button" pButton (click)="aprovar()" icon="fa-check" class="ui-button-success"></button>
+            <button type="button" pButton (click)="deletar()" icon="fa-close" class="ui-button-danger"></button>
+        </ng-template>
+      </p-column>
       
   </p-dataTable>
   </div>
