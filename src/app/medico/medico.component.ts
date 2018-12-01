@@ -23,7 +23,13 @@ export class MedicoComponent implements OnInit {
 
   adicionarMedico() {
 
+    //this.medico.idEspecialidade = this.especialidadeService.especial.id;
+    //this.medico.nomeEspecialidade = this.especialidadeService.especial.nome;
+
     this.medicoService.adicionarMedicoFirebase(this.medico);
+
+    this.especialidadeService.especial = null;
+
     console.log(this.medico)
   }
 }

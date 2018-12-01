@@ -26,7 +26,8 @@ export class ListarConsultasComponent implements OnInit {
   ngOnInit() {
         this.listarTodos();
      this.items = [
-            {label: 'Deletar', icon: 'fa-close', command: (event) => this.deletar(this.consultaSelecionada)}
+            {label: 'Deletar', icon: 'fa-close', command: (event) => this.deletar(this.consultaSelecionada)},
+            {label: 'Aprovar', icon: 'fa-check', command: (event) => this.aprovar(this.consultaSelecionada)}
         ];
   }
 
@@ -46,18 +47,7 @@ export class ListarConsultasComponent implements OnInit {
     });
   }
 
-  buscarConsultaId(){
-    
-
-    this.consultaService.listarTodos().subscribe(consultas =>
-     this.relacaoConsultas = consultas as Consulta[]);
-    for(let i =1; i < this.relacaoConsultas.length; i++){
-      if(this.relacaoConsultas[i].id == this.consulta.id){
-        
-
-      }
-    }
-    /*this.consul.aprovarConsulta(this.consultaSelecionada);*/
+  aprovar(consulta){
+    //this.consultaServive.aprovarConsulta(this.consultaSelecionada);
+  }
    }
- 
-}

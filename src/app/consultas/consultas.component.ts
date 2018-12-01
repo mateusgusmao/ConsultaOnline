@@ -21,35 +21,77 @@ export class ConsultasComponent implements OnInit {
   newConsulta: boolean;*/
 
   consulta: Consulta;
-
   user: User;
 
+  listaDeConsultas: any[]=[];
+  cols: any[];
+  displayDialog: boolean;
+
+  especialidades:SelectItem[];
+  planosSaude: SelectItem[];
+  
+
   constructor(private consultaService:ConsultasService, private userService: UserService, private rota: Router) { 
-    this.consulta = { especialidade: "", planoSaude: "", data: null, status: false, idPaciente: "", situacao: "", nomePaciente: ""}
 
     /*this.consultas = this.getConsultas();
       console.log(this.consultas);*/
+
+      this.especialidades = [
+        {label:'Escolha especialidade', value:null},
+        {label:'Dermatologista', value: 'Dermatologista'},
+        {label:'Cardiologista', value: 'Cardiologista'},
+        {label:'Oftamologista', value:'Oftamologista'},
+        {label:'Pediatria', value:'Pediatria'},
+       ]
+  
+       this.planosSaude = [
+        {label:'Você tem Plano de Saúde? ', value:null},
+        {label:'Sim', value: 'Sim'},
+        {label:'Não', value: 'Não'},
+       ]
+  
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.listar();
+  }
 
-  adicionarConsulta(){
+  listar(){
+    this.consultaService.listarPorIdUsuario(this.userService.usuarioLogado.id).subscribe(listaDeConsultas => {
+      this.listaDeConsultas = listaDeConsultas;
+    });
+  }
+  
+  atualizar() {
+    if (this.consulta.id != undefined)
+      this.consultaService.atualizarConsultaFirebase(this.consulta).then(() => {
+        this.listar();
+        this.consulta = null;
+        this.displayDialog = false;
+      });
+  }
 
-    this.consulta.idPaciente = this.userService.usuarioLogado.id;
-    this.consulta.nomePaciente = this.userService.usuarioLogado.username;
-
-    this.consultaService.adicionarConsultaFirebase(this.consulta);
-    console.log(this.consulta)
-
-    //this.userService.usuarioLogado.consultas.push(this.consulta);
-     
-    
-    console.log("UsuárioConsulta : " + this.consulta.nomePaciente)
-
-    //console.log(this.consulta.id)
-    //this.userService.usuarioLogado.username = this.consulta.usuarioconsulta;
-    //console.log(this.consulta.usuarioconsulta)
-    //console.log(this.userService.usuarioLogado.consultas)
+  apagarConsulta(){
+    this.consultaService.apagarConsultaFirebase(this.consulta).then(() => {
+      this.listar();
+      this.consulta = null;
+      this.displayDialog = false;
+    });
+  }
+  
+  onRowSelect(event) {
+    console.log(event.data)
+    this.consulta = this.cloneConsulta(event.data);
+    this.displayDialog = true;
+  }
+  
+  cloneConsulta(consulta: Consulta): Consulta {
+    let c = { especialidade: " ", planoSaude: " ", data: null, situacao: " ", status: false};
+    for (let prop in c) {
+      c[prop] = consulta[prop];
+    }
+    c["id"] = consulta.id;
+    return c;
   }
 
  /* aprovarConsulta(consulta){

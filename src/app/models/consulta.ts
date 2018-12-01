@@ -9,8 +9,8 @@ export interface Consulta {
     situacao: string;
 
 
-    idPaciente: string; //id do usuarioLogado
-    nomePaciente: string;
+    idPaciente?: string; //id do usuarioLogado
+    nomePaciente?: string;
 
 
     id? : string;

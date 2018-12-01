@@ -63,6 +63,11 @@ export class UserService {
     return this.userCollection.doc(user.id).delete();
   }
 
+  atualizar(user): Promise<void>{
+    return this.userCollection.doc(user.id).update(user);
+  }
+
+
   listarTodos(): Observable<any[]> {
     let resultados: any[] = [];
     let meuObservable = new Observable<any[]>(observer => {

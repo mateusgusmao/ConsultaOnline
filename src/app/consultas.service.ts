@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Consulta } from './models/consulta';
 import { AngularFirestore, AngularFirestoreCollection } from "angularfire2/firestore";
 import { Router } from '@angular/router';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ConsultasService {
 
   private consultaCollection: AngularFirestoreCollection<Consulta>;
 
-  constructor(private afs: AngularFirestore) { 
+  constructor(private afs: AngularFirestore) {
     this.consultaCollection = this.afs.collection("consulta");
   }
 
@@ -24,7 +24,11 @@ export class ConsultasService {
     return this.consultaCollection.doc(consulta.id).delete();
   }
 
-  listarTodos(){
+  atualizarConsultaFirebase(consulta): Promise<void>{
+    return this.consultaCollection.doc(consulta.id).update(consulta);
+  }
+
+  listarTodos() {
     let resultados: any[] = [];
     let consultas = new Observable<any[]>(observer => {
       this.consultaCollection.snapshotChanges().subscribe(result => {
@@ -36,9 +40,42 @@ export class ConsultasService {
         });
         observer.next(resultados);
         observer.complete();
-      }); });
+      });
+    });
     return consultas;
   }
+
+  listarPorIdUsuario(idPaciente: String): Observable<any[]> {
+    let resultados: any[] = [];
+    let meuObservable = new Observable<any[]>(observer => {
+      this.consultaCollection = this.afs.collection<Consulta>("consulta", ref => ref.where('idPaciente', '==', idPaciente));
+      this.consultaCollection.snapshotChanges().subscribe(result => {
+        result.map(documents => {
+          let id = documents.payload.doc.id;
+          let data = documents.payload.doc.data();
+          let document = { id: id, ...data };
+          resultados.push(document);
+        });
+        observer.next(resultados);
+        observer.complete();
+      });
+    });
+    return meuObservable;
+  }
+
+  listarId(consultaId) {
+    return new Observable(observer => {
+      let doc = this.consultaCollection.doc(consultaId);
+      doc.snapshotChanges().subscribe(result => {
+        let id = result.payload.id;
+        let data = result.payload.data()
+        let document = { id: id, ...data };
+        observer.next(document);
+        observer.complete();
+      });
+    });
+  }
+
 
 
   /*

@@ -54,7 +54,7 @@ export class FormularioComponent implements OnInit {
         if(meuObservable == null){
           alert("Usuário não cadastrado no banco.")
         } else{
-          this.rota.navigate(['/main/consultas']);
+          this.rota.navigate(['/main/home']);
 
           this.userService.loginUsuario(user, senha).subscribe(meuObservable => {
             

@@ -22,6 +22,10 @@ export class EspecialidadeComponent implements OnInit {
   adicionarEspecialidade() {
 
     this.especialidadeService.adicionarEspecialidadeFirebase(this.especialidade)
+
+    //this.especialidade.id = this.especialidadeService.especial.id;
+    // this.especialidade.nome = this.especialidadeService.especial.nome;
+
     console.log(this.especialidade)
 
 

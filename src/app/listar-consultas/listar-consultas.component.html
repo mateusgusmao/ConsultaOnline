@@ -1,9 +1,9 @@
 <div align="center">
-  <p-dataTable [style]="{'width':'850px'}" [value]="relacaoConsultas" selectionMode="single" [contextMenu]="cm" [(selection)]="consultaSelecionada">
+  <p-dataTable [style]="{'width':'850px'}" [value]="relacaoConsultas" selectionMode="single"  [contextMenu]="cm" [(selection)]="consultaSelecionada">
      
-      <p-column field="nomePaciente" header="Nome dos Pacientes"></p-column>
-      <p-column field="especialidade" header="Especialidade"></p-column>
-      <p-column field="status" header="Status"></p-column>
+      <p-column field="nomePaciente" header="Nome dos Pacientes" [sortable]="true"></p-column>
+      <p-column field="especialidade" header="Especialidade" [sortable]="true"></p-column>
+      <p-column field="status" header="Status" [sortable]="true"></p-column>
       <p-column header="Aprovar">
         <ng-template let-car="rowData" pTemplate="body">
             <button type="button" pButton (click)="aprovar()" icon="fa-check" class="ui-button-success"></button>
