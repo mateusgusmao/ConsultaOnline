@@ -7,6 +7,7 @@ import {SelectItem} from 'primeng/primeng';
 import { UserService } from '../user.service';
 import { User } from '../models/user';
 import {Message} from 'primeng/primeng';
+import { EspecialidadeService } from '../especialidade.service';
 
 @Component({
   selector: 'app-consultas',
@@ -23,19 +24,25 @@ export class ConsultasComponent implements OnInit {
   consulta: Consulta;
   user: User;
 
+  listaEspecialidade: any[]=[];
   listaDeConsultas: any[]=[];
   cols: any[];
   displayDialog: boolean;
 
   especialidades:SelectItem[];
   planosSaude: SelectItem[];
+
+  growl: Message[] = [];
   
 
-  constructor(private consultaService:ConsultasService, private userService: UserService, private rota: Router) { 
+  constructor(private consultaService:ConsultasService, private userService: UserService, 
+                                    private rota: Router, private especialidadeService: EspecialidadeService) { 
 
     /*this.consultas = this.getConsultas();
       console.log(this.consultas);*/
 
+      
+      
       this.especialidades = [
         {label:'Escolha especialidade', value:null},
         {label:'Dermatologista', value: 'Dermatologista'},
@@ -52,8 +59,14 @@ export class ConsultasComponent implements OnInit {
   
   }
 
+  showError() {
+    this.growl = [];
+    this.growl.push({severity:'warn', summary:'Consulta Aprovada', detail:'Não é possivel editar sua consulta já aprovada'});
+}
+
   ngOnInit() {
     this.listar();
+    this.listarEspecialidade();
   }
 
   listar(){
@@ -62,6 +75,17 @@ export class ConsultasComponent implements OnInit {
     });
   }
   
+  listarEspecialidade(){
+    this.especialidadeService.listarTodos().subscribe(listaEspecialidade =>{
+      this.listaEspecialidade = listaEspecialidade;
+    });
+  }
+
+
+  voltarSituacao(){
+    this.consulta.situacao = "Pendente";
+  }
+
   atualizar() {
     if (this.consulta.id != undefined)
       this.consultaService.atualizarConsultaFirebase(this.consulta).then(() => {
@@ -82,7 +106,11 @@ export class ConsultasComponent implements OnInit {
   onRowSelect(event) {
     console.log(event.data)
     this.consulta = this.cloneConsulta(event.data);
+    if(this.consulta.situacao == "Pendente"){
     this.displayDialog = true;
+    }else{
+      this.showError();
+    }
   }
   
   cloneConsulta(consulta: Consulta): Consulta {
