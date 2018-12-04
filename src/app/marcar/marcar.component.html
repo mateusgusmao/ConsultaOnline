@@ -17,12 +17,12 @@
           <p-dropdown name ="planoSaude" [options]="planosSaude" [(ngModel)]="consulta.planoSaude" required></p-dropdown>
       </div>
 
-      <div class="form-group">
+      <!--<div class="form-group">
           <label for="data">Data</label>
           <p-calendar name="data" [(ngModel)]="consulta.data" dateFormat="dd.mm.yy" required></p-calendar>
        
-                     </div>
-               <button pButton type="button" icon="fa-plus-square" (click)="save()" label="Marcar Consulta!" routerLink='/main/consultas'></button>
+                     </div>-->
+               <button pButton type="button" icon="fa-plus-square" (click)="adicionarConsulta()" label="Marcar Consulta!" routerLink='/main/consultas'></button>
                 </div>
           </form>
      </div>

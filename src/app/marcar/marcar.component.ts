@@ -6,6 +6,8 @@ import {TabMenuModule, MenuItem} from 'primeng/primeng';
 import {CalendarModule} from  'primeng/primeng';
 import {DropdownModule} from 'primeng/primeng';
 import {SelectItem} from 'primeng/primeng';
+import { UserService } from '../user.service';
+import { User } from 'firebase/app';
 
 @Component({
   selector: 'app-marcar',
@@ -14,40 +16,61 @@ import {SelectItem} from 'primeng/primeng';
 })
 export class MarcarComponent implements OnInit {
 
-      especialidades: SelectItem[] = [];
+      /*especialidades: SelectItem[] = [];
       planosSaude: SelectItem[] = [];
       selectedEspecialidade: String;
       selectedPlanoSaude: String;  
 
-      consulta: Consulta = new Consulta();
+      //consulta: Consulta = new Consulta();
       selectedConsulta: Consulta;
       newConsulta: boolean;
-      consultas: Consulta[];
+      consultas: Consulta[];*/
 
-  constructor( private consultaService: ConsultasService ) {
+      especialidades:SelectItem[];
+      planosSaude: SelectItem[];
 
-       this.especialidades = [
-        {label:'Escolha especialidade', value:null},
-        {label:'Dermatologista', value:{id:1, name: 'Dermatologista'}},
-        {label:'Cardiologista', value:{id:2, name: 'Cardiologista'}},
-        {label:'Oftamologista', value:{id:3, name: 'Oftamologista'}},
-        {label:'Pediatria', value:{id:4, name: 'Pediatria'}}
-       ]
+      consulta: Consulta;
 
-       this.planosSaude = [
-        {label:'Escolha Plano de Saúde', value:null},
-        {label:'SUS', value:{id:1, name: 'SUS'}},
-        {label:'Particular', value:{id:2, name: 'Particular'}},
-        {label:'Outro', value:{id:3, name: 'Outro'}}
-       ]
-      
-    }
+  constructor( private consultaService: ConsultasService,private userService: UserService) {
+    this.consulta = { especialidade: "", planoSaude: "", data: null, status: false, idPaciente: "", situacao: "Pendente", nomePaciente: ""}
 
-  ngOnInit() {
-    this.consultas= this.consultaService.getConsultas();
+    this.especialidades = [
+      {label:'Escolha especialidade', value:null},
+      {label:'Dermatologista', value: 'Dermatologista'},
+      {label:'Cardiologista', value: 'Cardiologista'},
+      {label:'Oftamologista', value:'Oftamologista'},
+      {label:'Pediatria', value:'Pediatria'},
+     ]
+
+     this.planosSaude = [
+      {label:'Você tem Plano de Saúde? ', value:null},
+      {label:'Sim', value: 'Sim'},
+      {label:'Não', value: 'Não'},
+     ]
+
   }
 
-  save() {
+  ngOnInit() {
+
+    //this.consultas= this.consultaService.getConsultas();
+      }
+
+      adicionarConsulta(){
+
+        this.consulta.idPaciente = this.userService.usuarioLogado.id;
+        this.consulta.nomePaciente = this.userService.usuarioLogado.username;
+    
+        this.consultaService.adicionarConsultaFirebase(this.consulta);
+        console.log(this.consulta)
+    
+        console.log("UsuárioConsulta : " + this.consulta.nomePaciente)
+    
+        //console.log(this.consulta.id)
+        //this.userService.usuarioLogado.username = this.consulta.usuarioconsulta;
+        //console.log(this.consulta.usuarioconsulta)
+        //console.log(this.userService.usuarioLogado.consultas)
+      }
+  /*save() {
   let consultas = [...this.consultas];
   if(this.newConsulta)
       consultas.push(this.consulta);
@@ -84,9 +107,12 @@ findSelectedConsultaIndex(): number {
  }
 
 }
-
+ 
 class PrimeConsulta implements Consulta {
 
-  constructor(public id:number, public especialidade:string, public clinica:string, public planoSaude:string, public data:Date) {}
+ // constructor(public id:number, public especialidade:string, public clinica:string, public planoSaude:string, public data:Date) {}
 
   }
+  */
+
+}

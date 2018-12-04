@@ -25,7 +25,8 @@
                     </div>
                   <div>  
                   </div><br/> 
-                <button pButton type="button" class="ui-button-primary" label="Entrar" (click)="login()"></button>
+                <p-growl [(value)]="msgs"></p-growl>
+                <button pButton type="button" class="ui-button-primary" label="Entrar" (click)="login();showSuccess()"></button>
             Não tem uma conta?
                 <button pButton type="button" class="ui-button-success" label="Cadastre-se" routerLink='/cadastro'></button><br/>
                 <br/><button pButton type="button" class="ui-button-primary" aria-hidden="true" label="Entre com sua conta Google" icon="fab fa-google" (click)="signInWithGoogle()"></button>

@@ -15,8 +15,10 @@ export class MenuAdmComponent implements OnInit {
   ngOnInit() {
     
     this.items = [
-      {label: 'Gerenciar', icon: 'fa-cog'},
-      {label: 'Lista', icon: 'fa-book', routerLink: './listar-users'},
+      {label: 'Gerenciar', icon: 'fa-cog', routerLink: './gerenciar'},
+      {label: 'Aprovar de Consultas', icon: 'fa-book', routerLink: './listar-consultas'},
+      {label: 'Lista de Usuários', icon: 'fa-users', routerLink: './listar-users'},
+      {label: 'Lista de Especialidades', icon:'fa-file', routerLink: './listar-esp'},
       {label: 'Sair', icon: 'fa-share-square', routerLink: '..'},
 
   ];

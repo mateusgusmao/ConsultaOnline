@@ -10,10 +10,16 @@ import { FormAdmComponent } from './form-adm/form-adm.component';
 import { HomeComponent } from './home/home.component';
 import { PacienteComponent } from './paciente/paciente.component';
 import { MenuAdmComponent } from './menu-adm/menu-adm.component';
+import { GerenciarComponent } from './gerenciar/gerenciar.component'
+import { EspecialidadeComponent } from './especialidade/especialidade.component';
+import { MedicoComponent } from './medico/medico.component';
+import { ListarEspecialidadesComponent } from './listar-especialidades/listar-especialidades.component';
 
 
 import { Routes, RouterModule } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, Component } from '@angular/core';
+import { SairComponent } from './sair/sair.component';
+import { ListarConsultasComponent } from './listar-consultas/listar-consultas.component';
 
 
 
@@ -31,12 +37,18 @@ const APP_ROTAS: Routes = [
       { path: 'consultas', component: ConsultasComponent },
       { path: 'marcar-consulta', component: MarcarComponent },
       { path: 'editar-consulta/:id', component: EditarConsultaComponent },
+      { path: 'sair', component: SairComponent}
     ]
   },
   { path: 'adm-login', component: FormAdmComponent },
   { path: 'adm-menu', component: MenuAdmComponent,
     children: [
-      { path: 'listar-users', component: ListarUsersComponent }
+      { path: 'listar-users', component: ListarUsersComponent },
+      { path: 'listar-consultas', component: ListarConsultasComponent},
+      { path: 'listar-esp', component: ListarEspecialidadesComponent},
+      { path: 'gerenciar', component: GerenciarComponent },
+      { path : 'especialidade', component: EspecialidadeComponent },
+      { path: 'medico', component: MedicoComponent}
     ]
   }
 ]

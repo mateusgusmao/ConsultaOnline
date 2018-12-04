@@ -11,6 +11,7 @@ export class UserService {
 
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
+  
   usuarioLogado: User;
 
   private userCollection: AngularFirestoreCollection<User>;
@@ -61,6 +62,11 @@ export class UserService {
   deletar(user): Promise<void> {
     return this.userCollection.doc(user.id).delete();
   }
+
+  atualizar(user): Promise<void>{
+    return this.userCollection.doc(user.id).update(user);
+  }
+
 
   listarTodos(): Observable<any[]> {
     let resultados: any[] = [];

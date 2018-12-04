@@ -4,6 +4,8 @@ import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import {TabMenuModule, MenuItem} from 'primeng/primeng';
 import {RadioButtonModule} from 'primeng/primeng';
+import {Message} from 'primeng/primeng';
+
 
 @Component({
   selector: 'app-formulario',
@@ -16,6 +18,7 @@ export class FormularioComponent implements OnInit {
   userUsuario: string;
   senhaUsuario: string;
 
+  msgs: Message[] = [];
   //selectedValue: string = "val1";
   
   constructor(private userService: UserService,private rota: Router) { 
@@ -38,6 +41,11 @@ export class FormularioComponent implements OnInit {
       });
     } */
 
+    showSuccess() {
+      this.msgs = [];
+      this.msgs.push({severity:'success', summary:'Login feito com sucesso', detail:'Usuario Logado'});
+  }
+
     login(user, senha){
       user = this.userUsuario;
       senha = this.senhaUsuario;
@@ -46,15 +54,18 @@ export class FormularioComponent implements OnInit {
         if(meuObservable == null){
           alert("Usuário não cadastrado no banco.")
         } else{
-          this.rota.navigate(['/main/consultas']);
+          this.rota.navigate(['/main/home']);
 
-          this.userService.loginUsuario(user, senha).subscribe(meuObservable =>
-          this.userService.usuarioLogado = meuObservable as User);
-
-          //console.log(this.userService.usuarioLogado.password)
-        }
-      });
-     }        
+          this.userService.loginUsuario(user, senha).subscribe(meuObservable => {
+            
+         // console.log(meuObservable)
+        
+          this.userService.usuarioLogado = meuObservable as User
+         console.log("Usuario Logado: " + this.userService.usuarioLogado.username)
+        })
+      }
+     });
+    }        
     /**  if(user == this.userUsuario && senha == this.senhaUsuario){
         this.rota.navigate(['/main'])
        } else {
@@ -72,7 +83,7 @@ export class FormularioComponent implements OnInit {
     }
 
     irParaAdministracao(){
-      this.rota.navigate(['/adm-login']);
+      this.rota.navigate(['/adm-menu/listar-users']);
     }
 
   ngOnInit() {

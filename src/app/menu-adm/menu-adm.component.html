@@ -1,7 +1,13 @@
 <div align="center">
   <header>
-    <img width="200" height="200" alt="Heazy Adm" src="assets/pml3.png">
+    <h1>
+      <img width="200" height="200" alt="Heazy Adm" src="assets/pml3.png">
+    </h1>
   </header>
-    <p-tabMenu [model]="items" [activeItem]='activeTab'></p-tabMenu>
+
+  <body>
+    <p-tabMenu [model]="items" [activeItem]='activeTab' [style]="{'width':'750px'}"></p-tabMenu>
+    <br>
+  </body>
 </div>
 <router-outlet></router-outlet>

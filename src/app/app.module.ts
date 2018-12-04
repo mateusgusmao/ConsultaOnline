@@ -15,8 +15,12 @@ import { FormAdmComponent } from './form-adm/form-adm.component';
 import { HomeComponent } from './home/home.component';
 import { PacienteComponent } from './paciente/paciente.component';
 import { MenuAdmComponent } from './menu-adm/menu-adm.component';
-
-
+import { EspecialidadeComponent } from './especialidade/especialidade.component';
+import { MedicoComponent } from './medico/medico.component';
+import { GerenciarComponent } from './gerenciar/gerenciar.component';
+import { SairComponent } from './sair/sair.component';
+import { ListarEspecialidadesComponent } from './listar-especialidades/listar-especialidades.component';
+import { ListarConsultasComponent } from './listar-consultas/listar-consultas.component';
 
 import { FirebaseConfig } from "../environments/firebase.config";
 import { AngularFirestoreModule } from "angularfire2/firestore";
@@ -49,6 +53,12 @@ import {ProgressSpinnerModule} from 'primeng/primeng';
 import {FieldsetModule} from 'primeng/primeng';
 import {MenuModule} from 'primeng/primeng';
 import {MenuItem} from 'primeng/primeng';
+import { EspecialidadeService } from './especialidade.service';
+import { MedicoService } from './medico.service';
+import {GrowlModule} from 'primeng/primeng';
+
+
+
 
 @NgModule({
   declarations: [
@@ -65,6 +75,12 @@ import {MenuItem} from 'primeng/primeng';
     HomeComponent,
     PacienteComponent,
     MenuAdmComponent,
+    EspecialidadeComponent,
+    MedicoComponent,
+    GerenciarComponent,
+    SairComponent,
+    ListarEspecialidadesComponent,
+    ListarConsultasComponent,
 
     
     
@@ -95,10 +111,10 @@ import {MenuItem} from 'primeng/primeng';
     ProgressSpinnerModule,
     FieldsetModule,
     MenuModule,
-    
+    GrowlModule,
 
   ],
-  providers: [UserService, ConsultasService, AngularFireAuth],
+  providers: [UserService, ConsultasService, AngularFireAuth, EspecialidadeService, MedicoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

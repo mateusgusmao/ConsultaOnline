@@ -1,0 +1,47 @@
+<div align="center"> 
+    <p-dataTable [style]="{'width':'850px'}" [value]="relacaoConsultas" selectionMode="single" [(selection)]="consultaSelecionada" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true">
+       <p-header>Lista de Consultas</p-header>
+       <p-column field="nomePaciente" header="Nome" [sortable]="true"></p-column>
+       <p-column field="especialidade" header="Especialidade" [sortable]="true"></p-column>
+       <p-column field="planoSaude" header="Plano de Saude ?" [sortable]="true"></p-column>
+       <p-column field="situacao" header="Status" [sortable]="true"></p-column>
+    </p-dataTable>
+<div>
+
+<p-dialog header="Detalhes da Consulta" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="350">
+  <div *ngIf="consulta">
+      <div>
+          <label for="especialidade">Paciente : {{consulta.nomePaciente}} </label>
+      </div><br/>
+      <div>
+          <label for="planoSaude">Situação   : <b><h3>{{consulta.situacao}}</h3></b></label>
+      </div><br/>
+  </div>
+  <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+          <button type="button" pButton icon="fa-close" (click)="apagarConsulta()" label="Deletar" class="ui-button-danger"></button>
+          <button align="left" type="button" pButton icon="fa-check" (click)="atualizar()" label="Aprovar Consulta" class="ui-button-success"></button>
+      </div>
+  </p-footer>
+</p-dialog>
+
+
+
+
+
+<!--<div align="center">
+  <p-dataTable [style]="{'width':'850px'}" [value]="relacaoConsultas" selectionMode="single"  [contextMenu]="cm" [(selection)]="consultaSelecionada">
+     
+      <p-column field="nomePaciente" header="Nome dos Pacientes" [sortable]="true"></p-column>
+      <p-column field="especialidade" header="Especialidade" [sortable]="true"></p-column>
+      <p-column field="status" header="Status" [sortable]="true"></p-column>
+      <p-column header="Aprovar">
+        <ng-template let-car="rowData" pTemplate="body">
+            <button type="button" pButton (click)="aprovar()" icon="fa-check" class="ui-button-success"></button>
+            <button type="button" pButton (click)="deletar()" icon="fa-close" class="ui-button-danger"></button>
+        </ng-template>
+      </p-column>
+      
+  </p-dataTable>
+  </div>
+  <p-contextMenu #cm [model]="items"></p-contextMenu>-->

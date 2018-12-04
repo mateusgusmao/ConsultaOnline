@@ -1,4 +1,54 @@
+<p-growl [(value)]="growl"></p-growl>
 <div align="center">
+<p-dataTable [style]="{'width':'800px'}" [style]="{'height':'900px'}"  [value]="listaDeConsultas" selectionMode="single" [(selection)]="consultaSelecionada" (onRowSelect)="onRowSelect($event)"  rows="15" [responsive]="true">
+  <p-header>Minhas Consultas</p-header>
+  <p-column field="nomePaciente" header="Nome" [sortable]="true"></p-column>
+  <p-column field="especialidade" header="Especialidade" [sortable]="true"></p-column>
+  <p-column field="planoSaude" header="Plano de Saude ?" [sortable]="true"></p-column>
+  <p-column field="situacao" header="Status" [sortable]="true"></p-column>
+  <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" routerLink='/main/marcar-consulta' label="Adicionar Consulta"></button></div></p-footer>
+</p-dataTable>
+</div>
+
+<p-dialog header="Detalhes da Consulta" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="350">
+  <div *ngIf="consulta">
+      <div>
+          <label for="especialidade">Especialidade  :</label>
+          <p-dropdown name ="especialidade" [options]="especialidades" [(ngModel)]="consulta.especialidade" [style]="{'width':'150px'}" required></p-dropdown>
+      </div><br/>
+      <div>
+          <label for="planoSaude">Plano Saude   :</label>
+          <p-dropdown name ="planoSaude" [options]="planosSaude" [(ngModel)]="consulta.planoSaude" [style]="{'width':'150px'}" required></p-dropdown>
+      </div><br/>
+    <label>Situação : {{consulta.situacao}}</label>
+  </div>
+  <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+          <button type="button" pButton icon="fa-close" (click)="apagarConsulta()" label="Deletar" ></button>
+          <button type="button" pButton icon="fa-check" (click)="atualizar()" label="Salvar"></button>
+      </div>
+  </p-footer>
+</p-dialog>
+
+
+
+
+<!--<div align="center">
+  <h1>Teste para ver se consulta vai pro banco</h1>
+<span class="ui-float-label">
+  <input [(ngModel)]="consulta.especialidade" placeholder="Especialidade" id="especialidade" 
+  type="text" size="30" name="especialidade" pInputText>
+</span><br/>
+<span class="ui-float-label">
+  <input [(ngModel)]="consulta.planoSaude" placeholder="Plano de Saude" id="planoSaude" 
+  type="text" size="30" name="planoSaude" pInputText> 
+</span><br/>
+<div>
+  <button [disabled]="!consulta.especialidade || !consulta.planoSaude" pButton (click)="adicionarConsulta()" type="button" label=" Marcar Consulta" ></button>
+</div>
+</div>-->
+
+<!--<div align="center">
 <p-dataTable  [style]="{'width':'800px'}" [style]="{'height':'900px'}" [value]="consultas" selectionMode="single" [(selection)]="selectedConsulta" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="15" [responsive]="true" >
   <p-header>Consultas</p-header>
   <p-column field="especialidade.name" header="Especialidade" [sortable]="true"></p-column>
@@ -7,6 +57,7 @@
   <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" label="Adicionar Consulta" routerLink='/main/marcar-consulta'></button></div></p-footer>
 </p-dataTable>
 </div>
+-->
 
 
 
