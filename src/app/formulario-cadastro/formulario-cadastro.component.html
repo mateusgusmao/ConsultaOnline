@@ -11,6 +11,11 @@
       </div>
       <div class="panel-body">
         <form ngForm #form>
+
+            <div class="form-group">
+            <label for="nome">Nome e Sobrenome:</label>
+            <input [(ngModel)]="nomeUsuario" type="text" class="form-control" id="nome" name="nome" required>
+          </div>
 <!--CAMPO DE USERNAME(CADASTRO) -->
           <div class="form-group">
             <label for="username">Nome de Usuário:</label>
@@ -21,7 +26,14 @@
               <label for="password">Digite uma senha:</label>
               <input [(ngModel)]="senhaUsuario" type="password" pPassword class="form-control" id="password" name="password" required>
             </div>
-            <button pButton type="button" class="ui-button-success" label="Cadastre-se!" (click)="register()" routerLink='/login'></button>
+
+            <div class="form-group">
+                <label for="cpf">Informe seu CPF:</label><br/>
+                <p-inputMask mask="999.999.999-99" [(ngModel)]="cpfUsuario" id="cpf" name="cpf" placeholder="999.999.999-99" [size]="100" required></p-inputMask>
+              </div>
+
+            <button [disabled]="!userUsuario || !senhaUsuario" pButton type="button" class="ui-button-success" label="Cadastre-se!" (click)="register()" routerLink='/login'></button>
+            <button align="right" pButton type="button" class="ui-button-primary" label="Voltar"  routerLink='/login'></button>
 
         </form>
       </div>

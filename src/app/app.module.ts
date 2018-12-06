@@ -112,6 +112,7 @@ import {GrowlModule} from 'primeng/primeng';
     FieldsetModule,
     MenuModule,
     GrowlModule,
+    InputMaskModule,
 
   ],
   providers: [UserService, ConsultasService, AngularFireAuth, EspecialidadeService, MedicoService],

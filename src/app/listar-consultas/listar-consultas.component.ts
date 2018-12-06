@@ -5,6 +5,8 @@ import {TabMenuModule, MenuItem} from 'primeng/primeng';
 import {SelectItem} from 'primeng/primeng';
 import { ConsultasService } from '../consultas.service';
 import { ConsultasComponent } from '../consultas/consultas.component';
+import { Especialidade } from '../models/especialidade';
+import { EspecialidadeService } from '../especialidade.service';
 
 @Component({
   selector: 'app-listar-consultas',
@@ -16,16 +18,21 @@ export class ListarConsultasComponent implements OnInit {
   consulta: Consulta;
   relacaoConsultas:any[] = [];
   consultas: Consulta[] =[];
-
   consultaSelecionada;
+
+  especialidade: Especialidade;
+  relacaoEspecialidades:any[] = [];
+  especialidadeSelecionada;
+
   items: MenuItem[];
   displayDialog: boolean;
 
   constructor(private rota: Router,
-              private consultaService: ConsultasService) { }
+              private consultaService: ConsultasService, private especialidadesService: EspecialidadeService) { }
 
   ngOnInit() {
         this.listar();
+        this.listarEsp();
   }
     listar(){
     this.consultaService.listarTodos().subscribe(relacaoConsultas =>{
@@ -39,6 +46,7 @@ export class ListarConsultasComponent implements OnInit {
 
   atualizar() {
     if (this.consulta.id != undefined)
+         this.mudarEspecialidade();
          this.aprovar();
       this.consultaService.atualizarConsultaFirebase(this.consulta).then(() => {
         this.listar();
@@ -66,6 +74,20 @@ export class ListarConsultasComponent implements OnInit {
     }
     c["id"] = consulta.id;
     return c;
+  }
+
+  listarEsp(){
+    this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
+      this.relacaoEspecialidades = relacaoEspecialidades;
+    });
+  }
+
+  onRowSelectEsp(event) {
+    console.log(event.data)
+    console.log(this.especialidadeSelecionada.nome);
+  }
+  mudarEspecialidade(){
+    this.consulta.especialidade = this.especialidadeSelecionada.nome;
   }
 
   }

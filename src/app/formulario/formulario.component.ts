@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user'
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-import {TabMenuModule, MenuItem} from 'primeng/primeng';
-import {RadioButtonModule} from 'primeng/primeng';
-import {Message} from 'primeng/primeng';
+import { TabMenuModule, MenuItem } from 'primeng/primeng';
+import { RadioButtonModule } from 'primeng/primeng';
+import { Message } from 'primeng/primeng';
 
 
 @Component({
@@ -20,74 +20,79 @@ export class FormularioComponent implements OnInit {
 
   msgs: Message[] = [];
   //selectedValue: string = "val1";
-  
-  constructor(private userService: UserService,private rota: Router) { 
- }
-    /*loginUsuario(user, senha){
-      user = this.userUsuario;
-      senha = this.senhaUsuario;
-      this.userService.loginUsuario(user, senha).subscribe(usuario => {
-        if(user == null){
-          alert("Usuário não cadastrado no banco.")
-        }else if(user == "" && senha == "") {
-          console.log("Preencha os campos de usuário e senha!");
-        } else{
-          console.log("Usuario logado: "+user );
-          this.userService.usuarioLogado = user; 
-          this.rota.navigate(['/main']); 
+
+  constructor(private userService: UserService, private rota: Router) {
+  }
+  /*loginUsuario(user, senha){
+    user = this.userUsuario;
+    senha = this.senhaUsuario;
+    this.userService.loginUsuario(user, senha).subscribe(usuario => {
+      if(user == null){
+        alert("Usuário não cadastrado no banco.")
+      }else if(user == "" && senha == "") {
+        console.log("Preencha os campos de usuário e senha!");
+      } else{
+        console.log("Usuario logado: "+user );
+        this.userService.usuarioLogado = user; 
+        this.rota.navigate(['/main']); 
 
 
-        }
-      });
-    } */
+      }
+    });
+  } */
 
-    showSuccess() {
-      this.msgs = [];
-      this.msgs.push({severity:'success', summary:'Login feito com sucesso', detail:'Usuario Logado'});
+  showError() {
+    this.msgs = [];
+    this.msgs.push({ severity: 'error', summary: 'Verifique as informações e tente novamente.', detail: 'Usuário/Senha inválido' });
   }
 
-    login(user, senha){
-      user = this.userUsuario;
-      senha = this.senhaUsuario;
-      
-      this.userService.loginUsuario(user, senha).subscribe(meuObservable => {
-        if(meuObservable == null){
-          alert("Usuário não cadastrado no banco.")
-        } else{
-          this.rota.navigate(['/main/home']);
+  showInfo() {
+    this.msgs = [];
+    this.msgs.push({ severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks' });
+  }
 
-          this.userService.loginUsuario(user, senha).subscribe(meuObservable => {
-            
-         // console.log(meuObservable)
-        
+  login(user, senha) {
+    user = this.userUsuario;
+    senha = this.senhaUsuario;
+
+    this.userService.loginUsuario(user, senha).subscribe(meuObservable => {
+      if (meuObservable == null) {
+        this.showError();
+      } else {
+        this.rota.navigate(['/main/home']);
+        this.userService.loginUsuario(user, senha).subscribe(meuObservable => {
+
           this.userService.usuarioLogado = meuObservable as User
-         console.log("Usuario Logado: " + this.userService.usuarioLogado.username)
+          console.log("Usuario Logado: " + this.userService.usuarioLogado.username)
+          alert("usuario Logado " + this.userService.usuarioLogado.username)
+
         })
       }
-     });
-    }        
-    /**  if(user == this.userUsuario && senha == this.senhaUsuario){
-        this.rota.navigate(['/main'])
-       } else {
-          console.log("usuário não existe");
-        }
+    });
+  }
+
+  /**  if(user == this.userUsuario && senha == this.senhaUsuario){
+      this.rota.navigate(['/main'])
+     } else {
+        console.log("usuário não existe");
       }
-     */
-
-    signInWithGoogle() {
-      this.userService.loginGoogle()
-        .then(() => {
-          this.rota.navigate(['/main']);
-        })
-        .catch((err) => console.log(err));
     }
+   */
 
-    irParaAdministracao(){
-      this.rota.navigate(['/adm-menu/listar-users']);
-    }
+  signInWithGoogle() {
+    this.userService.loginGoogle()
+      .then(() => {
+        this.rota.navigate(['/main']);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  irParaAdministracao() {
+    this.rota.navigate(['/adm-menu/listar-users']);
+  }
 
   ngOnInit() {
-  //this.users = this.userService.getUsers();  
+    //this.users = this.userService.getUsers();  
 
   }
   /*entrar(user:User){

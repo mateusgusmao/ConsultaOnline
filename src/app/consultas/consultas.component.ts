@@ -8,6 +8,7 @@ import { UserService } from '../user.service';
 import { User } from '../models/user';
 import {Message} from 'primeng/primeng';
 import { EspecialidadeService } from '../especialidade.service';
+import { Especialidade } from '../models/especialidade';
 
 @Component({
   selector: 'app-consultas',
@@ -24,7 +25,6 @@ export class ConsultasComponent implements OnInit {
   consulta: Consulta;
   user: User;
 
-  listaEspecialidade: any[]=[];
   listaDeConsultas: any[]=[];
   cols: any[];
   displayDialog: boolean;
@@ -33,23 +33,28 @@ export class ConsultasComponent implements OnInit {
   planosSaude: SelectItem[];
 
   growl: Message[] = [];
-  
+
+  especialidade: Especialidade;
+  relacaoEspecialidades:any[] = [];
+  especialidadeSelecionada;
+
+
 
   constructor(private consultaService:ConsultasService, private userService: UserService, 
-                                    private rota: Router, private especialidadeService: EspecialidadeService) { 
+                                    private rota: Router, private especialidadesService: EspecialidadeService) { 
 
     /*this.consultas = this.getConsultas();
       console.log(this.consultas);*/
 
       
       
-      this.especialidades = [
+     /* this.especialidades = [
         {label:'Escolha especialidade', value:null},
         {label:'Dermatologista', value: 'Dermatologista'},
         {label:'Cardiologista', value: 'Cardiologista'},
         {label:'Oftamologista', value:'Oftamologista'},
         {label:'Pediatria', value:'Pediatria'},
-       ]
+       ]*/
   
        this.planosSaude = [
         {label:'Você tem Plano de Saúde? ', value:null},
@@ -66,7 +71,7 @@ export class ConsultasComponent implements OnInit {
 
   ngOnInit() {
     this.listar();
-    this.listarEspecialidade();
+    this.listarEsp();
   }
 
   listar(){
@@ -74,13 +79,6 @@ export class ConsultasComponent implements OnInit {
       this.listaDeConsultas = listaDeConsultas;
     });
   }
-  
-  listarEspecialidade(){
-    this.especialidadeService.listarTodos().subscribe(listaEspecialidade =>{
-      this.listaEspecialidade = listaEspecialidade;
-    });
-  }
-
 
   voltarSituacao(){
     this.consulta.situacao = "Pendente";
@@ -88,6 +86,7 @@ export class ConsultasComponent implements OnInit {
 
   atualizar() {
     if (this.consulta.id != undefined)
+      this.mudarEspecialidade()
       this.consultaService.atualizarConsultaFirebase(this.consulta).then(() => {
         this.listar();
         this.consulta = null;
@@ -120,6 +119,20 @@ export class ConsultasComponent implements OnInit {
     }
     c["id"] = consulta.id;
     return c;
+  }
+
+  listarEsp(){
+    this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
+      this.relacaoEspecialidades = relacaoEspecialidades;
+    });
+  }
+
+  onRowSelectEsp(event) {
+    console.log(event.data)
+    console.log(this.especialidadeSelecionada.nome);
+  }
+  mudarEspecialidade(){
+    this.consulta.especialidade = this.especialidadeSelecionada.nome;
   }
 
  /* aprovarConsulta(consulta){

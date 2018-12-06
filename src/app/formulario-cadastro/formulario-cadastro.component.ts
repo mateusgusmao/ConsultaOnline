@@ -13,6 +13,8 @@ export class FormularioCadastroComponent implements OnInit {
 
   userUsuario: string;
   senhaUsuario: string;
+  nomeUsuario: string;
+  cpfUsuario: string;
 
    //novoUsuario: User
   
@@ -25,7 +27,7 @@ export class FormularioCadastroComponent implements OnInit {
   
 register() {
 
-  let novoUsuario: User = {username:this.userUsuario, password:this.senhaUsuario};
+  let novoUsuario: User = {username:this.userUsuario, password:this.senhaUsuario,nome: this.nomeUsuario,cpf: this.cpfUsuario};
   this.userUsuario = "";
   this.senhaUsuario = "";
   

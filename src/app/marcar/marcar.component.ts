@@ -8,6 +8,7 @@ import {DropdownModule} from 'primeng/primeng';
 import {SelectItem} from 'primeng/primeng';
 import { UserService } from '../user.service';
 import { User } from 'firebase/app';
+import { EspecialidadeService } from '../especialidade.service';
 
 @Component({
   selector: 'app-marcar',
@@ -20,7 +21,6 @@ export class MarcarComponent implements OnInit {
       planosSaude: SelectItem[] = [];
       selectedEspecialidade: String;
       selectedPlanoSaude: String;  
-
       //consulta: Consulta = new Consulta();
       selectedConsulta: Consulta;
       newConsulta: boolean;
@@ -28,19 +28,21 @@ export class MarcarComponent implements OnInit {
 
       especialidades:SelectItem[];
       planosSaude: SelectItem[];
-
       consulta: Consulta;
 
-  constructor( private consultaService: ConsultasService,private userService: UserService) {
+      relacaoEspecialidades:any[] = [];
+      especialidadeSelecionada; 
+
+  constructor( private consultaService: ConsultasService,private userService: UserService, private especialidadesService: EspecialidadeService) {
     this.consulta = { especialidade: "", planoSaude: "", data: null, status: false, idPaciente: "", situacao: "Pendente", nomePaciente: ""}
 
-    this.especialidades = [
+    /*this.especialidades = [
       {label:'Escolha especialidade', value:null},
       {label:'Dermatologista', value: 'Dermatologista'},
       {label:'Cardiologista', value: 'Cardiologista'},
       {label:'Oftamologista', value:'Oftamologista'},
       {label:'Pediatria', value:'Pediatria'},
-     ]
+     ]*/
 
      this.planosSaude = [
       {label:'Você tem Plano de Saúde? ', value:null},
@@ -51,15 +53,17 @@ export class MarcarComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.listarEsp();
     //this.consultas= this.consultaService.getConsultas();
+
       }
 
       adicionarConsulta(){
 
         this.consulta.idPaciente = this.userService.usuarioLogado.id;
         this.consulta.nomePaciente = this.userService.usuarioLogado.username;
-    
+
+        this.escolherEsp();
         this.consultaService.adicionarConsultaFirebase(this.consulta);
         console.log(this.consulta)
     
@@ -69,6 +73,23 @@ export class MarcarComponent implements OnInit {
         //this.userService.usuarioLogado.username = this.consulta.usuarioconsulta;
         //console.log(this.consulta.usuarioconsulta)
         //console.log(this.userService.usuarioLogado.consultas)
+      }
+
+      escolherEsp(){
+        this.consulta.especialidade = this.especialidadeSelecionada.nome;
+        console.log(this.especialidadeSelecionada.nome);
+        console.log(this.consulta.planoSaude)
+      }
+
+      listarEsp(){
+        this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
+          this.relacaoEspecialidades = relacaoEspecialidades;
+        });
+      }
+    
+      onRowSelectEsp(event) {
+        console.log(event.data)
+        console.log(this.especialidadeSelecionada.nome);
       }
   /*save() {
   let consultas = [...this.consultas];
@@ -80,20 +101,16 @@ export class MarcarComponent implements OnInit {
   console.log(this.consulta);
   this.consultas = consultas;
   this.consulta = null;
-
 }
-
 delete() {
   let index = this.findSelectedConsultaIndex();
   this.consultas = this.consultas.filter((val,i) => i!=index);
   this.consulta = null;
 }
-
 onRowSelect(event) {
   this.newConsulta = false;
   this.consulta = this.cloneConsulta(event.data);
 }
-
 cloneConsulta(c: Consulta): Consulta {
   let consulta = new Consulta();
   for(let prop in c) {
@@ -101,17 +118,13 @@ cloneConsulta(c: Consulta): Consulta {
   }
   return consulta;
 }
-
 findSelectedConsultaIndex(): number {
   return this.consultas.indexOf(this.selectedConsulta);
  }
-
 }
  
 class PrimeConsulta implements Consulta {
-
  // constructor(public id:number, public especialidade:string, public clinica:string, public planoSaude:string, public data:Date) {}
-
   }
   */
 

@@ -10,11 +10,15 @@
 </p-dataTable>
 </div>
 
-<p-dialog header="Detalhes da Consulta" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="350">
+<p-dialog header="Editar Consulta" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="350">
   <div *ngIf="consulta">
       <div>
-          <label for="especialidade">Especialidade  :</label>
-          <p-dropdown name ="especialidade" [options]="especialidades" [(ngModel)]="consulta.especialidade" [style]="{'width':'150px'}" required></p-dropdown>
+          <label>Selecione uma Especialidade: </label>
+          <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single" 
+          [(selection)]="especialidadeSelecionada"(onRowSelect)="onRowSelectEsp($event)"> 
+              <p-column field="nome"></p-column>
+          </p-dataTable><br/>
+          <label>Especialidade Atual: {{consulta.especialidade}}</label>
       </div><br/>
       <div>
           <label for="planoSaude">Plano Saude   :</label>

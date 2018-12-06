@@ -1,32 +1,38 @@
-<div align= "center" class="container">
+<div align="center" class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-          Marque sua consulta      
-      </div> 
-      <div class="panel-body">
-      <form ngForm>
-      <div>
-    
-      <div class="form-group">
-          <label for="especialidade">Especialidade</label>
-          <p-dropdown name ="especialidade" [options]="especialidades" [(ngModel)]="consulta.especialidade" required></p-dropdown>
-      </div>
-      
-      <div class="form-group">
-          <label for="planoSaude">Plano de Saúde</label>
-          <p-dropdown name ="planoSaude" [options]="planosSaude" [(ngModel)]="consulta.planoSaude" required></p-dropdown>
-      </div>
+            Marque sua consulta
+        </div>
+        <div class="panel-body">
+            <form ngForm>
+                <div>
 
-      <!--<div class="form-group">
+                    <!--<div class="form-group">
+                    <label for="especialidade">Especialidade</label>
+                    <p-dropdown name ="especialidade" [options]="especialidades" [(ngModel)]="consulta.especialidade" required></p-dropdown>
+                    </div>-->
+                    <div>
+                        <label>Selecione uma Especialidade: </label>
+                        <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single"
+                         [(selection)]="especialidadeSelecionada" (onRowSelect)="onRowSelectEsp($event)">
+                            <p-column field="nome"></p-column>
+                        </p-dataTable>
+                    </div><br />
+
+                    <div class="form-group">
+                        <label for="planoSaude">Plano de Saúde</label>
+                        <p-dropdown name="planoSaude" [options]="planosSaude" [(ngModel)]="consulta.planoSaude"
+                            required></p-dropdown>
+                    </div>
+
+                    <!--<div class="form-group">
           <label for="data">Data</label>
           <p-calendar name="data" [(ngModel)]="consulta.data" dateFormat="dd.mm.yy" required></p-calendar>
        
                      </div>-->
-               <button pButton type="button" icon="fa-plus-square" (click)="adicionarConsulta()" label="Marcar Consulta!" routerLink='/main/consultas'></button>
+                    <button pButton type="button" icon="fa-plus-square" (click)="adicionarConsulta()" label="Marcar Consulta!"
+                        routerLink='/main/consultas'></button>
                 </div>
-          </form>
-     </div>
-</div>
-
-
-
+            </form>
+        </div>
+    </div>
