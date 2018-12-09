@@ -1,3 +1,15 @@
 header{
     background-color: white;
 }
+
+button:disabled {
+    background: #bbb;
+    color: #2399e5;
+    border: none;
+    cursor: not-allowed;
+}
+
+.alert-danger {
+    padding: 4px;
+}
+
