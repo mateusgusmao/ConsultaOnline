@@ -1,16 +1,26 @@
-<div class="container">
+<div align="center">
+  <div class="container">
     <div class="panel panel-default">
       <div class="panel-heading">
         Criar um Médico
       </div>
       <div class="panel-body">
-  
-                      <input type="text" [(ngModel)]="medico.username" id="username" name="username" pInputText placeholder="Nome do médico"> <br/>
-                 <br/><input type="text" [(ngModel)]="medico.horario" id="horario" name="horario" pInputText placeholder="Horario do médico"> <br/>
-                 <br/><button pButton [disabled]="!medico.username || !medico.horario" type="button" label="Adicionar" (click)="adicionarMedico()"></button>
-                   
-  
-  
+        <input type="text" [(ngModel)]="medico.username" id="username" name="username" pInputText placeholder="Nome do Médico">
+        <br />
+        <br />
+        <label>Selecione uma Especialidade: </label>
+        <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single" [(selection)]="especialidadeSelecionada"
+          (onRowSelect)="onRowSelectEsp($event)">
+          <p-column field="nome"></p-column>
+        </p-dataTable>
+        <br />
+        <p-dropdown [options]="turno" [(ngModel)]="medico.turno" id="turno" placeholder="Turno do Médico"></p-dropdown>
+        <br />
+        <br />
+        <p-dropdown [options]="sexo" [(ngModel)]="medico.sexo" id="sexo" placeholder="Sexo"></p-dropdown>
+        <br />
+        <br /><button pButton [disabled]="!medico.username || !medico.turno || !medico.sexo" type="button" label="Adicionar" (click)="adicionarMedico()" routerLink="../gerenciar"></button>
       </div>
     </div>
   </div>
+</div>

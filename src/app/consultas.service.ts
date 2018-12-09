@@ -63,6 +63,7 @@ export class ConsultasService {
     return meuObservable;
   }
 
+
   listarId(consultaId) {
     return new Observable(observer => {
       let doc = this.consultaCollection.doc(consultaId);

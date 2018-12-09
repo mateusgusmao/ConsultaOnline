@@ -23,7 +23,45 @@ export class MedicoService {
   apagarMedicoFirebase(medico): Promise<void> {
     return this.medicoCollection.doc(medico.id).delete();
   }
+  atualizarMedicoFirebase(medico): Promise<void>{
+    return this.medicoCollection.doc(medico.id).update(medico);
+  }
 
+  listarPorTurno(turno: String): Observable<any[]> {
+    let resultados: any[] = [];
+    let meuObservable = new Observable<any[]>(observer => {
+      this.medicoCollection = this.afs.collection<Medico>("medico", ref => ref.where('turno', '==', turno));
+      this.medicoCollection.snapshotChanges().subscribe(result => {
+        result.map(documents => {
+          let id = documents.payload.doc.id;
+          let data = documents.payload.doc.data();
+          let document = { id: id, ...data };
+          resultados.push(document);
+        });
+        observer.next(resultados);
+        observer.complete();
+      });
+    });
+    return meuObservable;
+  }
+
+  listarPorNomeEsp(nomeEspecialidade: String): Observable<any[]> {
+    let resultados: any[] = [];
+    let meuObservable = new Observable<any[]>(observer => {
+      this.medicoCollection = this.afs.collection<Medico>("medico", ref => ref.where('nomeEspecialidade', '==', nomeEspecialidade));
+      this.medicoCollection.snapshotChanges().subscribe(result => {
+        result.map(documents => {
+          let id = documents.payload.doc.id;
+          let data = documents.payload.doc.data();
+          let document = { id: id, ...data };
+          resultados.push(document);
+        });
+        observer.next(resultados);
+        observer.complete();
+      });
+    });
+    return meuObservable;
+  }
   listarTodos() {
     let resultados: any[] = [];
     let medicos = new Observable<any[]>(observer => {

@@ -14,12 +14,12 @@
 
             <div class="form-group">
             <label for="nome">Nome e Sobrenome:</label>
-            <input [(ngModel)]="nomeUsuario" type="text" class="form-control" id="nome" name="nome" required>
+            <input [(ngModel)]="nomeUsuario" type="text" class="form-control" id="nome" name="nome" minlength="8" maxlength="20" required>
           </div>
 <!--CAMPO DE USERNAME(CADASTRO) -->
           <div class="form-group">
             <label for="username">Nome de Usuário:</label>
-            <input [(ngModel)]="userUsuario" type="text" class="form-control" id="username" name="username" required>
+            <input [(ngModel)]="userUsuario" type="text" class="form-control" id="username" name="username" maxlength="6" required>
           </div>
 <!--CAMPO DE PASSWORD(CADASTRO) -->
           <div class="form-group">
@@ -32,9 +32,10 @@
                 <p-inputMask mask="999.999.999-99" [(ngModel)]="cpfUsuario" id="cpf" name="cpf" placeholder="999.999.999-99" [size]="100" required></p-inputMask>
               </div>
 
-            <button [disabled]="!userUsuario || !senhaUsuario" pButton type="button" class="ui-button-success" label="Cadastre-se!" (click)="register()" routerLink='/login'></button>
+            <button [disabled]="!nomeUsuario ||!userUsuario || !senhaUsuario || !cpfUsuario" pButton type="button" class="ui-button-success" label="Cadastre-se!" (click)="register()" routerLink='/login'></button>
             <button align="right" pButton type="button" class="ui-button-primary" label="Voltar"  routerLink='/login'></button>
 
         </form>
       </div>
 </div>
+

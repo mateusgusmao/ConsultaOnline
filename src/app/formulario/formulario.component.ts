@@ -63,8 +63,8 @@ export class FormularioComponent implements OnInit {
         this.userService.loginUsuario(user, senha).subscribe(meuObservable => {
 
           this.userService.usuarioLogado = meuObservable as User
-          console.log("Usuario Logado: " + this.userService.usuarioLogado.username)
-          alert("usuario Logado " + this.userService.usuarioLogado.username)
+          console.log("Usuario Logado: " + this.userService.usuarioLogado.nome)
+          alert("usuario Logado " + this.userService.usuarioLogado.nome)
 
         })
       }

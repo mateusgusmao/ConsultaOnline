@@ -20,17 +20,28 @@
                     </div><br />
 
                     <div class="form-group">
-                        <label for="planoSaude">Plano de Saúde</label>
-                        <p-dropdown name="planoSaude" [options]="planosSaude" [(ngModel)]="consulta.planoSaude"
+                        <label for="planoSaude">Plano de Saúde :</label>
+                        <p-dropdown name="planoSaude" [options]="planosSaude" placeholder="Plano de Saúde" [(ngModel)]="consulta.planoSaude"
                             required></p-dropdown>
                     </div>
 
-                    <!--<div class="form-group">
-          <label for="data">Data</label>
-          <p-calendar name="data" [(ngModel)]="consulta.data" dateFormat="dd.mm.yy" required></p-calendar>
+                    <div class="form-group">
+                            <label for="turno">Turno :</label>
+                            <p-dropdown name="turno" [options]="turnos" placeholder="Turno" [(ngModel)]="consulta.turno" required></p-dropdown>
+                        </div>
+
+                     <div class="form-group">
+                     <label for="data">Data :</label>
+                     <p-calendar name="data" [(ngModel)]="consulta.data" [disabledDays]="[0,1,2,3,4,6]" dateFormat="d.mm.yy" placeholder="Data" required></p-calendar>
        
-                     </div>-->
-                    <button pButton type="button" icon="fa-plus-square" (click)="adicionarConsulta()" label="Marcar Consulta!"
+                     </div>
+                     <div *ngIf="consulta.turno=='Manhã'">
+                            <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspMed" selectionMode="single"
+                            [(selection)]="medicoSelecionado" (onRowSelect)="onRowSelectMed($event)">
+                               <p-column field="username"></p-column>
+                           </p-dataTable>
+                     </div>
+                    <button [disabled]="!consulta.planoSaude || !especialidadeSelecionada || !consulta.turno" pButton type="button" icon="fa-plus-square" (click)="adicionarConsulta()" label="Marcar Consulta!"
                         routerLink='/main/consultas'></button>
                 </div>
             </form>

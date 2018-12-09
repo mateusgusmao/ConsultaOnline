@@ -29,7 +29,7 @@ export class ConsultasComponent implements OnInit {
   cols: any[];
   displayDialog: boolean;
 
-  especialidades:SelectItem[];
+  especialidades: SelectItem[];
   planosSaude: SelectItem[];
 
   growl: Message[] = [];
@@ -39,30 +39,14 @@ export class ConsultasComponent implements OnInit {
   especialidadeSelecionada;
 
 
-
   constructor(private consultaService:ConsultasService, private userService: UserService, 
                                     private rota: Router, private especialidadesService: EspecialidadeService) { 
 
     /*this.consultas = this.getConsultas();
       console.log(this.consultas);*/
-
-      
-      
-     /* this.especialidades = [
-        {label:'Escolha especialidade', value:null},
-        {label:'Dermatologista', value: 'Dermatologista'},
-        {label:'Cardiologista', value: 'Cardiologista'},
-        {label:'Oftamologista', value:'Oftamologista'},
-        {label:'Pediatria', value:'Pediatria'},
-       ]*/
-  
-       this.planosSaude = [
-        {label:'Você tem Plano de Saúde? ', value:null},
-        {label:'Sim', value: 'Sim'},
-        {label:'Não', value: 'Não'},
-       ]
   
   }
+
 
   showError() {
     this.growl = [];
@@ -72,6 +56,12 @@ export class ConsultasComponent implements OnInit {
   ngOnInit() {
     this.listar();
     this.listarEsp();
+
+    this.planosSaude = [
+      {label:'Sim', value: 'Sim'},
+      {label:'Não', value: 'Não'},
+     ]
+     this.especialidades = []
   }
 
   listar(){
@@ -113,7 +103,7 @@ export class ConsultasComponent implements OnInit {
   }
   
   cloneConsulta(consulta: Consulta): Consulta {
-    let c = { especialidade: " ", planoSaude: " ", data: null, situacao: " ", status: false};
+    let c = { especialidade: " ", planoSaude: " ", data: null,turno: " ", situacao: " ", status: false};
     for (let prop in c) {
       c[prop] = consulta[prop];
     }
@@ -124,6 +114,17 @@ export class ConsultasComponent implements OnInit {
   listarEsp(){
     this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
       this.relacaoEspecialidades = relacaoEspecialidades;
+
+      this.especialidades = this.relacaoEspecialidades
+        .map(esp => {
+          return {label: esp.nome, value: esp.id}
+        });
+
+        console.log('especialidades...')
+        console.log(this.especialidades);
+        console.log(this.planosSaude)
+        
+        
     });
   }
 

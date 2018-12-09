@@ -4,7 +4,11 @@
         <p-header>Lista de Consultas</p-header>
         <p-column field="nomePaciente" header="Nome" [sortable]="true"></p-column>
         <p-column field="especialidade" header="Especialidade" [sortable]="true"></p-column>
-        <p-column field="planoSaude" header="Plano de Saude ?" [sortable]="true"></p-column>
+        <p-column field="data" header="Dia" [sortable]="true">
+            <ng-template let-row="rowData" pTemplate="body">
+                {{row.data | date:'dd/MM/yyyy'}}
+            </ng-template>
+        </p-column>
         <p-column field="situacao" header="Status" [sortable]="true"></p-column>
     </p-dataTable>
     <div>
@@ -16,11 +20,11 @@
                     <label for="especialidade">Paciente : {{consulta.nomePaciente}} </label>
                 </div><br />
                 <div>
-                    <label>Selecione uma Especialidade: </label>
-                    <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single" 
-                    [(selection)]="especialidadeSelecionada"(onRowSelect)="onRowSelectEsp($event)"> 
+                    <label>Selecione uma Especialidade para Confirmar: </label>
+                    <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single"
+                        [(selection)]="especialidadeSelecionada" (onRowSelect)="onRowSelectEsp($event)">
                         <p-column field="nome"></p-column>
-                    </p-dataTable><br/>
+                    </p-dataTable><br />
                     <label>Especialidade Atual: {{consulta.especialidade}}</label>
                 </div>
                 <div>

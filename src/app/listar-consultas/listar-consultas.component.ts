@@ -68,7 +68,7 @@ export class ListarConsultasComponent implements OnInit {
   }
   
   cloneConsulta(consulta: Consulta): Consulta {
-    let c = { nomePaciente: " ", especialidade: " ", planoSaude: " ", data: null, situacao: " ", status: false};
+    let c = { nomePaciente: " ", especialidade: " ", planoSaude: " ",turno: " ", data: null, situacao: " ", status: false};
     for (let prop in c) {
       c[prop] = consulta[prop];
     }

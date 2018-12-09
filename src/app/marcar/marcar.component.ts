@@ -9,6 +9,7 @@ import {SelectItem} from 'primeng/primeng';
 import { UserService } from '../user.service';
 import { User } from 'firebase/app';
 import { EspecialidadeService } from '../especialidade.service';
+import { MedicoService } from '../medico.service';
 
 @Component({
   selector: 'app-marcar',
@@ -30,11 +31,21 @@ export class MarcarComponent implements OnInit {
       planosSaude: SelectItem[];
       consulta: Consulta;
 
+      turnos: SelectItem[];
+
       relacaoEspecialidades:any[] = [];
       especialidadeSelecionada; 
 
-  constructor( private consultaService: ConsultasService,private userService: UserService, private especialidadesService: EspecialidadeService) {
-    this.consulta = { especialidade: "", planoSaude: "", data: null, status: false, idPaciente: "", situacao: "Pendente", nomePaciente: ""}
+      invalidDates: Array<Date>;
+
+      relacaoEspMed: any[] = [];
+      medicoSelecionado; 
+      //relacaoMedTur: any[]=[];
+
+
+  constructor( private consultaService: ConsultasService,private userService: UserService, 
+  private especialidadesService: EspecialidadeService, private medicoService: MedicoService) {
+    this.consulta = { especialidade: "", planoSaude: "", data: "",turno: "", status: false, idPaciente: "", situacao: "Pendente", nomePaciente: ""}
 
     /*this.especialidades = [
       {label:'Escolha especialidade', value:null},
@@ -44,24 +55,35 @@ export class MarcarComponent implements OnInit {
       {label:'Pediatria', value:'Pediatria'},
      ]*/
 
-     this.planosSaude = [
-      {label:'Você tem Plano de Saúde? ', value:null},
-      {label:'Sim', value: 'Sim'},
-      {label:'Não', value: 'Não'},
-     ]
-
   }
+   
 
   ngOnInit() {
     this.listarEsp();
     //this.consultas= this.consultaService.getConsultas();
+    let today = new Date();
+    let invalidDate = new Date();
+    invalidDate.setDate(today.getDate() - 1);
+    this.invalidDates = [today,invalidDate];
 
+
+    
+    this.planosSaude = [
+      {label:'Sim', value: 'Sim'},
+      {label:'Não', value: 'Não'},
+     ]
+    
+     this.turnos = [
+      {label: 'Manhã', value: 'Manhã'},
+      {label: 'Tarde', value: 'Tarde'},
+      {label: 'Noite', value: 'Noite'},
+    ]
       }
 
       adicionarConsulta(){
 
         this.consulta.idPaciente = this.userService.usuarioLogado.id;
-        this.consulta.nomePaciente = this.userService.usuarioLogado.username;
+        this.consulta.nomePaciente = this.userService.usuarioLogado.nome;
 
         this.escolherEsp();
         this.consultaService.adicionarConsultaFirebase(this.consulta);
@@ -90,7 +112,21 @@ export class MarcarComponent implements OnInit {
       onRowSelectEsp(event) {
         console.log(event.data)
         console.log(this.especialidadeSelecionada.nome);
+        this.consulta.especialidade = this.especialidadeSelecionada.nome;
+        this.listarMedicos();
       }
+
+      listarMedicos(){
+        this.medicoService.listarPorNomeEsp(this.consulta.especialidade).subscribe(relacaoEspMed =>{
+          this.relacaoEspMed = relacaoEspMed;
+        });
+      }
+
+      onRowSelectMed(event) {
+        console.log(event.data)
+        console.log(this.medicoSelecionado.username);
+      }
+
   /*save() {
   let consultas = [...this.consultas];
   if(this.newConsulta)

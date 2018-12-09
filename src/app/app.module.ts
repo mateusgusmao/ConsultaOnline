@@ -56,6 +56,7 @@ import {MenuItem} from 'primeng/primeng';
 import { EspecialidadeService } from './especialidade.service';
 import { MedicoService } from './medico.service';
 import {GrowlModule} from 'primeng/primeng';
+import { ListarMedicosComponent } from './listar-medicos/listar-medicos.component';
 
 
 
@@ -81,6 +82,7 @@ import {GrowlModule} from 'primeng/primeng';
     SairComponent,
     ListarEspecialidadesComponent,
     ListarConsultasComponent,
+    ListarMedicosComponent,
 
     
     
