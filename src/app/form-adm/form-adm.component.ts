@@ -20,7 +20,7 @@ import {Validators,FormControl,FormGroup,FormBuilder} from '@angular/forms';
 export class FormAdmComponent implements OnInit {
   
       constructor() {}
-  
+
       ngOnInit() {
       }
 
