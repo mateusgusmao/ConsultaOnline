@@ -45,7 +45,7 @@ export class MarcarComponent implements OnInit {
 
   constructor( private consultaService: ConsultasService,private userService: UserService, 
   private especialidadesService: EspecialidadeService, private medicoService: MedicoService) {
-    this.consulta = { especialidade: "", planoSaude: "", data: "",turno: "", status: false, idPaciente: "", situacao: "Pendente", nomePaciente: ""}
+    this.consulta = { especialidade: "", planoSaude: "", data: "",turno: "", status: false, idPaciente: "", situacao: "Pendente", nomePaciente: "", nomeMedico: ""}
 
     /*this.especialidades = [
       {label:'Escolha especialidade', value:null},
@@ -86,6 +86,7 @@ export class MarcarComponent implements OnInit {
         this.consulta.nomePaciente = this.userService.usuarioLogado.nome;
 
         this.escolherEsp();
+        this.escolherMed();
         this.consultaService.adicionarConsultaFirebase(this.consulta);
         console.log(this.consulta)
     
@@ -114,17 +115,24 @@ export class MarcarComponent implements OnInit {
         console.log(this.especialidadeSelecionada.nome);
         this.consulta.especialidade = this.especialidadeSelecionada.nome;
         this.listarMedicos();
+        if(this.medicoSelecionado){
+        if(this.especialidadeSelecionada.nome != this.medicoSelecionado.nomeEspecialidade){
+          this.medicoSelecionado = null;
+        }
       }
-
+    }
+      escolherMed(){
+        this.consulta.nomeMedico = this.medicoSelecionado.username;
+        console.log(this.medicoSelecionado.username);
+      }
       listarMedicos(){
         this.medicoService.listarPorNomeEsp(this.consulta.especialidade).subscribe(relacaoEspMed =>{
           this.relacaoEspMed = relacaoEspMed;
         });
       }
-
       onRowSelectMed(event) {
-        console.log(event.data)
-        console.log(this.medicoSelecionado.username);
+          console.log(event.data)
+          console.log(this.medicoSelecionado.username);
       }
 
   /*save() {

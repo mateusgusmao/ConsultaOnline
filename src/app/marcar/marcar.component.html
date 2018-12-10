@@ -32,7 +32,7 @@
 
                      <div class="form-group">
                      <label for="data">Data :</label>
-                     <p-calendar name="data" [(ngModel)]="consulta.data" [disabledDays]="[0,1,2,3,4,6]" dateFormat="d.mm.yy" placeholder="Data" required></p-calendar>
+                     <p-calendar name="data" [(ngModel)]="consulta.data" [disabledDays]="[0,6]" dateFormat="d.mm.yy" placeholder="Data" required></p-calendar>
        
                      </div>
                      <div *ngIf="consulta.turno=='Manhã'">
@@ -41,7 +41,7 @@
                                <p-column field="username"></p-column>
                            </p-dataTable>
                      </div>
-                    <button [disabled]="!consulta.planoSaude || !especialidadeSelecionada || !consulta.turno" pButton type="button" icon="fa-plus-square" (click)="adicionarConsulta()" label="Marcar Consulta!"
+                    <button [disabled]="!consulta.planoSaude || !especialidadeSelecionada || !consulta.turno || !consulta.data || !medicoSelecionado" pButton type="button" icon="fa-plus-square" (click)="adicionarConsulta()" label="Marcar Consulta!"
                         routerLink='/main/consultas'></button>
                 </div>
             </form>

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Consulta } from '../models/consulta';
 import { Router } from '@angular/router';
-import {TabMenuModule, MenuItem} from 'primeng/primeng';
-import {SelectItem} from 'primeng/primeng';
+import { TabMenuModule, MenuItem } from 'primeng/primeng';
+import { SelectItem } from 'primeng/primeng';
 import { ConsultasService } from '../consultas.service';
 import { ConsultasComponent } from '../consultas/consultas.component';
 import { Especialidade } from '../models/especialidade';
 import { EspecialidadeService } from '../especialidade.service';
+import { MedicoService } from '../medico.service';
 
 @Component({
   selector: 'app-listar-consultas',
@@ -16,45 +17,48 @@ import { EspecialidadeService } from '../especialidade.service';
 export class ListarConsultasComponent implements OnInit {
 
   consulta: Consulta;
-  relacaoConsultas:any[] = [];
-  consultas: Consulta[] =[];
+  relacaoConsultas: any[] = [];
+  consultas: Consulta[] = [];
   consultaSelecionada;
 
   especialidade: Especialidade;
-  relacaoEspecialidades:any[] = [];
+  relacaoEspecialidades: any[] = [];
   especialidadeSelecionada;
 
   items: MenuItem[];
   displayDialog: boolean;
 
+  relacaoEspMed: any[] = [];
+  medicoSelecionado;
+
   constructor(private rota: Router,
-              private consultaService: ConsultasService, private especialidadesService: EspecialidadeService) { }
+    private consultaService: ConsultasService, private especialidadesService: EspecialidadeService,private medicoService: MedicoService) { }
 
   ngOnInit() {
-        this.listar();
-        this.listarEsp();
+    this.listar();
+    this.listarEsp();
   }
-    listar(){
-    this.consultaService.listarTodos().subscribe(relacaoConsultas =>{
+  listar() {
+    this.consultaService.listarTodos().subscribe(relacaoConsultas => {
       this.relacaoConsultas = relacaoConsultas;
     });
   }
-  aprovar(){
+  aprovar() {
     this.consulta.situacao = "Aprovada";
     console.log(this.consulta.situacao)
   }
 
   atualizar() {
     if (this.consulta.id != undefined)
-         this.mudarEspecialidade();
-         this.aprovar();
-      this.consultaService.atualizarConsultaFirebase(this.consulta).then(() => {
-        this.listar();
-        this.consulta = null;
-        this.displayDialog = false;
-      });
+      this.mudarEspecialidade();
+    this.aprovar();
+    this.consultaService.atualizarConsultaFirebase(this.consulta).then(() => {
+      this.listar();
+      this.consulta = null;
+      this.displayDialog = false;
+    });
   }
-  apagarConsulta(){
+  apagarConsulta() {
     this.consultaService.apagarConsultaFirebase(this.consulta).then(() => {
       this.listar();
       this.consulta = null;
@@ -66,9 +70,9 @@ export class ListarConsultasComponent implements OnInit {
     this.consulta = this.cloneConsulta(event.data);
     this.displayDialog = true;
   }
-  
+
   cloneConsulta(consulta: Consulta): Consulta {
-    let c = { nomePaciente: " ", especialidade: " ", planoSaude: " ",turno: " ", data: null, situacao: " ", status: false};
+    let c = { nomePaciente: " ", especialidade: " ", planoSaude: " ", turno: " ", data: null, situacao: " ", status: false };
     for (let prop in c) {
       c[prop] = consulta[prop];
     }
@@ -76,8 +80,8 @@ export class ListarConsultasComponent implements OnInit {
     return c;
   }
 
-  listarEsp(){
-    this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
+  listarEsp() {
+    this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades => {
       this.relacaoEspecialidades = relacaoEspecialidades;
     });
   }
@@ -86,8 +90,17 @@ export class ListarConsultasComponent implements OnInit {
     console.log(event.data)
     console.log(this.especialidadeSelecionada.nome);
   }
-  mudarEspecialidade(){
+  mudarEspecialidade() {
     this.consulta.especialidade = this.especialidadeSelecionada.nome;
   }
-
+  listarMedicos() {
+    this.medicoService.listarPorNomeEsp(this.consultaSelecionada).subscribe(relacaoEspMed => {
+      this.relacaoEspMed = relacaoEspMed;
+    });
   }
+  onRowSelectMed(event) {
+    console.log(event.data)
+    console.log(this.medicoSelecionado.username);
+  }
+
+}

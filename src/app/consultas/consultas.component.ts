@@ -9,6 +9,7 @@ import { User } from '../models/user';
 import {Message} from 'primeng/primeng';
 import { EspecialidadeService } from '../especialidade.service';
 import { Especialidade } from '../models/especialidade';
+import {ProgressSpinnerModule} from 'primeng/primeng';
 
 @Component({
   selector: 'app-consultas',
@@ -25,6 +26,9 @@ export class ConsultasComponent implements OnInit {
   consulta: Consulta;
   user: User;
 
+  growl: Message[] = [];
+  carregando: boolean;
+
   listaDeConsultas: any[]=[];
   cols: any[];
   displayDialog: boolean;
@@ -32,12 +36,9 @@ export class ConsultasComponent implements OnInit {
   especialidades: SelectItem[];
   planosSaude: SelectItem[];
 
-  growl: Message[] = [];
-
   especialidade: Especialidade;
   relacaoEspecialidades:any[] = [];
   especialidadeSelecionada;
-
 
   constructor(private consultaService:ConsultasService, private userService: UserService, 
                                     private rota: Router, private especialidadesService: EspecialidadeService) { 
@@ -65,8 +66,12 @@ export class ConsultasComponent implements OnInit {
   }
 
   listar(){
+     this.carregando = true;
+
     this.consultaService.listarPorIdUsuario(this.userService.usuarioLogado.id).subscribe(listaDeConsultas => {
       this.listaDeConsultas = listaDeConsultas;
+
+      this.carregando = false;
     });
   }
 

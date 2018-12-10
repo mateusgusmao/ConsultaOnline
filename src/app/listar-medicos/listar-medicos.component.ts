@@ -3,7 +3,7 @@ import { EspecialidadeService } from '../especialidade.service';
 import { MedicoService } from '../medico.service';
 import { Medico } from '../models/medico';
 import { Especialidade } from '../models/especialidade';
-import {SelectItem} from 'primeng/primeng';
+import { SelectItem } from 'primeng/primeng';
 
 @Component({
   selector: 'app-listar-medicos',
@@ -24,11 +24,11 @@ export class ListarMedicosComponent implements OnInit {
   relacaoClinica: any[] = [];
 
   especialidade: Especialidade;
-  relacaoEspecialidades:any[] = [];
+  relacaoEspecialidades: any[] = [];
   especialidadeSelecionada;
 
-  constructor(private especialidadesService: EspecialidadeService, private medicoService: MedicoService) { 
-    
+  constructor(private especialidadesService: EspecialidadeService, private medicoService: MedicoService) {
+
   }
 
   ngOnInit() {
@@ -36,14 +36,14 @@ export class ListarMedicosComponent implements OnInit {
     this.listarEsp()
 
     this.turno = [
-      {label: 'Manhã', value: 'Manhã'},
-      {label: 'Tarde', value: 'Tarde'},
-      {label: 'Noite', value: 'Noite'},
+      { label: 'Manhã', value: 'Manhã' },
+      { label: 'Tarde', value: 'Tarde' },
+      { label: 'Noite', value: 'Noite' },
     ]
 
     this.sexo = [
-      {label: 'Masculino', value: 'Masculino'},
-      {label: 'Femininio', value: 'Feminino'}
+      { label: 'Masculino', value: 'Masculino' },
+      { label: 'Femininio', value: 'Feminino' }
     ]
   }
 
@@ -53,30 +53,39 @@ export class ListarMedicosComponent implements OnInit {
     });
   }
   atualizar() {
+    if (this.especialidadeSelecionada) {
       this.mudarEspecialidade();
       this.medicoService.atualizarMedicoFirebase(this.medico).then(() => {
-      this.listar();
-      this.medico = null;
-      this.displayDialog = false;
-    });
+        this.listar();
+        this.especialidadeSelecionada = null;
+        this.medico = null;
+        this.displayDialog = false;
+      });
+    } else {
+      this.medicoService.atualizarMedicoFirebase(this.medico).then(() => {
+        this.listar();
+        this.medico = null;
+        this.displayDialog = false;
+      });
+    }
   }
 
-  apagarMedico(){
+  apagarMedico() {
     this.medicoService.apagarMedicoFirebase(this.medico).then(() => {
       this.listar();
       this.medico = null;
       this.displayDialog = false;
     });
   }
-  
+
   onRowSelect(event) {
-  console.log(event.data)
-  this.medico = this.cloneMedico(event.data);
-  this.displayDialog = true;
+    console.log(event.data)
+    this.medico = this.cloneMedico(event.data);
+    this.displayDialog = true;
   }
 
   cloneMedico(medico: Medico): Medico {
-    let m = { username: " ", turno: " ", sexo: " "};
+    let m = { username: " ", turno: " ", sexo: " " };
     for (let prop in m) {
       m[prop] = medico[prop];
     }
@@ -84,8 +93,8 @@ export class ListarMedicosComponent implements OnInit {
     return m;
   }
 
-  listarEsp(){
-    this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
+  listarEsp() {
+    this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades => {
       this.relacaoEspecialidades = relacaoEspecialidades;
     });
   }
@@ -94,8 +103,8 @@ export class ListarMedicosComponent implements OnInit {
     console.log(event.data)
     console.log(this.especialidadeSelecionada.nome);
   }
-  mudarEspecialidade(){
-    this.medico.nomeEspecialidade= this.especialidadeSelecionada.nome;
+  mudarEspecialidade() {
+    this.medico.nomeEspecialidade = this.especialidadeSelecionada.nome;
   }
-  
+
 }

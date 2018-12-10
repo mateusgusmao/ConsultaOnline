@@ -12,6 +12,7 @@ export interface Consulta {
 
     idPaciente?: string; //id do usuarioLogado
     nomePaciente?: string;
+    nomeMedico?: string;
 
 
     id? : string;

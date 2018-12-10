@@ -1,7 +1,24 @@
 <div align="center">
-<p-dataTable [style]="{'width':'900px'}" [value]="relacaoUsers" selectionMode="single" [contextMenu]="cm" [(selection)]="userSelecionado">
-    <p-column field="username" header="Username"></p-column>
-    <p-column field="password" header="Senha"></p-column>
-</p-dataTable>
+    <p-dataTable [style]="{'width':'900px'}" [value]="relacaoUsers" selectionMode="single" [contextMenu]="cm"
+        [(selection)]="userSelecionado" (onRowSelect)="onRowSelect($event)">
+        <p-column field="username" header="Username"></p-column>
+        <p-column field="password" header="Senha"></p-column>
+    </p-dataTable>
 </div>
 <p-contextMenu #cm [model]="items"></p-contextMenu>
+
+
+<p-dialog header="Usuário" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="350">
+    <div *ngIf="user">
+        <label>Nome : {{userSelecionado.nome}}</label>
+        <br />
+        <br />
+        <label>Usuário : {{userSelecionado.username}}</label>
+        <br />
+        <br />
+        <label>CPF : {{userSelecionado.cpf}}</label>
+        <br />
+        <br />
+    </div>
+    <button pButton type="button" label="Deletar" class="ui-button-danger" (click)="deletar()"></button>
+</p-dialog>
