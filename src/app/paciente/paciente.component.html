@@ -1,10 +1,9 @@
 <div align="center">
-  <p-fieldset  legend="Dados do Paciente" [style]="{'width':'500px'}">
-             Paciente: <b icon="fa-user"> {{nomePacienteLogado}} </b> <br/>
-      Nome de Usuário: <b> {{nomeUserPacienteLogado}} </b><br/>
-                 Cpf : <b> {{cpfPacienteLogado}} </b><br/>
-      
-
+  <p-fieldset  legend="Bem vindo {{nomePacienteLogado}}!" [style]="{'width':'500px'}">
+      Nome de Usuário: <b icon="fa-user"> {{nomePacienteLogado}} </b> <br/>
+      Senha de Usuário: <b>{{senhaPacienteLogado}} </b>
+      <input [(ngModel)]="nomePacienteLogado" type="text" class="form-control" id="username" name="username" required>
+      <input [(ngModel)]="senhaPacienteLogado" type="text" class="form-control" id="username" name="username" required>
   </p-fieldset>
 </div>
 

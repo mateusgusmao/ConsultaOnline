@@ -1,5 +1,49 @@
+<router-outlet></router-outlet>
 <div align="center">
   <header>
-    <img width="200" height="200" alt="Heazy Adm" src="assets/pml3.png">
+    <h1><img width="200" height="200" alt="Heazy Logo" src="assets/pml3.png"></h1>
   </header>
 </div>
+<div class="container" style="width:800px">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Login
+    </div>
+    <div class="panel-body">
+
+      <form #myForm="ngForm">
+
+        <!--CAMPO DE USERNAME(CADASTRO) -->
+        <div class="form-group" [class.has-error]="username.touched && username.invalid">
+          <label class="control-label" for="username">Usuário:</label>
+          <input [(ngModel)]="userADM" placeholder="Digite seu nome de usuário" type="text" class="form-control" id="username"
+            name="username" #username="ngModel" required>
+          <span style="color:#a94442" *ngIf="username.errors && (username.dirty || username.touched)">
+            <ul>
+              <li *ngIf="username.errors.required">
+                O campo Usuário é requirido.
+              </li>
+            </ul>
+          </span>
+        </div>
+        <!--CAMPO DE PASSWORD(CADASTRO) -->
+        <div class="form-group" [class.has-error]="password.touched && password.invalid">
+          <label for="password">Senha:</label>
+          <input [(ngModel)]="senhaADM" placeholder="Digite sua senha" type="password" class="form-control" id="password" name="password"
+            #password="ngModel" required>
+          <span style="color:#a94442" *ngIf="password.errors && (password.dirty || password.touched)">
+              <ul>
+                <li *ngIf="password.errors.required">
+                  O campo Senha é requirido.
+                </li>
+              </ul>
+            </span>
+        </div>
+        <div>
+        </div><br/>
+        <p-growl [(value)]="msgs"></p-growl>
+        <button pButton [disabled]="!myForm.valid" type="button" class="ui-button-primary" label="Entrar" (click)="login();"></button>
+
+      </form>
+    </div>
+  </div>
