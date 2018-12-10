@@ -42,9 +42,9 @@
         <p-growl [(value)]="msgs"></p-growl>
         <button pButton [disabled]="!myForm.valid" type="button" class="ui-button-primary" label="Entrar" (click)="login();"></button>        Não tem uma conta?
         <a routerLink="/cadastro">Clique aqui</a>
-        <div align="right">
-          <button pButton type="button" class="ui-button-rounded ui-button-secondary" label="Sou um Administrador" (click)=" irParaAdministracao()"></button>
-        </div>
       </form>
     </div>
   </div>
+  <footer>
+    <p>Made by <a href="/adm-login">PML Systems</a> </p>
+  </footer>
