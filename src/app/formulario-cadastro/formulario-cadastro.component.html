@@ -12,6 +12,18 @@
     <div class="panel-body">
 
       <form #myForm="ngForm">
+        <!--CAMPO DE NOME(CADASTRO) -->
+          <div class="form-group" [class.has-error]="nome.touched && nome.invalid">
+              <label class="control-label" for="nome">Nome e Sobrenome:</label>
+              <input [(ngModel)]="nomeUsuario" placeholder="Digite seu nome completo" type="text" class="form-control" id="nome" name="nome" minlength="8" maxlength="20" #nome="ngModel" required>
+              <span style="color:#a94442" *ngIf="nome.errors && (nome.dirty || nome.touched)">
+                  <ul>
+                    <li *ngIf="nome.errors.required">
+                      O campo Nome é requirido.
+                    </li>
+                  </ul>
+                </span>
+            </div>
         <!--CAMPO DE USERNAME(CADASTRO) -->
         <div class="form-group" [class.has-error]="username.touched && username.invalid">
           <label class="control-label" for="username">Usuário:</label>
