@@ -49,10 +49,6 @@ export class FormularioComponent implements OnInit {
     });
   }
 
-  irParaAdministracao() {
-    this.rota.navigate(['/adm-menu/listar-users']);
-  }
-
   ngOnInit() {
 
   }

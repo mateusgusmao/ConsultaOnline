@@ -1,4 +1,4 @@
-export interface User{
+export interface ADM {
     username: string;
     password: string;
     

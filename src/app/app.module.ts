@@ -35,6 +35,7 @@ import { UserService } from './user.service';
 import { ConsultasService } from './consultas.service'
 import { EspecialidadeService } from './especialidade.service';
 import { MedicoService } from './medico.service';
+import { AdmService } from './adm.service';
 
 import { Message } from 'primeng/components/common/api';
 import { RadioButtonModule, MenuItemContent, BasePanelMenuItem } from 'primeng/primeng';
@@ -120,7 +121,7 @@ import { GrowlModule } from 'primeng/primeng';
     CommonModule
 
   ],
-  providers: [UserService, ConsultasService, AngularFireAuth, EspecialidadeService, MedicoService, FormBuilder],
+  providers: [UserService, ConsultasService, AngularFireAuth, EspecialidadeService, MedicoService, FormBuilder, AdmService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
