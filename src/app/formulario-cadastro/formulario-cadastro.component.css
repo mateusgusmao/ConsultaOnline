@@ -2,7 +2,7 @@ header{
     background-color:white;
 }
 
-button:disabled {
+.ui-button-success:disabled {
     background: #bbb;
     color: #5cb85c;
     border: none;

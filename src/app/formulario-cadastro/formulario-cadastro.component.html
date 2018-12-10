@@ -1,57 +1,67 @@
 <router-outlet></router-outlet>
 <div align="center">
-    <header>
-    <h1><img width="450" height="130"alt="Heazy Logo" src="assets/heazy.png"></h1>
-    </header>
-    </div>
+  <header>
+    <h1><img width="450" height="130" alt="Heazy Logo" src="assets/heazy.png"></h1>
+  </header>
+</div>
 <div class="container" style="width:800px">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-          Crie sua conta    
-      </div>
-      <div class="panel-body">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Crie sua conta
+    </div>
+    <div class="panel-body">
 
-        <form #myForm = "ngForm">
-<!--CAMPO DE USERNAME(CADASTRO) -->
-          <div class="form-group" [class.has-error]="username.touched && username.invalid">
-            <label for="username">Usuário:</label>
-            <input [(ngModel)]="userUsuario" placeholder="Escolha um nome de usuário" type="text" class="form-control" id="username" name="username" #username="ngModel" required>
-                      <span style="color:#a94442" *ngIf="username.errors && (username.dirty || username.touched)">
+      <form #myForm="ngForm">
+        <!--CAMPO DE USERNAME(CADASTRO) -->
+        <div class="form-group" [class.has-error]="username.touched && username.invalid">
+          <label class="control-label" for="username">Usuário:</label>
+          <input [(ngModel)]="userUsuario" placeholder="Escolha um nome de usuário" type="text" class="form-control" id="username"
+            name="username" #username="ngModel" required>
+          <span style="color:#a94442" *ngIf="username.errors && (username.dirty || username.touched)">
             <ul>
               <li *ngIf="username.errors.required">
                 O campo Usuário é requirido.
               </li>
             </ul>
           </span>
-          </div>
-<!--CAMPO DE PASSWORD(CADASTRO) -->
-          <div class="form-group" [class.has-error]="password.touched && password.invalid">
-              <label for="password">Senha:</label>
-              <input [(ngModel)]="senhaUsuario" placeholder="Escolha uma senha" type="password" pPassword class="form-control" id="password" name="password" #password="ngModel" required>
-              <span style="color:#a94442" *ngIf="password.errors && (password.dirty || password.touched)">
+        </div>
+        <!--CAMPO DE PASSWORD(CADASTRO) -->
+        <div class="form-group" [class.has-error]="password.touched && password.invalid">
+          <label class="control-label" for="password">Senha:</label>
+          <input [(ngModel)]="senhaUsuario" placeholder="Escolha uma senha" type="password" minlength="6" maxlength="12" pPassword
+            class="form-control" id="password" name="password" #password="ngModel" required>
+          <span style="color:#a94442" *ngIf="password.errors && (password.dirty || password.touched)">
                     <ul>
                       <li *ngIf="password.errors.required">
                         O campo Senha é requirido.
                       </li>
                     </ul>
                   </span>
-            </div>
-<!--CAMPO DE CPF(CADASTRO) -->
-            <div class="form-group" [class.has-error]="cpf.touched && cpf.invalid">
-                <label for="cpf">Informe seu CPF:</label><br/>
-                <p-inputMask mask="999.999.999-99" [(ngModel)]="cpfUsuario" id="cpf" name="cpf" placeholder="999.999.999-99" [size]="100" #cpf="ngModel" required></p-inputMask>
-                <span style="color:#a94442" *ngIf="cpf.errors && (cpf.dirty || cpf.touched)">
+          <span style="color:#a94442" *ngIf="password.errors?.minlength || password.errors?.maxlength">
+                    <ul>
+                      <li>
+                        De 6 a 12 caracteres.
+                      </li>
+                    </ul>
+                  </span>
+        </div>
+        <!--CAMPO DE CPF(CADASTRO) -->
+        <div class="form-group" [class.has-error]="cpf.touched && cpf.invalid">
+          <label class="control-label" for="cpf">Informe seu CPF:</label><br/>
+          <p-inputMask mask="999.999.999-99" [(ngModel)]="cpfUsuario" id="cpf" name="cpf" placeholder="999.999.999-99" [size]="100"
+            #cpf="ngModel" required></p-inputMask>
+          <span style="color:#a94442" *ngIf="cpf.errors && (cpf.dirty || cpf.touched)">
                     <ul>
                       <li *ngIf="cpf.errors.required">
                         O campo CPF é requirido.
                       </li>
                     </ul>
                   </span>
-              </div>
-            <button pButton [disabled]="!myForm.valid" type="button" class="ui-button-success" label="Cadastre-se!" (click)="register()" routerLink='/login'></button> Já é cadastrado ?
-            <a routerLink="">Clique aqui</a>
+        </div>
+        <button pButton [disabled]="!myForm.valid" type="button" class="ui-button-success" label="Cadastre-se!" (click)="register()"
+          routerLink='/login'></button> Já é cadastrado ?
+        <a routerLink="">Clique aqui</a>
 
-        </form>
-      </div>
-</div>
-
+      </form>
+    </div>
+  </div>

@@ -81,7 +81,7 @@ export class ConsultasComponent implements OnInit {
 
   atualizar() {
     if (this.consulta.id != undefined)
-      this.mudarEspecialidade()
+      //this.mudarEspecialidade()
       this.consultaService.atualizarConsultaFirebase(this.consulta).then(() => {
         this.listar();
         this.consulta = null;
@@ -122,7 +122,7 @@ export class ConsultasComponent implements OnInit {
 
       this.especialidades = this.relacaoEspecialidades
         .map(esp => {
-          return {label: esp.nome, value: esp.id}
+          return {label: esp.nome, value: esp.nome}
         });
 
         console.log('especialidades...')

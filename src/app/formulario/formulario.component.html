@@ -28,7 +28,7 @@
         <!--CAMPO DE PASSWORD(CADASTRO) -->
 
         <div class="form-group" [class.has-error]="password.touched && password.invalid">
-          <label for="password">Senha:</label>
+          <label class="control-label" for="password">Senha:</label>
           <input [(ngModel)]="senhaUsuario" placeholder="Digite sua senha" type="password" class="form-control" id="password" name="password" #password="ngModel" required>
           <span style="color:#a94442" *ngIf="password.errors && (password.dirty || password.touched)">
               <ul>
