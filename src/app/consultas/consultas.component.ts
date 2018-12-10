@@ -18,128 +18,128 @@ import {ProgressSpinnerModule} from 'primeng/primeng';
 })
 export class ConsultasComponent implements OnInit {
   
- /*consultas:Consulta[] = [];
-  selectedConsulta: Consulta;
-  consulta: Consulta = new Consulta();
-  newConsulta: boolean;*/
-
-  consulta: Consulta;
-  user: User;
-
-  growl: Message[] = [];
-  carregando: boolean;
-
-  listaDeConsultas: any[]=[];
-  cols: any[];
-  displayDialog: boolean;
-
-  especialidades: SelectItem[];
-  planosSaude: SelectItem[];
-
-  especialidade: Especialidade;
-  relacaoEspecialidades:any[] = [];
-  especialidadeSelecionada;
-
-  constructor(private consultaService:ConsultasService, private userService: UserService, 
-                                    private rota: Router, private especialidadesService: EspecialidadeService) { 
-
-    /*this.consultas = this.getConsultas();
-      console.log(this.consultas);*/
-  
-  }
-
-
-  showError() {
-    this.growl = [];
-    this.growl.push({severity:'warn', summary:'Consulta Aprovada', detail:'Não é possivel editar sua consulta já aprovada'});
-}
-
-  ngOnInit() {
-    this.listar();
-    this.listarEsp();
-
-    this.planosSaude = [
-      {label:'Sim', value: 'Sim'},
-      {label:'Não', value: 'Não'},
-     ]
-     this.especialidades = []
-  }
-
-  listar(){
-     this.carregando = true;
-
-    this.consultaService.listarPorIdUsuario(this.userService.usuarioLogado.id).subscribe(listaDeConsultas => {
-      this.listaDeConsultas = listaDeConsultas;
-
-      this.carregando = false;
-    });
-  }
-
-  voltarSituacao(){
-    this.consulta.situacao = "Pendente";
-  }
-
-  atualizar() {
-    if (this.consulta.id != undefined)
-      this.mudarEspecialidade()
-      this.consultaService.atualizarConsultaFirebase(this.consulta).then(() => {
-        this.listar();
-        this.consulta = null;
-        this.displayDialog = false;
-      });
-  }
-
-  apagarConsulta(){
-    this.consultaService.apagarConsultaFirebase(this.consulta).then(() => {
-      this.listar();
-      this.consulta = null;
-      this.displayDialog = false;
-    });
-  }
-  
-  onRowSelect(event) {
-    console.log(event.data)
-    this.consulta = this.cloneConsulta(event.data);
-    if(this.consulta.situacao == "Pendente"){
-    this.displayDialog = true;
-    }else{
-      this.showError();
-    }
-  }
-  
-  cloneConsulta(consulta: Consulta): Consulta {
-    let c = { especialidade: " ", planoSaude: " ", data: null,turno: " ", situacao: " ", status: false};
-    for (let prop in c) {
-      c[prop] = consulta[prop];
-    }
-    c["id"] = consulta.id;
-    return c;
-  }
-
-  listarEsp(){
-    this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
-      this.relacaoEspecialidades = relacaoEspecialidades;
-
-      this.especialidades = this.relacaoEspecialidades
-        .map(esp => {
-          return {label: esp.nome, value: esp.id}
-        });
-
-        console.log('especialidades...')
-        console.log(this.especialidades);
-        console.log(this.planosSaude)
-        
-        
-    });
-  }
-
-  onRowSelectEsp(event) {
-    console.log(event.data)
-    console.log(this.especialidadeSelecionada.nome);
-  }
-  mudarEspecialidade(){
-    this.consulta.especialidade = this.especialidadeSelecionada.nome;
-  }
+  /*consultas:Consulta[] = [];
+   selectedConsulta: Consulta;
+   consulta: Consulta = new Consulta();
+   newConsulta: boolean;*/
+ 
+   consulta: Consulta;
+   user: User;
+ 
+   growl: Message[] = [];
+   carregando: boolean;
+ 
+   listaDeConsultas: any[]=[];
+   cols: any[];
+   displayDialog: boolean;
+ 
+   especialidades: SelectItem[];
+   planosSaude: SelectItem[];
+ 
+   especialidade: Especialidade;
+   relacaoEspecialidades:any[] = [];
+   especialidadeSelecionada;
+ 
+   constructor(private consultaService:ConsultasService, private userService: UserService, 
+                                     private rota: Router, private especialidadesService: EspecialidadeService) { 
+ 
+     /*this.consultas = this.getConsultas();
+       console.log(this.consultas);*/
+   
+   }
+ 
+ 
+   showError() {
+     this.growl = [];
+     this.growl.push({severity:'warn', summary:'Consulta Aprovada', detail:'Não é possivel editar sua consulta já aprovada'});
+ }
+ 
+   ngOnInit() {
+     this.listar();
+     this.listarEsp();
+ 
+     this.planosSaude = [
+       {label:'Sim', value: 'Sim'},
+       {label:'Não', value: 'Não'},
+      ]
+      this.especialidades = []
+   }
+ 
+   listar(){
+      this.carregando = true;
+ 
+     this.consultaService.listarPorIdUsuario(this.userService.usuarioLogado.id).subscribe(listaDeConsultas => {
+       this.listaDeConsultas = listaDeConsultas;
+ 
+       this.carregando = false;
+     });
+   }
+ 
+   voltarSituacao(){
+     this.consulta.situacao = "Pendente";
+   }
+ 
+   atualizar() {
+     if (this.consulta.id != undefined)
+       //this.mudarEspecialidade()
+       this.consultaService.atualizarConsultaFirebase(this.consulta).then(() => {
+         this.listar();
+         this.consulta = null;
+         this.displayDialog = false;
+       });
+   }
+ 
+   apagarConsulta(){
+     this.consultaService.apagarConsultaFirebase(this.consulta).then(() => {
+       this.listar();
+       this.consulta = null;
+       this.displayDialog = false;
+     });
+   }
+   
+   onRowSelect(event) {
+     console.log(event.data)
+     this.consulta = this.cloneConsulta(event.data);
+     if(this.consulta.situacao == "Pendente"){
+     this.displayDialog = true;
+     }else{
+       this.showError();
+     }
+   }
+   
+   cloneConsulta(consulta: Consulta): Consulta {
+     let c = { especialidade: " ", planoSaude: " ", data: null,turno: " ", situacao: " ", status: false};
+     for (let prop in c) {
+       c[prop] = consulta[prop];
+     }
+     c["id"] = consulta.id;
+     return c;
+   }
+ 
+   listarEsp(){
+     this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
+       this.relacaoEspecialidades = relacaoEspecialidades;
+ 
+       this.especialidades = this.relacaoEspecialidades
+         .map(esp => {
+           return {label: esp.nome, value: esp.nome}
+         });
+ 
+         console.log('especialidades...')
+         console.log(this.especialidades);
+         console.log(this.planosSaude)
+         
+         
+     });
+   }
+ 
+   onRowSelectEsp(event) {
+     console.log(event.data)
+     console.log(this.especialidadeSelecionada.nome);
+   }
+   mudarEspecialidade(){
+     //this.consulta.especialidade = this.especialidadeSelecionada.nome;
+   }
 
  /* aprovarConsulta(consulta){
      this.consulta = consulta;

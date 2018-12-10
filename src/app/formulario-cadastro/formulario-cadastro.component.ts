@@ -20,17 +20,11 @@ export class FormularioCadastroComponent implements OnInit {
   
   userform: FormGroup;
   
-  constructor(private userService: UserService, private fb: FormBuilder) {
+  constructor(private userService: UserService) {
      //this.novoUsuario = { username: "", password: "", consultas: [] }
   }
 
   ngOnInit() {
-
-    this.userform = this.fb.group({
-      'nomesobrenome': new FormControl('',Validators.compose([Validators.required, Validators.minLength(20)])),
-      'username': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-      'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
-  });
   }
   
 register() {

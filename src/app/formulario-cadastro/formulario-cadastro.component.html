@@ -31,7 +31,7 @@
                 <label for="cpf">Informe seu CPF:</label><br/>
                 <p-inputMask mask="999.999.999-99" [(ngModel)]="cpfUsuario" id="cpf" name="cpf" placeholder="999.999.999-99" [size]="100" required></p-inputMask>
               </div>
-
+  
             <button [disabled]="!nomeUsuario ||!userUsuario || !senhaUsuario || !cpfUsuario" pButton type="button" class="ui-button-success" label="Cadastre-se!" (click)="register()" routerLink='/login'></button>
             <button align="right" pButton type="button" class="ui-button-primary" label="Voltar"  routerLink='/login'></button>
 

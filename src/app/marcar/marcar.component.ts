@@ -18,7 +18,7 @@ import { MedicoService } from '../medico.service';
 })
 export class MarcarComponent implements OnInit {
 
-      /*especialidades: SelectItem[] = [];
+ /*especialidades: SelectItem[] = [];
       planosSaude: SelectItem[] = [];
       selectedEspecialidade: String;
       selectedPlanoSaude: String;  
@@ -39,6 +39,7 @@ export class MarcarComponent implements OnInit {
       invalidDates: Array<Date>;
 
       relacaoEspMed: any[] = [];
+      medicosFiltrados: any[] = [];
       medicoSelecionado; 
       //relacaoMedTur: any[]=[];
 
@@ -128,13 +129,21 @@ export class MarcarComponent implements OnInit {
       listarMedicos(){
         this.medicoService.listarPorNomeEsp(this.consulta.especialidade).subscribe(relacaoEspMed =>{
           this.relacaoEspMed = relacaoEspMed;
+          this.medicosFiltrados = relacaoEspMed;
+          this.filtrarMedicosPorTurno();
         });
       }
       onRowSelectMed(event) {
           console.log(event.data)
           console.log(this.medicoSelecionado.username);
       }
-
+  
+      filtrarMedicosPorTurno($event = null) {
+        if (this.consulta.turno) {
+          this.medicosFiltrados = this.relacaoEspMed.filter(m => m.turno === this.consulta.turno);
+        }
+        
+      }
   /*save() {
   let consultas = [...this.consultas];
   if(this.newConsulta)
