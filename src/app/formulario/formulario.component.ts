@@ -30,6 +30,7 @@ export class FormularioComponent implements OnInit {
   showInfo() {
     this.msgs = [];
     this.msgs.push({ severity: 'info', summary: 'Bem-vindo ao HEAZY', detail: 'Seja bem-vindo!' });
+
   }
 
   login(user, senha) {
@@ -44,12 +45,13 @@ export class FormularioComponent implements OnInit {
         this.userService.loginUsuario(user, senha).subscribe(meuObservable => {
           this.userService.usuarioLogado = meuObservable as User
           console.log("Usuario Logado: " + this.userService.usuarioLogado.username)
+
         })
       }
     });
   }
-
+    
   ngOnInit() {
-
   }
+    
 }

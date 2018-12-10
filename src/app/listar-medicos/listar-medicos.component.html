@@ -1,0 +1,37 @@
+<div align="center">
+  <p-dataTable [style]="{'width':'500px'}" [style]="{'height':'900px'}" [value]="relacaoMedicos" selectionMode="single"
+    [(selection)]="medicoSelecionado" (onRowSelect)="onRowSelect($event)" rows="15" [responsive]="true">
+    <p-column field="username" header="Médico"></p-column>
+    <p-column field="sexo" header="Sexo" [sortable]="true"></p-column>
+    <p-column field="nomeEspecialidade" header="Especialidade" [sortable]="true"></p-column>
+    <p-column field="turno" header="Turno" [sortable]="true"></p-column>
+  </p-dataTable>
+</div>
+
+<p-dialog header="Editar Médico" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+  [width]="350">
+  <div *ngIf="medico">
+    <label>Nome :</label>
+    <input type="text" [(ngModel)]="medico.username" id="username" name="username" pInputText placeholder="Nome do Médico">
+    <br />
+    <br />
+    <label>Selecione uma Especialidade: </label>
+    <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single" [(selection)]="especialidadeSelecionada"
+      (onRowSelect)="onRowSelectEsp($event)">
+    <p-column field="nome"></p-column>
+    </p-dataTable>
+    <br />
+    <br />
+    <label>Turno :</label>
+    <p-dropdown [options]="turno" [(ngModel)]="medico.turno" id="turno" placeholder="Turno do Médico" [style]="{'width':'150px'}"></p-dropdown>
+    <br />
+    <br />
+    <label>Sexo :</label>
+    <p-dropdown [options]="sexo" [(ngModel)]="medico.sexo" id="sexo" placeholder="Sexo" [style]="{'width':'150px'}"></p-dropdown>
+    <br />
+    <br />
+    <button pButton [disabled]="!medico.username || !medico.turno || !medico.sexo" type="button" label="Atualizar"
+      (click)="atualizar()"></button>
+    <button pButton type="button" label="Deletar" class="ui-button-danger" (click)="apagarMedico()"></button>
+  </div>
+</p-dialog>

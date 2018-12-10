@@ -8,6 +8,8 @@ import { UserService } from '../user.service';
 import { User } from '../models/user';
 import {Message} from 'primeng/primeng';
 import { EspecialidadeService } from '../especialidade.service';
+import { Especialidade } from '../models/especialidade';
+import {ProgressSpinnerModule} from 'primeng/primeng';
 
 @Component({
   selector: 'app-consultas',
@@ -24,40 +26,28 @@ export class ConsultasComponent implements OnInit {
   consulta: Consulta;
   user: User;
 
-  listaEspecialidade: any[]=[];
+  growl: Message[] = [];
+  carregando: boolean;
+
   listaDeConsultas: any[]=[];
   cols: any[];
   displayDialog: boolean;
 
-  especialidades:SelectItem[];
+  especialidades: SelectItem[];
   planosSaude: SelectItem[];
 
-  growl: Message[] = [];
-  
+  especialidade: Especialidade;
+  relacaoEspecialidades:any[] = [];
+  especialidadeSelecionada;
 
   constructor(private consultaService:ConsultasService, private userService: UserService, 
-                                    private rota: Router, private especialidadeService: EspecialidadeService) { 
+                                    private rota: Router, private especialidadesService: EspecialidadeService) { 
 
     /*this.consultas = this.getConsultas();
       console.log(this.consultas);*/
-
-      
-      
-      this.especialidades = [
-        {label:'Escolha especialidade', value:null},
-        {label:'Dermatologista', value: 'Dermatologista'},
-        {label:'Cardiologista', value: 'Cardiologista'},
-        {label:'Oftamologista', value:'Oftamologista'},
-        {label:'Pediatria', value:'Pediatria'},
-       ]
-  
-       this.planosSaude = [
-        {label:'Você tem Plano de Saúde? ', value:null},
-        {label:'Sim', value: 'Sim'},
-        {label:'Não', value: 'Não'},
-       ]
   
   }
+
 
   showError() {
     this.growl = [];
@@ -66,21 +56,24 @@ export class ConsultasComponent implements OnInit {
 
   ngOnInit() {
     this.listar();
-    this.listarEspecialidade();
+    this.listarEsp();
+
+    this.planosSaude = [
+      {label:'Sim', value: 'Sim'},
+      {label:'Não', value: 'Não'},
+     ]
+     this.especialidades = []
   }
 
   listar(){
+     this.carregando = true;
+
     this.consultaService.listarPorIdUsuario(this.userService.usuarioLogado.id).subscribe(listaDeConsultas => {
       this.listaDeConsultas = listaDeConsultas;
-    });
-  }
-  
-  listarEspecialidade(){
-    this.especialidadeService.listarTodos().subscribe(listaEspecialidade =>{
-      this.listaEspecialidade = listaEspecialidade;
-    });
-  }
 
+      this.carregando = false;
+    });
+  }
 
   voltarSituacao(){
     this.consulta.situacao = "Pendente";
@@ -88,6 +81,7 @@ export class ConsultasComponent implements OnInit {
 
   atualizar() {
     if (this.consulta.id != undefined)
+      this.mudarEspecialidade()
       this.consultaService.atualizarConsultaFirebase(this.consulta).then(() => {
         this.listar();
         this.consulta = null;
@@ -114,12 +108,37 @@ export class ConsultasComponent implements OnInit {
   }
   
   cloneConsulta(consulta: Consulta): Consulta {
-    let c = { especialidade: " ", planoSaude: " ", data: null, situacao: " ", status: false};
+    let c = { especialidade: " ", planoSaude: " ", data: null,turno: " ", situacao: " ", status: false};
     for (let prop in c) {
       c[prop] = consulta[prop];
     }
     c["id"] = consulta.id;
     return c;
+  }
+
+  listarEsp(){
+    this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
+      this.relacaoEspecialidades = relacaoEspecialidades;
+
+      this.especialidades = this.relacaoEspecialidades
+        .map(esp => {
+          return {label: esp.nome, value: esp.id}
+        });
+
+        console.log('especialidades...')
+        console.log(this.especialidades);
+        console.log(this.planosSaude)
+        
+        
+    });
+  }
+
+  onRowSelectEsp(event) {
+    console.log(event.data)
+    console.log(this.especialidadeSelecionada.nome);
+  }
+  mudarEspecialidade(){
+    this.consulta.especialidade = this.especialidadeSelecionada.nome;
   }
 
  /* aprovarConsulta(consulta){

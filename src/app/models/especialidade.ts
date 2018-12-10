@@ -3,6 +3,6 @@ import { Observable } from '../../../node_modules/rxjs';
 
 export interface Especialidade{
     
-    nome: String;
+    nome: string;
     id?: String;
 } 

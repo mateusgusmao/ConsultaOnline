@@ -1,32 +1,57 @@
 <p-growl [(value)]="growl"></p-growl>
-<div align="center">
-<p-dataTable [style]="{'width':'800px'}" [style]="{'height':'900px'}"  [value]="listaDeConsultas" selectionMode="single" [(selection)]="consultaSelecionada" (onRowSelect)="onRowSelect($event)"  rows="15" [responsive]="true">
-  <p-header>Minhas Consultas</p-header>
-  <p-column field="nomePaciente" header="Nome" [sortable]="true"></p-column>
-  <p-column field="especialidade" header="Especialidade" [sortable]="true"></p-column>
-  <p-column field="planoSaude" header="Plano de Saude ?" [sortable]="true"></p-column>
-  <p-column field="situacao" header="Status" [sortable]="true"></p-column>
-  <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" routerLink='/main/marcar-consulta' label="Adicionar Consulta"></button></div></p-footer>
-</p-dataTable>
+
+<div *ngIf="carregando" align="center">
+  <p-progressSpinner [style]="{width: '100px', height: '100px'}" strokeWidth="4" fill="white" animationDuration=".9s">
+  </p-progressSpinner>
+</div>
+<h6 *ngIf="listaDeConsultas == null && !carregando">Não há usuários cadastrados</h6>
+
+<div *ngIf="!carregando" align="center">
+  <p-dataTable [style]="{'width':'800px'}" [style]="{'height':'900px'}" [value]="listaDeConsultas" selectionMode="single"
+    [(selection)]="consultaSelecionada" (onRowSelect)="onRowSelect($event)" rows="15" [responsive]="true">
+    <p-header>Minhas Consultas</p-header>
+    <p-column field="nomePaciente" header="Nome" [sortable]="true"></p-column>
+    <p-column field="especialidade" header="Especialidade" [sortable]="true"></p-column>
+    <p-column field="nomeMedico" header="Médico" [sortable]="true"></p-column>
+    <p-column field="data" header="Data" [sortable]="true">
+      <ng-template let-row="rowData" pTemplate="body">
+        {{row.data | date:'dd/MM/yyyy'}}
+      </ng-template>
+    </p-column>
+    <p-column field="situacao" header="Status" [sortable]="true"></p-column>
+    <p-footer>
+      <div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left"
+          routerLink='/main/marcar-consulta' label="Adicionar Consulta"></button></div>
+    </p-footer>
+  </p-dataTable>
 </div>
 
-<p-dialog header="Detalhes da Consulta" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="350">
+<p-dialog header="Editar Consulta" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+  [width]="350">
   <div *ngIf="consulta">
-      <div>
-          <label for="especialidade">Especialidade  :</label>
-          <p-dropdown name ="especialidade" [options]="especialidades" [(ngModel)]="consulta.especialidade" [style]="{'width':'150px'}" required></p-dropdown>
-      </div><br/>
-      <div>
-          <label for="planoSaude">Plano Saude   :</label>
-          <p-dropdown name ="planoSaude" [options]="planosSaude" [(ngModel)]="consulta.planoSaude" [style]="{'width':'150px'}" required></p-dropdown>
-      </div><br/>
+    <div>
+      <label>Selecione uma Especialidade: </label>
+      <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single" [(selection)]="especialidadeSelecionada"
+        (onRowSelect)="onRowSelectEsp($event)">
+        <p-column field="nome"></p-column>
+      </p-dataTable><br />
+      <label>Especialidade Atual: {{consulta.especialidade}}</label>
+    </div><br />
+    <div>
+      <label for="planoSaude">Plano Saude :</label>
+      <p-dropdown [options]="planosSaude" [(ngModel)]="consulta.planoSaude" placeholder="Plano de Saúde" [style]="{'width':'150px'}"
+        required></p-dropdown>
+    </div><br />
     <label>Situação : {{consulta.situacao}}</label>
   </div>
+
+  <p-dropdown name="especialidade" [options]="especialidades" [(ngModel)]="especialidade" [style]="{'width':'150px'}"></p-dropdown>
+
   <p-footer>
-      <div class="ui-dialog-buttonpane ui-helper-clearfix">
-          <button type="button" pButton icon="fa-close" (click)="apagarConsulta()" label="Deletar" ></button>
-          <button type="button" pButton icon="fa-check" (click)="atualizar()" label="Salvar"></button>
-      </div>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="fa-close" (click)="apagarConsulta()" label="Deletar"></button>
+      <button [disabled]="!especialidade || !planoSaude" type="button" pButton icon="fa-check" (click)="atualizar()" label="Salvar"></button>
+    </div>
   </p-footer>
 </p-dialog>
 
@@ -58,9 +83,3 @@
 </p-dataTable>
 </div>
 -->
-
-
-
-
-
-  

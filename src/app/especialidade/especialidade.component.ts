@@ -28,8 +28,5 @@ export class EspecialidadeComponent implements OnInit {
 
     console.log(this.especialidade)
 
-
-
-
   }
 }

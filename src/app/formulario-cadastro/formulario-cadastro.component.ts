@@ -3,6 +3,7 @@ import { User } from '../models/user'
 import { UserService } from '../user.service';
 import {TabMenuModule, MenuItem} from 'primeng/primeng';
 import { Consulta } from '../models/consulta'
+import {Validators,FormControl,FormGroup,FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-cadastro',
@@ -13,19 +14,28 @@ export class FormularioCadastroComponent implements OnInit {
 
   userUsuario: string;
   senhaUsuario: string;
+  nomeUsuario: string;
+  cpfUsuario: string;
 
-   //novoUsuario: User
   
+  userform: FormGroup;
   
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private fb: FormBuilder) {
      //this.novoUsuario = { username: "", password: "", consultas: [] }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.userform = this.fb.group({
+      'nomesobrenome': new FormControl('',Validators.compose([Validators.required, Validators.minLength(20)])),
+      'username': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
+      'password': new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])),
+  });
+  }
   
 register() {
 
-  let novoUsuario: User = {username:this.userUsuario, password:this.senhaUsuario};
+  let novoUsuario: User = {username:this.userUsuario, password:this.senhaUsuario,nome: this.nomeUsuario,cpf: this.cpfUsuario};
   this.userUsuario = "";
   this.senhaUsuario = "";
   

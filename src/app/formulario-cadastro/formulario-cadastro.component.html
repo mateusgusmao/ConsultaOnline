@@ -10,6 +10,7 @@
           Crie sua conta    
       </div>
       <div class="panel-body">
+
         <form #myForm = "ngForm">
 <!--CAMPO DE USERNAME(CADASTRO) -->
           <div class="form-group" [class.has-error]="username.touched && username.invalid">
@@ -35,9 +36,22 @@
                     </ul>
                   </span>
             </div>
+<!--CAMPO DE CPF(CADASTRO) -->
+            <div class="form-group" [class.has-error]="cpf.touched && cpf.invalid">
+                <label for="cpf">Informe seu CPF:</label><br/>
+                <p-inputMask mask="999.999.999-99" [(ngModel)]="cpfUsuario" id="cpf" name="cpf" placeholder="999.999.999-99" [size]="100" #cpf="ngModel" required></p-inputMask>
+                <span style="color:#a94442" *ngIf="cpf.errors && (cpf.dirty || cpf.touched)">
+                    <ul>
+                      <li *ngIf="cpf.errors.required">
+                        O campo CPF é requirido.
+                      </li>
+                    </ul>
+                  </span>
+              </div>
             <button pButton [disabled]="!myForm.valid" type="button" class="ui-button-success" label="Cadastre-se!" (click)="register()" routerLink='/login'></button> Já é cadastrado ?
             <a routerLink="">Clique aqui</a>
 
         </form>
       </div>
 </div>
+

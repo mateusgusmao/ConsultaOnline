@@ -12,6 +12,8 @@ export class PacienteComponent implements OnInit {
 
   nomePacienteLogado: String;
   senhaPacienteLogado: String;
+  nomeUserPacienteLogado: String;
+  cpfPacienteLogado: String;
 
   constructor(private userService: UserService) { }
 
@@ -22,7 +24,9 @@ export class PacienteComponent implements OnInit {
   }
 
   dadosPaciente(){
-    this.nomePacienteLogado = this.userService.usuarioLogado.username;
+    this.nomePacienteLogado = this.userService.usuarioLogado.nome;
+    this.nomeUserPacienteLogado = this.userService.usuarioLogado.username;
+    this.cpfPacienteLogado = this.userService.usuarioLogado.cpf;
     this.senhaPacienteLogado = this.userService.usuarioLogado.password;
   }
 

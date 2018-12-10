@@ -23,6 +23,7 @@ import { GerenciarComponent } from './gerenciar/gerenciar.component';
 import { SairComponent } from './sair/sair.component';
 import { ListarEspecialidadesComponent } from './listar-especialidades/listar-especialidades.component';
 import { ListarConsultasComponent } from './listar-consultas/listar-consultas.component';
+import { ListarMedicosComponent } from './listar-medicos/listar-medicos.component';
 
 import { FirebaseConfig } from "../environments/firebase.config";
 import { AngularFirestoreModule } from "angularfire2/firestore";
@@ -64,6 +65,7 @@ import { GrowlModule } from 'primeng/primeng';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,6 +87,7 @@ import { GrowlModule } from 'primeng/primeng';
     SairComponent,
     ListarEspecialidadesComponent,
     ListarConsultasComponent,
+    ListarMedicosComponent,
 
 
 
@@ -118,7 +121,9 @@ import { GrowlModule } from 'primeng/primeng';
     FieldsetModule,
     MenuModule,
     GrowlModule,
+    InputMaskModule,
     CommonModule
+
 
   ],
   providers: [UserService, ConsultasService, AngularFireAuth, EspecialidadeService, MedicoService, FormBuilder, AdmService],

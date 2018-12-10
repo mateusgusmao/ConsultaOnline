@@ -24,7 +24,7 @@ export class ConsultasService {
     return this.consultaCollection.doc(consulta.id).delete();
   }
 
-  atualizarConsultaFirebase(consulta): Promise<void>{
+  atualizarConsultaFirebase(consulta): Promise<void> {
     return this.consultaCollection.doc(consulta.id).update(consulta);
   }
 
@@ -62,6 +62,7 @@ export class ConsultasService {
     });
     return meuObservable;
   }
+
 
   listarId(consultaId) {
     return new Observable(observer => {
