@@ -1,41 +1,81 @@
 <router-outlet></router-outlet>
 <div align="center">
-    <header>
-    <h1><img width="450" height="130"alt="Heazy Logo" src="assets/heazy.png"></h1>
-    </header>
-    </div>
+  <header>
+    <h1><img width="450" height="130" alt="Heazy Logo" src="assets/heazy.png"></h1>
+  </header>
+</div>
 <div class="container" style="width:800px">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-          Cadastre-se agora      
-      </div>
-      <div class="panel-body">
-        <form ngForm #form>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Crie sua conta
+    </div>
+    <div class="panel-body">
 
-            <div class="form-group">
-            <label for="nome">Nome e Sobrenome:</label>
-            <input [(ngModel)]="nomeUsuario" type="text" class="form-control" id="nome" name="nome" minlength="8" maxlength="20" required>
-          </div>
-<!--CAMPO DE USERNAME(CADASTRO) -->
-          <div class="form-group">
-            <label for="username">Nome de Usuário:</label>
-            <input [(ngModel)]="userUsuario" type="text" class="form-control" id="username" name="username" maxlength="6" required>
-          </div>
-<!--CAMPO DE PASSWORD(CADASTRO) -->
-          <div class="form-group">
-              <label for="password">Digite uma senha:</label>
-              <input [(ngModel)]="senhaUsuario" type="password" pPassword class="form-control" id="password" name="password" required>
+      <form #myForm="ngForm">
+        <!--CAMPO DE NOME(CADASTRO) -->
+          <div class="form-group" [class.has-error]="nome.touched && nome.invalid">
+              <label class="control-label" for="nome">Nome e Sobrenome:</label>
+              <input [(ngModel)]="nomeUsuario" placeholder="Digite seu nome completo" type="text" class="form-control" id="nome" name="nome" minlength="8" maxlength="20" #nome="ngModel" required>
+              <span style="color:#a94442" *ngIf="nome.errors && (nome.dirty || nome.touched)">
+                  <ul>
+                    <li *ngIf="nome.errors.required">
+                      O campo Nome é requirido.
+                    </li>
+                  </ul>
+                </span>
             </div>
-
-            <div class="form-group">
-                <label for="cpf">Informe seu CPF:</label><br/>
-                <p-inputMask mask="999.999.999-99" [(ngModel)]="cpfUsuario" id="cpf" name="cpf" placeholder="999.999.999-99" [size]="100" required></p-inputMask>
-              </div>
-  
-            <button [disabled]="!nomeUsuario ||!userUsuario || !senhaUsuario || !cpfUsuario" pButton type="button" class="ui-button-success" label="Cadastre-se!" (click)="register()" routerLink='/login'></button>
-            <button align="right" pButton type="button" class="ui-button-primary" label="Voltar"  routerLink='/login'></button>
+        <!--CAMPO DE USERNAME(CADASTRO) -->
+        <div class="form-group" [class.has-error]="username.touched && username.invalid">
+          <label class="control-label" for="username">Usuário:</label>
+          <input [(ngModel)]="userUsuario" placeholder="Escolha um nome de usuário" type="text" class="form-control" id="username"
+            name="username" #username="ngModel" required>
+          <span style="color:#a94442" *ngIf="username.errors && (username.dirty || username.touched)">
+            <ul>
+              <li *ngIf="username.errors.required">
+                O campo Usuário é requirido.
+              </li>
+            </ul>
+          </span>
+        </div>
+        <!--CAMPO DE PASSWORD(CADASTRO) -->
+        <div class="form-group" [class.has-error]="password.touched && password.invalid">
+          <label class="control-label" for="password">Senha:</label>
+          <input [(ngModel)]="senhaUsuario" placeholder="Escolha uma senha" type="password" minlength="6" maxlength="12" pPassword
+            class="form-control" id="password" name="password" #password="ngModel" required>
+          <span style="color:#a94442" *ngIf="password.errors && (password.dirty || password.touched)">
+                    <ul>
+                      <li *ngIf="password.errors.required">
+                        O campo Senha é requirido.
+                      </li>
+                    </ul>
+                  </span>
+          <span style="color:#a94442" *ngIf="password.errors?.minlength || password.errors?.maxlength">
+                    <ul>
+                      <li>
+                        De 6 a 12 caracteres.
+                      </li>
+                    </ul>
+                  </span>
+        </div>
+        <!--CAMPO DE CPF(CADASTRO) -->
+        <div class="form-group" [class.has-error]="cpf.touched && cpf.invalid">
+          <label class="control-label" for="cpf">Informe seu CPF:</label><br/>
+          <p-inputMask mask="999.999.999-99" [(ngModel)]="cpfUsuario" id="cpf" name="cpf" placeholder="999.999.999-99" [size]="100"
+            #cpf="ngModel" required></p-inputMask>
+          <span style="color:#a94442" *ngIf="cpf.errors && (cpf.dirty || cpf.touched)">
+                    <ul>
+                      <li *ngIf="cpf.errors.required">
+                        O campo CPF é requirido.
+                      </li>
+                    </ul>
+                  </span>
+        </div>
+        <button pButton [disabled]="!myForm.valid" type="button" class="ui-button-success" label="Cadastre-se!" (click)="register()"
+          routerLink='/login'></button> Já é cadastrado ?
+        <a routerLink="">Clique aqui</a>
 
         </form>
       </div>
 </div>
+
 
