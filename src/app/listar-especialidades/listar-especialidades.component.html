@@ -1,7 +1,30 @@
 <div align="center">
-  <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single" [contextMenu]="cm" [(selection)]="especialidadeSelecionada">
-      <p-column field="nome" header="Especialidades"></p-column>
-      
-  </p-dataTable>
-  </div>
-  <p-contextMenu #cm [model]="items"></p-contextMenu>
+<div class="ui-g">
+    <div class="ui-g-6">
+        <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single" [contextMenu]="cm"
+            [(selection)]="especialidadeSelecionada">
+            <p-column field="nome" header="Especialidades"></p-column>
+        </p-dataTable>
+        <p-contextMenu #cm [model]="items"></p-contextMenu>
+    </div>
+    <div class="ui-g-6">
+        <p-dataTable header="Horários" [style]="{'width':'200px'}" [value]="relacaoHorario" selectionMode="single"
+            [(selection)]="horarioSelecionado" (onRowSelect)="onRowSelect($event)">
+            <p-header>Horário</p-header>
+            <p-column field="hora" header="Horários"></p-column>
+            <p-column field="turno" header="Turno"></p-column>
+        </p-dataTable>
+    </div>
+</div>
+</div>
+
+<p-dialog *ngIf="horario" header="Editar Consulta" [(visible)]="displayDialog" [responsive]="true" showEffect="fade"
+  [modal]="true" [width]="350">
+  <label>Turno: {{horarioSelecionado.turno}}</label>
+  <br/>
+  <br/>
+  <label>Hora: {{horarioSelecionado.hora}}</label>
+  <br/>
+  <br/>
+  <button type="button" pButton icon="fa-close" (click)="apagarHorario()" label="Deletar"></button>
+  </p-dialog>

@@ -10,6 +10,7 @@ import {Message} from 'primeng/primeng';
 import { EspecialidadeService } from '../especialidade.service';
 import { Especialidade } from '../models/especialidade';
 import {ProgressSpinnerModule} from 'primeng/primeng';
+import { MedicoService } from '../medico.service';
 
 @Component({
   selector: 'app-consultas',
@@ -35,13 +36,17 @@ export class ConsultasComponent implements OnInit {
  
    especialidades: SelectItem[];
    planosSaude: SelectItem[];
+   turnos: SelectItem[];
  
    especialidade: Especialidade;
    relacaoEspecialidades:any[] = [];
    especialidadeSelecionada;
+
+   relacaoEspMed: any[] = [];
+    medicosFiltrados: any[] = [];
  
    constructor(private consultaService:ConsultasService, private userService: UserService, 
-                                     private rota: Router, private especialidadesService: EspecialidadeService) { 
+                private rota: Router, private especialidadesService: EspecialidadeService,private medicoService: MedicoService) { 
  
      /*this.consultas = this.getConsultas();
        console.log(this.consultas);*/
@@ -61,6 +66,11 @@ export class ConsultasComponent implements OnInit {
      this.planosSaude = [
        {label:'Sim', value: 'Sim'},
        {label:'Não', value: 'Não'},
+      ]
+      this.turnos = [
+        {label: 'Manhã', value: 'Manhã'},
+        {label: 'Tarde', value: 'Tarde'},
+        {label: 'Noite', value: 'Noite'},
       ]
       this.especialidades = []
    }
@@ -115,24 +125,47 @@ export class ConsultasComponent implements OnInit {
      c["id"] = consulta.id;
      return c;
    }
- 
    listarEsp(){
-     this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
-       this.relacaoEspecialidades = relacaoEspecialidades;
- 
-       this.especialidades = this.relacaoEspecialidades
-         .map(esp => {
-           return {label: esp.nome, value: esp.nome}
-         });
- 
-         console.log('especialidades...')
-         console.log(this.especialidades);
-         console.log(this.planosSaude)
-         
-         
+    this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
+      this.relacaoEspecialidades = relacaoEspecialidades;
+      this.especialidades = this.relacaoEspecialidades
+     .map(esp => {
+       return {label: esp.nome, value: esp.nome}
      });
-   }
- 
+    });
+  }
+  listarMedicos(){
+    this.medicoService.listarPorNomeEsp(this.consulta.especialidade).subscribe(relacaoEspMed =>{
+      this.relacaoEspMed = relacaoEspMed;
+      this.medicosFiltrados = relacaoEspMed
+        .map(med => {
+       return {label: med.username, value: med.username}
+     });
+      this.filtrarMedicosPorTurno();
+    });
+  }
+  especialidadeSelect(event){
+    console.log(event.value);
+    this.consulta.especialidade = event.value;
+    console.log(this.consulta.especialidade);
+    this.listarMedicos();
+  }
+
+  medicoSelect(event){
+    console.log(event.value);
+    this.consulta.nomeMedico = event.value;
+    console.log(this.consulta.nomeMedico);
+  }
+
+  filtrarMedicosPorTurno($event = null) {
+    if (this.consulta.turno) {
+      this.medicosFiltrados = this.relacaoEspMed.filter(m => m.turno === this.consulta.turno)
+      .map(med => {
+        return {label: med.username, value: med.username}
+      });
+      console.log(this.medicosFiltrados);
+    }   
+  }
    onRowSelectEsp(event) {
      console.log(event.data)
      console.log(this.especialidadeSelecionada.nome);

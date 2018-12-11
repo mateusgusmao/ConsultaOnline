@@ -8,11 +8,11 @@
         <input type="text" [(ngModel)]="medico.username" id="username" name="username" pInputText placeholder="Nome do Médico">
         <br />
         <br />
-        <label>Selecione uma Especialidade: </label>
-        <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single" [(selection)]="especialidadeSelecionada"
+        <p-dropdown name="especialidade" (onChange)="especialidadeSelect($event)" [options]="especialidades" [(ngModel)]="medico.nomeEspecialidade" [style]="{'width':'150px'}" placeholder="Especialidade"></p-dropdown>
+       <!--<p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single" [(selection)]="especialidadeSelecionada"
           (onRowSelect)="onRowSelectEsp($event)">
           <p-column field="nome"></p-column>
-        </p-dataTable>
+        </p-dataTable>--> 
         <br />
         <p-dropdown [options]="turno" [(ngModel)]="medico.turno" id="turno" placeholder="Turno do Médico"></p-dropdown>
         <br />

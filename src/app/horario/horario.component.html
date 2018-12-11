@@ -1,0 +1,22 @@
+<div align="center">
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Criar um Médico
+      </div>
+      <div class="panel-body">
+        <label>Adicione uma hora:</label>
+        <i class="fa fa-calendar"></i>
+        <p-inputMask [(ngModel)]="horario.hora" mask="99:99h"></p-inputMask>
+        <br/>
+        <br/>
+        <label>Adicione uma Turno:</label>
+        <p-dropdown name="turno" [options]="turno" [(ngModel)]="horario.turno" [style]="{'width':'150px'}" placeholder="Turno"></p-dropdown>
+        <br />
+        <br />
+        <button [disabled]="!horario.hora || !horario.turno" pButton type="button" label="Adicionar" (click)="adicionarHorario()" routerLink="../gerenciar"></button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -20,6 +20,7 @@ export class MedicoComponent implements OnInit {
 
   relacaoEspecialidades:any[] = [];
   especialidadeSelecionada;
+  especialidades: SelectItem[];
 
   constructor(private medicoService: MedicoService, private especialidadesService: EspecialidadeService) {
     this.medico = {username: "", turno: "", sexo: "", idEspecialidade: "", nomeEspecialidade: ""}
@@ -45,7 +46,7 @@ export class MedicoComponent implements OnInit {
     //this.medico.idEspecialidade = this.especialidadeService.especial.id;
     //this.medico.nomeEspecialidade = this.especialidadeService.especial.nome;
     
-    this.escolherEsp();
+    //this.escolherEsp();
     this.medicoService.adicionarMedicoFirebase(this.medico);
 
     //this.especialidadeService.especial = null;
@@ -56,7 +57,16 @@ export class MedicoComponent implements OnInit {
   listarEsp(){
     this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
       this.relacaoEspecialidades = relacaoEspecialidades;
+      this.especialidades = this.relacaoEspecialidades
+     .map(esp => {
+       return {label: esp.nome, value: esp.nome}
+     });
     });
+  }
+  especialidadeSelect(event){
+    console.log(event.value);
+    this.medico.nomeEspecialidade = event.value;
+    console.log(this.medico.nomeEspecialidade);
   }
   onRowSelectEsp(event) {
     console.log(event.data)

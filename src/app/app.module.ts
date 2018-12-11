@@ -57,6 +57,8 @@ import { EspecialidadeService } from './especialidade.service';
 import { MedicoService } from './medico.service';
 import {GrowlModule} from 'primeng/primeng';
 import { ListarMedicosComponent } from './listar-medicos/listar-medicos.component';
+import { HorarioComponent } from './horario/horario.component';
+import {HorarioService } from './horario.service';
 
 
 
@@ -83,6 +85,7 @@ import { ListarMedicosComponent } from './listar-medicos/listar-medicos.componen
     ListarEspecialidadesComponent,
     ListarConsultasComponent,
     ListarMedicosComponent,
+    HorarioComponent,
 
     
     
@@ -117,7 +120,7 @@ import { ListarMedicosComponent } from './listar-medicos/listar-medicos.componen
     InputMaskModule,
 
   ],
-  providers: [UserService, ConsultasService, AngularFireAuth, EspecialidadeService, MedicoService],
+  providers: [UserService, ConsultasService, AngularFireAuth, EspecialidadeService, MedicoService, HorarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

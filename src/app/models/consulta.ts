@@ -6,10 +6,12 @@ export interface Consulta {
     planoSaude: string;
     data: string;
     turno: string;
+
     status: boolean;
     situacao: string;
 
-
+    
+    horario?: string;
     idPaciente?: string; //id do usuarioLogado
     nomePaciente?: string;
     nomeMedico?: string;

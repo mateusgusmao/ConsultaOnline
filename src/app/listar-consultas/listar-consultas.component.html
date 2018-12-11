@@ -14,39 +14,48 @@
     </p-dataTable>
     <div>
 
-        <p-dialog header="Detalhes da Consulta" [(visible)]="displayDialog" [responsive]="true" showEffect="fade"
-            [modal]="true" [width]="350">
-            <div *ngIf="consulta">
+        <p-dialog *ngIf="consulta" header="Detalhes da Consulta" [(visible)]="displayDialog" [responsive]="true"
+            showEffect="fade" [modal]="true" [width]="350">
+            <div>
                 <div>
-                    <label for="especialidade">Paciente : {{consulta.nomePaciente}} </label>
+                    <label>Especialidade: </label>
+                    <p-dropdown name="especialidade" (onChange)="especialidadeSelect($event)" [options]="especialidades"
+                        [(ngModel)]="consulta.especialidade" [style]="{'width':'150px'}" placeholder="Especialidade"></p-dropdown>
+                    <!--<p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single" [(selection)]="especialidadeSelecionada"
+                    (onRowSelect)="onRowSelectEsp($event)">
+                    <p-column field="nome"></p-column>
+                  </p-dataTable><br />-->
                 </div><br />
                 <div>
-                    <label>Selecione uma Especialidade para Confirmar: </label>
-                    <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single"
-                        [(selection)]="especialidadeSelecionada" (onRowSelect)="onRowSelectEsp($event)">
-                        <p-column field="nome"></p-column>
-                    </p-dataTable><br />
-                    <label>Especialidade Atual: {{consulta.especialidade}}</label>
-                </div>
+                    <label for="planoSaude">Turno :</label>
+                    <p-dropdown [options]="turnos" (onChange)="filtrarMedicosPorTurno($event)" [(ngModel)]="consulta.turno"
+                        [style]="{'width':'150px'}" required></p-dropdown>
+                </div><br />
+                <div>
+                    <label for="planoSaude">Médico :</label>
+                    <p-dropdown [options]="medicosFiltrados" (onChange)="medicoSelect($event)" [(ngModel)]="consulta.nomeMedico"
+                        placeholder="Médico" [style]="{'width':'150px'}"></p-dropdown>
+                </div><br />
+                <div>
+                    <label for="planoSaude">Plano Saude :</label>
+                    <p-dropdown [options]="planosSaude" [(ngModel)]="consulta.planoSaude" [style]="{'width':'150px'}"
+                        required></p-dropdown>
+                </div><br />
                 <div>
                     <label>Dia: {{consulta.data | date:'dd/MM/yyyy'}}</label>
                 </div>
-                <div *ngIf="especialidadeSelecionada">
-                        <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspMed" selectionMode="single"
-                        [(selection)]="medicoSelecionado" (onRowSelect)="onRowSelectMed($event)">
-                           <p-column field="username"></p-column>
-                       </p-dataTable>
-                 </div>
-                <div>
-                    <label for="planoSaude">Situação : <b>
-                            <h3>{{consulta.situacao}}</h3>
-                        </b></label>
-                </div><br />
+                <label>Situação : {{consulta.situacao}}</label>
             </div>
+
+            <div>
+                <label for="planoSaude">Situação : <b>
+                        <h3>{{consulta.situacao}}</h3>
+                    </b></label>
+            </div><br />
             <p-footer>
                 <div class="ui-dialog-buttonpane ui-helper-clearfix">
                     <button type="button" pButton icon="fa-close" (click)="apagarConsulta()" label="Deletar" class="ui-button-danger"></button>
-                    <button align="left" type="button" pButton icon="fa-check" (click)="atualizar()" label="Aprovar Consulta"
+                    <button [disabled]="!consulta.nomeMedico" align="left" type="button" pButton icon="fa-check" (click)="atualizar()" label="Aprovar Consulta"
                         class="ui-button-success"></button>
                 </div>
             </p-footer>

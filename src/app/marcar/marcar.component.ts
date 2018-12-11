@@ -46,7 +46,7 @@ export class MarcarComponent implements OnInit {
 
   constructor( private consultaService: ConsultasService,private userService: UserService, 
   private especialidadesService: EspecialidadeService, private medicoService: MedicoService) {
-    this.consulta = { especialidade: "", planoSaude: "", data: "",turno: "", status: false, idPaciente: "", situacao: "Pendente", nomePaciente: "", nomeMedico: ""}
+    this.consulta = { especialidade: "", planoSaude: "", data: "",turno: "", status: false, idPaciente: "", situacao: "Pendente", nomePaciente: "", nomeMedico: "", horario: ""}
 
     /*this.especialidades = [
       {label:'Escolha especialidade', value:null},
@@ -86,8 +86,8 @@ export class MarcarComponent implements OnInit {
         this.consulta.idPaciente = this.userService.usuarioLogado.id;
         this.consulta.nomePaciente = this.userService.usuarioLogado.nome;
 
-        this.escolherEsp();
-        this.escolherMed();
+        //this.escolherEsp();
+        //this.escolherMed();
         this.consultaService.adicionarConsultaFirebase(this.consulta);
         console.log(this.consulta)
     
@@ -99,18 +99,55 @@ export class MarcarComponent implements OnInit {
         //console.log(this.userService.usuarioLogado.consultas)
       }
 
-      escolherEsp(){
+      listarEsp(){
+        this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
+          this.relacaoEspecialidades = relacaoEspecialidades;
+          this.especialidades = this.relacaoEspecialidades
+         .map(esp => {
+           return {label: esp.nome, value: esp.nome}
+         });
+        });
+      }
+      listarMedicos(){
+        this.medicoService.listarPorNomeEsp(this.consulta.especialidade).subscribe(relacaoEspMed =>{
+          this.relacaoEspMed = relacaoEspMed;
+          this.medicosFiltrados = relacaoEspMed
+            .map(med => {
+           return {label: med.username, value: med.username}
+         });
+          this.filtrarMedicosPorTurno();
+        });
+      }
+      especialidadeSelect(event){
+        console.log(event.value);
+        this.consulta.especialidade = event.value;
+        console.log(this.consulta.especialidade);
+        this.listarMedicos();
+      }
+
+      medicoSelect(event){
+        console.log(event.value);
+        this.consulta.nomeMedico = event.value;
+        console.log(this.consulta.nomeMedico);
+      }
+  
+      filtrarMedicosPorTurno($event = null) {
+        if (this.consulta.turno) {
+          this.medicosFiltrados = this.relacaoEspMed.filter(m => m.turno === this.consulta.turno)
+          .map(med => {
+            return {label: med.username, value: med.username}
+          });
+          console.log(this.medicosFiltrados);
+        }   
+      }
+    }
+
+    /*escolherEsp(){
         this.consulta.especialidade = this.especialidadeSelecionada.nome;
         console.log(this.especialidadeSelecionada.nome);
         console.log(this.consulta.planoSaude)
       }
 
-      listarEsp(){
-        this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
-          this.relacaoEspecialidades = relacaoEspecialidades;
-        });
-      }
-    
       onRowSelectEsp(event) {
         console.log(event.data)
         console.log(this.especialidadeSelecionada.nome);
@@ -121,64 +158,12 @@ export class MarcarComponent implements OnInit {
           this.medicoSelecionado = null;
         }
       }
-    }
-      escolherMed(){
-        this.consulta.nomeMedico = this.medicoSelecionado.username;
-        console.log(this.medicoSelecionado.username);
-      }
-      listarMedicos(){
-        this.medicoService.listarPorNomeEsp(this.consulta.especialidade).subscribe(relacaoEspMed =>{
-          this.relacaoEspMed = relacaoEspMed;
-          this.medicosFiltrados = relacaoEspMed;
-          this.filtrarMedicosPorTurno();
-        });
-      }
-      onRowSelectMed(event) {
+    }*/
+    /* onRowSelectMed(event) {
           console.log(event.data)
           console.log(this.medicoSelecionado.username);
       }
-  
-      filtrarMedicosPorTurno($event = null) {
-        if (this.consulta.turno) {
-          this.medicosFiltrados = this.relacaoEspMed.filter(m => m.turno === this.consulta.turno);
-        }
-        
-      }
-  /*save() {
-  let consultas = [...this.consultas];
-  if(this.newConsulta)
-      consultas.push(this.consulta);
-  else
-      consultas[this.findSelectedConsultaIndex()] = this.consulta;
-  this.consultaService.AddConsulta(this.consulta);
-  console.log(this.consulta);
-  this.consultas = consultas;
-  this.consulta = null;
-}
-delete() {
-  let index = this.findSelectedConsultaIndex();
-  this.consultas = this.consultas.filter((val,i) => i!=index);
-  this.consulta = null;
-}
-onRowSelect(event) {
-  this.newConsulta = false;
-  this.consulta = this.cloneConsulta(event.data);
-}
-cloneConsulta(c: Consulta): Consulta {
-  let consulta = new Consulta();
-  for(let prop in c) {
-      consulta[prop] = c[prop];
-  }
-  return consulta;
-}
-findSelectedConsultaIndex(): number {
-  return this.consultas.indexOf(this.selectedConsulta);
- }
-}
- 
-class PrimeConsulta implements Consulta {
- // constructor(public id:number, public especialidade:string, public clinica:string, public planoSaude:string, public data:Date) {}
-  }
-  */
-
-}
+      escolherMed(){
+        this.consulta.nomeMedico = this.medicoSelecionado.username;
+        console.log(this.medicoSelecionado.username);
+      }*/
