@@ -36,6 +36,12 @@ import { UserService } from './user.service';
 import { ConsultasService } from './consultas.service'
 import { EspecialidadeService } from './especialidade.service';
 import { MedicoService } from './medico.service';
+
+
+import { ListarMedicosComponent } from './listar-medicos/listar-medicos.component';
+import { HorarioComponent } from './horario/horario.component';
+import {HorarioService } from './horario.service';
+
 import { AdmService } from './adm.service';
 
 import { Message } from 'primeng/components/common/api';
@@ -88,6 +94,7 @@ import { GrowlModule } from 'primeng/primeng';
     ListarEspecialidadesComponent,
     ListarConsultasComponent,
     ListarMedicosComponent,
+    HorarioComponent,
 
 
 
@@ -126,7 +133,9 @@ import { GrowlModule } from 'primeng/primeng';
 
 
   ],
-  providers: [UserService, ConsultasService, AngularFireAuth, EspecialidadeService, MedicoService, FormBuilder, AdmService],
+
+  providers: [UserService, ConsultasService, AngularFireAuth, EspecialidadeService, MedicoService, FormBuilder, AdmService, HorarioService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

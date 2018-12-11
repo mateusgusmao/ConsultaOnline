@@ -21,6 +21,7 @@ import { ModuleWithProviders, Component } from '@angular/core';
 import { SairComponent } from './sair/sair.component';
 import { ListarConsultasComponent } from './listar-consultas/listar-consultas.component';
 import { ListarMedicosComponent } from './listar-medicos/listar-medicos.component';
+import { HorarioComponent } from './horario/horario.component';
 
 
 
@@ -50,7 +51,8 @@ const APP_ROTAS: Routes = [
       { path: 'listar-med', component: ListarMedicosComponent},
       { path: 'gerenciar', component: GerenciarComponent },
       { path : 'especialidade', component: EspecialidadeComponent },
-      { path: 'medico', component: MedicoComponent}
+      { path: 'medico', component: MedicoComponent},
+      { path: 'horario', component: HorarioComponent},
     ]
   }
 ]

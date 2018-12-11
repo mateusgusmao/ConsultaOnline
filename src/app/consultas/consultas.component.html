@@ -26,34 +26,43 @@
   </p-dataTable>
 </div>
 
+
 <p-dialog *ngIf="consulta" header="Editar Consulta" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
   [width]="350">
   <div >
+
     <div>
-      <label>Selecione uma Especialidade: </label>
-      <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single" [(selection)]="especialidadeSelecionada"
+      <label>Especialidade: </label>
+      <p-dropdown name="especialidade" (onChange)="especialidadeSelect($event)" [options]="especialidades" [(ngModel)]="consulta.especialidade" [style]="{'width':'150px'}" placeholder="Especialidade"></p-dropdown>
+     <!--<p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single" [(selection)]="especialidadeSelecionada"
         (onRowSelect)="onRowSelectEsp($event)">
         <p-column field="nome"></p-column>
-      </p-dataTable><br />
-      <label>Especialidade Atual: {{consulta.especialidade}}</label>
+      </p-dataTable><br />-->
+    </div><br />
+    <div>
+      <label for="planoSaude">Turno :</label>
+      <p-dropdown [options]="turnos" (onChange)="filtrarMedicosPorTurno($event)" [(ngModel)]="consulta.turno" [style]="{'width':'150px'}"
+        required></p-dropdown>
+    </div><br />
+    <div>
+      <label for="planoSaude">Médico :</label>
+      <p-dropdown [options]="medicosFiltrados" (onChange)="medicoSelect($event)" [(ngModel)]="consulta.nomeMedico" placeholder="Médico" [style]="{'width':'150px'}"></p-dropdown>
     </div><br />
     <div>
       <label for="planoSaude">Plano Saude :</label>
-      <p-dropdown [options]="planosSaude" [(ngModel)]="consulta.planoSaude" placeholder="Plano de Saúde" [style]="{'width':'150px'}"
+      <p-dropdown [options]="planosSaude" [(ngModel)]="consulta.planoSaude" [style]="{'width':'150px'}"
         required></p-dropdown>
     </div><br />
     <label>Situação : {{consulta.situacao}}</label>
   </div>
 
-  <p-dropdown name="especialidade" [options]="especialidades" [(ngModel)]="consulta.especialidade" [style]="{'width':'150px'}"></p-dropdown>
-
   <p-footer>
     <div class="ui-dialog-buttonpane ui-helper-clearfix">
       <button type="button" pButton icon="fa-close" (click)="apagarConsulta()" label="Deletar"></button>
-      <button  type="button" pButton icon="fa-check" (click)="atualizar()" label="Salvar"></button>
-    </div>
+      <button [disabled]="!consulta.nomeMedico" type="button" pButton icon="fa-check" (click)="atualizar()" label="Salvar"></button>
   </p-footer>
 </p-dialog>
+
 
 
 

@@ -26,6 +26,7 @@ export class ListarMedicosComponent implements OnInit {
   especialidade: Especialidade;
   relacaoEspecialidades: any[] = [];
   especialidadeSelecionada;
+  especialidades: SelectItem[];
 
   constructor(private especialidadesService: EspecialidadeService, private medicoService: MedicoService) {
 
@@ -93,10 +94,19 @@ export class ListarMedicosComponent implements OnInit {
     return m;
   }
 
-  listarEsp() {
-    this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades => {
+  listarEsp(){
+    this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
       this.relacaoEspecialidades = relacaoEspecialidades;
+      this.especialidades = this.relacaoEspecialidades
+     .map(esp => {
+       return {label: esp.nome, value: esp.nome}
+     });
     });
+  }
+  especialidadeSelect(event){
+    console.log(event.value);
+    this.medico.nomeEspecialidade = event.value;
+    console.log(this.medico.nomeEspecialidade);
   }
 
   onRowSelectEsp(event) {
@@ -104,7 +114,7 @@ export class ListarMedicosComponent implements OnInit {
     console.log(this.especialidadeSelecionada.nome);
   }
   mudarEspecialidade() {
-    this.medico.nomeEspecialidade = this.especialidadeSelecionada.nome;
+   // this.medico.nomeEspecialidade = this.especialidadeSelecionada.nome;
   }
 
 }

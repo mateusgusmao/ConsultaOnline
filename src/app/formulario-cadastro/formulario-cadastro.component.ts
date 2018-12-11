@@ -17,6 +17,7 @@ export class FormularioCadastroComponent implements OnInit {
   nomeUsuario: string;
   cpfUsuario: string;
 
+
   constructor(private userService: UserService, private fb: FormBuilder) {
   }
 

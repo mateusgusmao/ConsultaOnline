@@ -1,3 +1,9 @@
+
+h1{
+    background-color:white;
+    margin-top: 0px;
+}
+=======
 header{
     background-color: white;
 }
@@ -12,4 +18,5 @@ button:disabled {
 .alert-danger {
     padding: 4px;
 }
+
 

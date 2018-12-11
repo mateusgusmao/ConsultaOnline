@@ -13,22 +13,28 @@
                     </div>-->
                     <div>
                         <label>Selecione uma Especialidade: </label>
-                        <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single"
+                        <p-dropdown name="especialidade" (onChange)="especialidadeSelect($event)" [options]="especialidades" [(ngModel)]="consulta.especialidade" [style]="{'width':'150px'}" placeholder="Especialidade"></p-dropdown>
+                      <!-- <p-dataTable [style]="{'width':'200px'}" [value]="relacaoEspecialidades" selectionMode="single"
                          [(selection)]="especialidadeSelecionada" (onRowSelect)="onRowSelectEsp($event)">
                             <p-column field="nome"></p-column>
-                        </p-dataTable>
+                        </p-dataTable>--> 
                     </div><br />
-
                     <div class="form-group">
+                        <label for="turno">Turno :</label>
+                        <p-dropdown (onChange)="filtrarMedicosPorTurno($event)" name="turno" [options]="turnos" placeholder="Turno" [(ngModel)]="consulta.turno" required></p-dropdown>
+                    </div>
+                    <label>Selecione um Médico: </label>
+                    <p-dropdown name="medico" (onChange)="medicoSelect($event)"  [options]="medicosFiltrados" [(ngModel)]="consulta.nomeMedico" placeholder="Médico" [style]="{'width':'150px'}"></p-dropdown>
+                    <div class="form-group">
+
                         <label for="planoSaude">Plano de Saúde :</label>
-                        <p-dropdown name="planoSaude" [options]="planosSaude" placeholder="Plano de Saúde" [(ngModel)]="consulta.planoSaude"
-                            required></p-dropdown>
+                        <p-dropdown name="planoSaude" [options]="planosSaude" placeholder="Plano de Saúde" [(ngModel)]="consulta.planoSaude"  required></p-dropdown>
                     </div>
 
-                    <div class="form-group">
                             <label for="turno">Turno :</label>
                             <p-dropdown (onChange)="filtrarMedicosPorTurno($event)" name="turno" [options]="turnos" placeholder="Turno" [(ngModel)]="consulta.turno" required></p-dropdown>
                         </div>
+
 
                      <div class="form-group">
                      <label for="data">Data :</label>
@@ -36,12 +42,16 @@
        
                      </div>
                      <div>
+
+                           <!--<p-dataTable [style]="{'width':'200px'}" [value]="medicosFiltrados" selectionMode="single"
+
                             <p-dataTable [style]="{'width':'200px'}" [value]="medicosFiltrados" selectionMode="single"
+
                             [(selection)]="medicoSelecionado" (onRowSelect)="onRowSelectMed($event)">
                                <p-column field="username"></p-column>
-                           </p-dataTable>
+                           </p-dataTable>--> 
                      </div>
-                    <button [disabled]="!consulta.planoSaude || !especialidadeSelecionada || !consulta.turno || !consulta.data || !medicoSelecionado" pButton type="button" icon="fa-plus-square" (click)="adicionarConsulta()" label="Marcar Consulta!"
+                    <button [disabled]="!consulta.planoSaude || !consulta.especialidade || !consulta.data" pButton type="button" icon="fa-plus-square" (click)="adicionarConsulta()" label="Marcar Consulta!"
                         routerLink='/main/consultas'></button>
                 </div>
             </form>
