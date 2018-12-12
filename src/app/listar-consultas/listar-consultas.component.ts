@@ -8,6 +8,7 @@ import { ConsultasComponent } from '../consultas/consultas.component';
 import { Especialidade } from '../models/especialidade';
 import { EspecialidadeService } from '../especialidade.service';
 import { MedicoService } from '../medico.service';
+import { HorarioService } from '../horario.service';
 
 @Component({
   selector: 'app-listar-consultas',
@@ -36,8 +37,12 @@ export class ListarConsultasComponent implements OnInit {
   relacaoEspMed: any[] = [];
   medicosFiltrados: any[] = [];
 
+  relacaohorarios:any[] = [];
+      horariosFiltrados:any[] = [];
+      horarios: SelectItem[];
+
   constructor(private rota: Router,
-    private consultaService: ConsultasService, private especialidadesService: EspecialidadeService,private medicoService: MedicoService) { }
+    private consultaService: ConsultasService, private horarioService: HorarioService, private especialidadesService: EspecialidadeService,private medicoService: MedicoService) { }
 
   ngOnInit() {
     this.listar();
@@ -116,6 +121,21 @@ export class ListarConsultasComponent implements OnInit {
     this.consulta.nomeMedico = event.value;
     console.log(this.consulta.nomeMedico);
   }
+  horarioSelect(event){
+    console.log(event.value);
+    this.consulta.horario = event.value;
+    console.log(this.consulta.horario);
+  }
+
+  listarHorarios(){
+    this.horarioService.listarPorTurno(this.consulta.turno).subscribe(relacaohorarios =>{
+      this.relacaohorarios = relacaohorarios
+      this.horarios = this.relacaohorarios
+      .map(hor => {
+        return {label: hor.hora, value: hor.hora}
+      });
+    });
+  }
 
   filtrarMedicosPorTurno($event = null) {
     if (this.consulta.turno) {
@@ -123,9 +143,21 @@ export class ListarConsultasComponent implements OnInit {
       .map(med => {
         return {label: med.username, value: med.username}
       });
-      console.log(this.medicosFiltrados);
-    }
+      //console.log(this.medicosFiltrados);
+      //this.filtrarHorariosPorTurno();
+      this.listarHorarios();
+    }   
   }
+  filtrarHorariosPorTurno($event = null){
+    if (this.consulta.turno) {
+      this.horariosFiltrados = this.relacaohorarios.filter(hor => hor.turno === this.consulta.turno)
+      .map(hor => {
+        return {label: hor.hora, value: hor.hora}
+      });
+      console.log(this.horariosFiltrados);
+    } 
+  }   
+
   onRowSelect(event) {
     console.log(event.data)
     this.consulta = this.cloneConsulta(event.data);

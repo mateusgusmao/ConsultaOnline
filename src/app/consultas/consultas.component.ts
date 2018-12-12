@@ -11,6 +11,7 @@ import { EspecialidadeService } from '../especialidade.service';
 import { Especialidade } from '../models/especialidade';
 import {ProgressSpinnerModule} from 'primeng/primeng';
 import { MedicoService } from '../medico.service';
+import { HorarioService } from '../horario.service';
 
 @Component({
   selector: 'app-consultas',
@@ -44,8 +45,12 @@ export class ConsultasComponent implements OnInit {
 
    relacaoEspMed: any[] = [];
     medicosFiltrados: any[] = [];
+
+    relacaohorarios:any[] = [];
+      horariosFiltrados:any[] = [];
+      horarios: SelectItem[];
  
-   constructor(private consultaService:ConsultasService, private userService: UserService, 
+   constructor(private consultaService:ConsultasService, private userService: UserService, private horarioService: HorarioService,
                 private rota: Router, private especialidadesService: EspecialidadeService,private medicoService: MedicoService) { 
  
      /*this.consultas = this.getConsultas();
@@ -144,6 +149,17 @@ export class ConsultasComponent implements OnInit {
       this.filtrarMedicosPorTurno();
     });
   }
+
+  listarHorarios(){
+    this.horarioService.listarPorTurno(this.consulta.turno).subscribe(relacaohorarios =>{
+      this.relacaohorarios = relacaohorarios
+      this.horarios = this.relacaohorarios
+      .map(hor => {
+        return {label: hor.hora, value: hor.hora}
+      });
+    });
+  }
+
   especialidadeSelect(event){
     console.log(event.value);
     this.consulta.especialidade = event.value;
@@ -156,6 +172,11 @@ export class ConsultasComponent implements OnInit {
     this.consulta.nomeMedico = event.value;
     console.log(this.consulta.nomeMedico);
   }
+  horarioSelect(event){
+    console.log(event.value);
+    this.consulta.horario = event.value;
+    console.log(this.consulta.horario);
+  }
 
   filtrarMedicosPorTurno($event = null) {
     if (this.consulta.turno) {
@@ -163,9 +184,20 @@ export class ConsultasComponent implements OnInit {
       .map(med => {
         return {label: med.username, value: med.username}
       });
-      console.log(this.medicosFiltrados);
+      //console.log(this.medicosFiltrados);
+      //this.filtrarHorariosPorTurno();
+      this.listarHorarios();
     }   
   }
+  filtrarHorariosPorTurno($event = null){
+    if (this.consulta.turno) {
+      this.horariosFiltrados = this.relacaohorarios.filter(hor => hor.turno === this.consulta.turno)
+      .map(hor => {
+        return {label: hor.hora, value: hor.hora}
+      });
+      console.log(this.horariosFiltrados);
+    } 
+  }   
    onRowSelectEsp(event) {
      console.log(event.data)
      console.log(this.especialidadeSelecionada.nome);

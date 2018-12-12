@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
 import { User } from 'firebase/app';
 import { EspecialidadeService } from '../especialidade.service';
 import { MedicoService } from '../medico.service';
+import { HorarioService } from '../horario.service';
 
 @Component({
   selector: 'app-marcar',
@@ -43,9 +44,13 @@ export class MarcarComponent implements OnInit {
       medicoSelecionado; 
       //relacaoMedTur: any[]=[];
 
+      relacaohorarios:any[] = [];
+      horariosFiltrados:any[] = [];
+      horarios: SelectItem[];
+
 
   constructor( private consultaService: ConsultasService,private userService: UserService, 
-  private especialidadesService: EspecialidadeService, private medicoService: MedicoService) {
+  private especialidadesService: EspecialidadeService, private medicoService: MedicoService, private horarioService: HorarioService) {
     this.consulta = { especialidade: "", planoSaude: "", data: "",turno: "", status: false, idPaciente: "", situacao: "Pendente", nomePaciente: "", nomeMedico: "", horario: ""}
 
     /*this.especialidades = [
@@ -61,6 +66,7 @@ export class MarcarComponent implements OnInit {
 
   ngOnInit() {
     this.listarEsp();
+    this.listarHorarios()
     //this.consultas= this.consultaService.getConsultas();
     let today = new Date();
     let invalidDate = new Date();
@@ -108,6 +114,7 @@ export class MarcarComponent implements OnInit {
          });
         });
       }
+
       listarMedicos(){
         this.medicoService.listarPorNomeEsp(this.consulta.especialidade).subscribe(relacaoEspMed =>{
           this.relacaoEspMed = relacaoEspMed;
@@ -118,6 +125,17 @@ export class MarcarComponent implements OnInit {
           this.filtrarMedicosPorTurno();
         });
       }
+
+    listarHorarios(){
+        this.horarioService.listarPorTurno(this.consulta.turno).subscribe(relacaohorarios =>{
+          this.relacaohorarios = relacaohorarios
+          this.horarios = this.relacaohorarios
+          .map(hor => {
+            return {label: hor.hora, value: hor.hora}
+          });
+        });
+      }
+
       especialidadeSelect(event){
         console.log(event.value);
         this.consulta.especialidade = event.value;
@@ -130,6 +148,11 @@ export class MarcarComponent implements OnInit {
         this.consulta.nomeMedico = event.value;
         console.log(this.consulta.nomeMedico);
       }
+      horarioSelect(event){
+        console.log(event.value);
+        this.consulta.horario = event.value;
+        console.log(this.consulta.horario);
+      }
   
       filtrarMedicosPorTurno($event = null) {
         if (this.consulta.turno) {
@@ -137,10 +160,21 @@ export class MarcarComponent implements OnInit {
           .map(med => {
             return {label: med.username, value: med.username}
           });
-          console.log(this.medicosFiltrados);
+          //console.log(this.medicosFiltrados);
+          //this.filtrarHorariosPorTurno();
+          this.listarHorarios();
         }   
       }
-    }
+
+      filtrarHorariosPorTurno($event = null){
+        if (this.consulta.turno) {
+          this.horariosFiltrados = this.relacaohorarios.filter(hor => hor.turno === this.consulta.turno)
+          .map(hor => {
+            return {label: hor.hora, value: hor.hora}
+          });
+          console.log(this.horariosFiltrados);
+        } 
+      }   
 
     /*escolherEsp(){
         this.consulta.especialidade = this.especialidadeSelecionada.nome;
@@ -167,3 +201,5 @@ export class MarcarComponent implements OnInit {
         this.consulta.nomeMedico = this.medicoSelecionado.username;
         console.log(this.medicoSelecionado.username);
       }*/
+
+    }

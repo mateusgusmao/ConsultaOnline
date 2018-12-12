@@ -1,17 +1,61 @@
 <div align="center">
-  <p-fieldset  legend="Dados do Paciente" [style]="{'width':'500px'}">
-             Paciente: <b icon="fa-user"> {{nomePacienteLogado}} </b> <br/>
-      Nome de Usuário: <b> {{nomeUserPacienteLogado}} </b><br/>
-                 Cpf : <b> {{cpfPacienteLogado}} </b><br/>
-      
-
-  </p-fieldset>
-</div>
-
-<!--<div align="center">
-  <b>
-  <img  alt="paciencia" src="assets/paciencia.gif">
-  </b><br />
-  <p-progressSpinner [style]="{width: '100px', height: '100px'}" strokeWidth="4" fill="white" animationDuration=".9s"> </p-progressSpinner>
-
-</div> -->
+    <p-fieldset legend="Bem vindo: {{nomePacienteLogado}}" [style]="{'width':'500px'}">
+  
+      <label for="nome">Nome Completo:</label>
+      <input [disabled]="true" [(ngModel)]="userlogado.nome" type="text" class="form-control" id="username" name="username"
+        required><br/>
+      <label for="nome">Nome de usuário:</label>
+      <input [disabled]="true" [(ngModel)]="userlogado.username" type="text" class="form-control" id="username" name="username"
+        required><br/>
+      <label for="cpf">CPF:</label>
+      <input [disabled]="true" [(ngModel)]="cpfPacienteLogado" type="text" class="form-control" id="cpf" name="cpf" required><br/>
+      <footer>
+        <button type="button" pButton icon="fa-pencil" (click)="showDialog()" label="Editar perfil"></button>
+      </footer>
+    </p-fieldset>
+  
+    <p-dialog header="Editar Perfil" [(visible)]="display">
+      <div>
+        <label for="nome">Nome Completo: </label>
+        <input [(ngModel)]="userlogado.nome" type="text" class="form-control" id="nome" name="nome" required>
+      </div><br />
+      <div>
+        <label for="username">Nome de usuário:</label>
+        <input [(ngModel)]="userlogado.username" type="text" class="form-control" id="username" name="username" required>
+      </div><br />
+      <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+          <button type="button" (click)="atualizar()" pButton icon="fa-check" label="Salvar alterações"></button>
+        </div>
+      </p-footer>
+  
+  
+    </p-dialog>
+  
+    <!--<p-dialog *ngIf="user" header="Editar Perfil" [(visible)]="display" [responsive]="true" showEffect="fade" [modal]="true"
+      [width]="350">
+      <div>
+        <div>
+          <label for="nome">Nome Completo: </label>
+          <input [(ngModel)]="nomePacienteLogado" type="text" class="form-control" id="nome" name="nome" required>
+        </div><br />
+        <div>
+          <label for="username">Nome de usuário:</label>
+          <input [(ngModel)]="nomeUserPacienteLogado" type="text" class="form-control" id="username" name="username" required>
+        </div><br />
+        <div>
+          <label for="password">Senha:</label>
+          <input [disabled]="true" [(ngModel)]="senhaPacienteLogado" type="text" class="form-control" id="password" name="password" required>
+        </div><br />
+        <div>
+          <label for="cpf">CPF:</label>
+          <input [disabled]="true" [(ngModel)]="cpfPacienteLogado" type="text" class="form-control" id="cpf" name="cpf" required>
+        </div><br />
+      <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+          <button type="button" pButton icon="fa-check" label="Salvar alterações"></button>
+        </div>
+      </p-footer>
+      </div>
+    </p-dialog>-->
+  </div>

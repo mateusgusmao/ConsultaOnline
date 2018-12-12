@@ -13,6 +13,7 @@
     <p-column field="nomePaciente" header="Nome" [sortable]="true"></p-column>
     <p-column field="especialidade" header="Especialidade" [sortable]="true"></p-column>
     <p-column field="nomeMedico" header="Médico" [sortable]="true"></p-column>
+    <p-column field="horario" header="Hora" [sortable]="true"></p-column>
     <p-column field="data" header="Data" [sortable]="true">
       <ng-template let-row="rowData" pTemplate="body">
         {{row.data | date:'dd/MM/yyyy'}}
@@ -43,6 +44,11 @@
         required></p-dropdown>
     </div><br />
     <div>
+        <label for="turno">Hora :</label>
+        <p-dropdown (onChange)="horarioSelect($event)" name="hora" [options]="horarios" placeholder="Horario" [style]="{'width':'150px'}"
+        [(ngModel)]="consulta.horario" required></p-dropdown>
+       <br />
+       <br />
       <label for="planoSaude">Médico :</label>
       <p-dropdown [options]="medicosFiltrados" (onChange)="medicoSelect($event)" [(ngModel)]="consulta.nomeMedico" placeholder="Médico" [style]="{'width':'150px'}"></p-dropdown>
     </div><br />
@@ -57,7 +63,7 @@
   <p-footer>
     <div class="ui-dialog-buttonpane ui-helper-clearfix">
       <button type="button" pButton icon="fa-close" (click)="apagarConsulta()" label="Deletar"></button>
-      <button [disabled]="!consulta.nomeMedico" type="button" pButton icon="fa-check" (click)="atualizar()" label="Salvar"></button>
+      <button [disabled]="!consulta.nomeMedico || !consulta.horario" type="button" pButton icon="fa-check" (click)="atualizar()" label="Salvar"></button>
     </div>
   </p-footer>
 </p-dialog>

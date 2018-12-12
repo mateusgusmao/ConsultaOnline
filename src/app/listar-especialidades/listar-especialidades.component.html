@@ -11,8 +11,8 @@
         <p-dataTable header="Horários" [style]="{'width':'200px'}" [value]="relacaoHorario" selectionMode="single"
             [(selection)]="horarioSelecionado" (onRowSelect)="onRowSelect($event)">
             <p-header>Horário</p-header>
-            <p-column field="hora" header="Horários"></p-column>
-            <p-column field="turno" header="Turno"></p-column>
+            <p-column field="hora" header="Horários" [sortable]="true"></p-column>
+            <p-column field="turno" header="Turno" [sortable]="true"></p-column>
         </p-dataTable>
     </div>
 </div>
