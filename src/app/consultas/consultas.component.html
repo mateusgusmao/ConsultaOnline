@@ -27,9 +27,11 @@
   </p-dataTable>
 </div>
 
-<p-dialog *ngIf="consulta" header="Editar Consulta" [(visible)]="displayDialog" [responsive]="true" showEffect="fade"
-  [modal]="true" [width]="350">
-  <div>
+
+<p-dialog *ngIf="consulta" header="Editar Consulta" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+  [width]="350">
+  <div >
+
     <div>
       <label>Especialidade: </label>
       <p-dropdown name="especialidade" (onChange)="especialidadeSelect($event)" [options]="especialidades" [(ngModel)]="consulta.especialidade" [style]="{'width':'150px'}" placeholder="Especialidade"></p-dropdown>
@@ -63,6 +65,7 @@
   <p-footer>
     <div class="ui-dialog-buttonpane ui-helper-clearfix">
       <button type="button" pButton icon="fa-close" (click)="apagarConsulta()" label="Deletar"></button>
+
       <button [disabled]="!consulta.nomeMedico || !consulta.horario" type="button" pButton icon="fa-check" (click)="atualizar()" label="Salvar"></button>
     </div>
   </p-footer>

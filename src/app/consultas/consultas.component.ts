@@ -139,6 +139,7 @@ export class ConsultasComponent implements OnInit {
      });
     });
   }
+
   listarMedicos(){
     this.medicoService.listarPorNomeEsp(this.consulta.especialidade).subscribe(relacaoEspMed =>{
       this.relacaoEspMed = relacaoEspMed;
@@ -147,6 +148,29 @@ export class ConsultasComponent implements OnInit {
        return {label: med.username, value: med.username}
      });
       this.filtrarMedicosPorTurno();
+     });
+  }
+
+  voltarSituacao(){
+    this.consulta.situacao = "Pendente";
+  }
+
+  atualizar() {
+    if (this.consulta.id != undefined)
+      //this.mudarEspecialidade()
+      this.consultaService.atualizarConsultaFirebase(this.consulta).then(() => {
+        this.listar();
+        this.consulta = null;
+        this.displayDialog = false;
+      });
+  }
+
+  apagarConsulta(){
+    this.consultaService.apagarConsultaFirebase(this.consulta).then(() => {
+      this.listar();
+      this.consulta = null;
+      this.displayDialog = false;
+
     });
   }
 
@@ -167,6 +191,7 @@ export class ConsultasComponent implements OnInit {
     this.listarMedicos();
   }
 
+
   medicoSelect(event){
     console.log(event.value);
     this.consulta.nomeMedico = event.value;
@@ -176,6 +201,24 @@ export class ConsultasComponent implements OnInit {
     console.log(event.value);
     this.consulta.horario = event.value;
     console.log(this.consulta.horario);
+  }
+
+  listarEsp(){
+    this.especialidadesService.listarTodos().subscribe(relacaoEspecialidades =>{
+      this.relacaoEspecialidades = relacaoEspecialidades;
+
+      this.especialidades = this.relacaoEspecialidades
+        .map(esp => {
+          return {label: esp.nome, value: esp.nome}
+        });
+
+        console.log('especialidades...')
+        console.log(this.especialidades);
+        console.log(this.planosSaude)
+        
+        
+    });
+
   }
 
   filtrarMedicosPorTurno($event = null) {

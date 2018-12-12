@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule,FormBuilder } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 import { AppComponent } from './app.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { FormularioCadastroComponent } from './formulario-cadastro/formulario-cadastro.component';
@@ -21,44 +23,51 @@ import { GerenciarComponent } from './gerenciar/gerenciar.component';
 import { SairComponent } from './sair/sair.component';
 import { ListarEspecialidadesComponent } from './listar-especialidades/listar-especialidades.component';
 import { ListarConsultasComponent } from './listar-consultas/listar-consultas.component';
+import { ListarMedicosComponent } from './listar-medicos/listar-medicos.component';
 
 import { FirebaseConfig } from "../environments/firebase.config";
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { AngularFireModule } from 'angularfire2';
-
-import {rota} from './app.rotas';
-
-import {UserService} from './user.service';
-import {ConsultasService} from './consultas.service'
-
-import {Message} from 'primeng/components/common/api';
-import {RadioButtonModule, MenuItemContent, BasePanelMenuItem} from 'primeng/primeng';
-import {MessagesModule} from 'primeng/primeng';
-import {DropdownModule} from 'primeng/primeng';
-import {DialogModule} from 'primeng/primeng';
-import {DataTableModule,SharedModule} from 'primeng/primeng';
-import {AccordionModule} from 'primeng/primeng';
-import {ButtonModule} from 'primeng/primeng';
-import {PasswordModule} from 'primeng/primeng';
-import {InputTextModule} from 'primeng/primeng';
-import {InputMaskModule} from 'primeng/primeng';
-import {PanelMenuModule} from 'primeng/primeng';
-import {TabMenuModule} from 'primeng/primeng';
-import {CalendarModule} from 'primeng/primeng';
-import {MenubarModule} from 'primeng/primeng';
-import {ContextMenuModule} from 'primeng/primeng';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
-import {PanelModule} from 'primeng/primeng';
-import {ProgressSpinnerModule} from 'primeng/primeng';
-import {FieldsetModule} from 'primeng/primeng';
-import {MenuModule} from 'primeng/primeng';
-import {MenuItem} from 'primeng/primeng';
+
+import { rota } from './app.rotas';
+
+import { UserService } from './user.service';
+import { ConsultasService } from './consultas.service'
 import { EspecialidadeService } from './especialidade.service';
 import { MedicoService } from './medico.service';
-import {GrowlModule} from 'primeng/primeng';
+
+
 import { ListarMedicosComponent } from './listar-medicos/listar-medicos.component';
 import { HorarioComponent } from './horario/horario.component';
 import {HorarioService } from './horario.service';
+
+import { AdmService } from './adm.service';
+
+import { Message } from 'primeng/components/common/api';
+import { RadioButtonModule, MenuItemContent, BasePanelMenuItem } from 'primeng/primeng';
+import { MessagesModule } from 'primeng/primeng';
+import { DropdownModule } from 'primeng/primeng';
+import { DialogModule } from 'primeng/primeng';
+import { DataTableModule, SharedModule } from 'primeng/primeng';
+import { AccordionModule } from 'primeng/primeng';
+import { ButtonModule } from 'primeng/primeng';
+import { PasswordModule } from 'primeng/primeng';
+import { InputTextModule } from 'primeng/primeng';
+import { InputMaskModule } from 'primeng/primeng';
+import { PanelMenuModule } from 'primeng/primeng';
+import { TabMenuModule } from 'primeng/primeng';
+import { CalendarModule } from 'primeng/primeng';
+import { MenubarModule } from 'primeng/primeng';
+import { ContextMenuModule } from 'primeng/primeng';
+import { PanelModule } from 'primeng/primeng';
+import { ProgressSpinnerModule } from 'primeng/primeng';
+import { FieldsetModule } from 'primeng/primeng';
+import { MenuModule } from 'primeng/primeng';
+import { MenuItem } from 'primeng/primeng';
+import { GrowlModule } from 'primeng/primeng';
+
+
 
 
 
@@ -87,8 +96,10 @@ import {HorarioService } from './horario.service';
     ListarMedicosComponent,
     HorarioComponent,
 
-    
-    
+
+
+
+
   ],
   imports: [
     AngularFireModule.initializeApp(FirebaseConfig),
@@ -118,9 +129,13 @@ import {HorarioService } from './horario.service';
     MenuModule,
     GrowlModule,
     InputMaskModule,
+    CommonModule
+
 
   ],
-  providers: [UserService, ConsultasService, AngularFireAuth, EspecialidadeService, MedicoService, HorarioService],
+
+  providers: [UserService, ConsultasService, AngularFireAuth, EspecialidadeService, MedicoService, FormBuilder, AdmService, HorarioService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -192,6 +192,7 @@ export class MarcarComponent implements OnInit {
           this.medicoSelecionado = null;
         }
       }
+
     }*/
     /* onRowSelectMed(event) {
           console.log(event.data)
@@ -203,3 +204,4 @@ export class MarcarComponent implements OnInit {
       }*/
 
     }
+

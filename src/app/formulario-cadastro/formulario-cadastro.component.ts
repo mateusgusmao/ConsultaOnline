@@ -17,14 +17,12 @@ export class FormularioCadastroComponent implements OnInit {
   nomeUsuario: string;
   cpfUsuario: string;
 
-  
-  userform: FormGroup;
-  
-  constructor(private userService: UserService) {
-     //this.novoUsuario = { username: "", password: "", consultas: [] }
+
+  constructor(private userService: UserService, private fb: FormBuilder) {
   }
 
   ngOnInit() {
+
   }
   
 register() {
